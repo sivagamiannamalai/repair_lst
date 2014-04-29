@@ -1,0 +1,92 @@
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+	<title>Local Sports Team Car Repair App - Search Facilities</title>
+
+</head>
+<body>
+
+<!-- Start of Navigation - Copy from Team Files Template -->
+
+<nav>
+	<ul>
+		<li><a href="../index.html">Home</a></li>
+		<li><a href="#">Vehicle</a>
+			<ul>
+				<li><a href="#">List Vehicles</a>
+				<li><a href="#">Add a Vehicle</a></li>
+				<li><a href="#">Update a Vehicle</a></li>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#">Repairs</a>
+			<ul>
+				<li><a href="#">View Repair History</a></li>
+				<li><a href="#">Add a Repair</a></li>
+				<li><a href="#">Update a Repair</a>
+			</ul>
+		</li>
+		<li><a href="#">Facilities</a>
+			<ul>
+				<li><a href="retrieve.html">Search Facilities</a></li>
+				<li><a href="create.html">Add a Facility</a></li>
+				<li><a href="update.html">Update a Facility</a>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<!-- Start of Navigation - Copy from Team Files Template -->
+
+	<div id="content"> <!-- Start of content -->
+
+		<h1>Repair Tracker 1.0.0</h1>
+
+		<div id="retrieveRepairFacility"> <!-- Start of retrieveRepairFacility -->
+		<h3>List All Facilities</h3>
+
+		<br><button id="retrieveAllButton">Find All</button>
+
+		<h3>Search Repair Facilities</h3>
+
+		<div class="formBox"> <!-- Start of formbox -->
+
+			<b>Search By</b> <br/><br/>
+
+			Car Make:  <select name="carMake">
+					<option value="Honda">Honda</option>
+					<option value="Subaru">Subaru</option>
+					<option value="Mazda">Mazda</option>
+					<option value="Ford">Ford</option>
+					<option value="BMW" selected>BMW</option>
+					</select>
+			<br/><br/>
+			Hourly Labor Rate: min $<input type="text" name="facilityLaborRate" size="5"> - max $<input type="text" name="facilityLaborRate" size="5">
+			<br/><br/>
+			Average Rating: 
+					<select name="rating">
+					<option value="1">1 Wrench</option>
+					<option value="2">2 Wrenches</option>
+					<option value="3">3 Wrenches</option>
+					<option value="4">4 Wrenches</option>
+					<option value="5" selected>5 Wrenches</option>
+					</select>
+			<br/><br/>
+			ZIP: <input type="text" name="zip">
+	
+		</div>  <!-- End of formbox -->
+
+		</div> <!-- End of retrieveRepairFacility -->
+		
+	</div>  <!-- End of content -->
+
+
+
+
+</body>
+
+
+
+</html>
