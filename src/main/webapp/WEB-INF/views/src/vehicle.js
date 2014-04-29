@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	populateMakeAndModel();
+	$("#createVehicleSubmit").click(createVehicle);
 });
 
  function populateMakeAndModel() {
@@ -544,8 +545,7 @@ var modelTypeJsonList = {"ASTON MARTIN" :
         ]
                             };
 
-//Now that the doc is fully ready - populate the lists   
-//Next comes the make
+
       var ModelListItems= "";
       for (var i = 0; i < modelMakeJsonList.modelMakeTable.length; i++){
         ModelListItems+= "<option value='" + modelMakeJsonList.modelMakeTable[i].modelMakeID + "'>" + modelMakeJsonList.modelMakeTable[i].modelMake + "</option>";
@@ -565,4 +565,60 @@ var modelTypeJsonList = {"ASTON MARTIN" :
         var selectedMake = $('#makeSelectionBox option:selected').text();
         updateSelectVehicleBox(selectedMake);
     });    		
-    }
+}
+
+ function vinValidator(vinToCheck) {
+	var isVinValid = false;
+	var vinRegex = /^(([a-h,A-H,j-n,J-N,p,P,r-t,R-T,v-z,V-Z,0-9]{9})([a-h,A-H,j-n,J-N,p,P,r-t,R-T,v-z,V-Z,0-9])([a-h,A-H,j-n,J-N,p,P,r-t,R-T,v-z,V-Z,0-9])(\d{6}))$/gi;
+	
+	var checkVin = vinToCheck.match(vinRegex);
+
+	if (checkVin != null){
+		isVinValid = true;
+	}
+ 
+	return isVinValid;
+}
+
+function createVehicle(){
+
+var year = $('#yearSelect:selected');
+var make = $('#makeSelectionBox:selected');
+var model = $('#modelSelectionBox:selected');
+var vin = $('#vinInput').val();
+var mileageRaw = $('#mileageInput').val();
+var mileageInt = parseInt(mileageRaw);
+var checkIfInt = isNaN(mileageInt);
+var modelValue = $('#modelSelectionBox').val();
+
+	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false){
+		console.log("AJAX hit");
+	$.ajax({
+		type: "POST",
+		url: "http://localhost:8080/repair_localsportsteam/vehicles",
+		data: {year: year, make: make, model: model, vin: vin, mileage: mileageInt},
+		success: successCreateConditionFunction,
+		error: failureConditionFunction
+		});
+	}
+	
+	else if (modelValue === "-1") {
+	
+	$("#vehicleMessage").text("You must select a vehicle Model");
+	
+	}
+	
+	else if (vinValidator(vin) == false) {
+	
+	$("#vehicleMessage").text("You must enter a valid Vehicle Identification Number");
+	
+	}
+	
+	else if (checkIfInt == true) {
+	
+	$("#vehicleMessage").text("You must enter a valid Mileage");
+	
+	}
+}
+
+	

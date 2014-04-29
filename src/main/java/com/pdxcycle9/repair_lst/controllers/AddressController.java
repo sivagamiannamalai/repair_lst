@@ -13,7 +13,7 @@ import com.pdxcycle9.repair_lst.services.CreateAddressService;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Controller
-public class CreateAddressController {
+public class AddressController {
 	//
 	@Autowired
 	private CreateAddressService createAddressService;
