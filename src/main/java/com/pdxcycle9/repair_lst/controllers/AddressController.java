@@ -37,9 +37,10 @@ public class AddressController {
 		System.out.println("Inside COntroller " + city + "," + state);
 
 		Response response = getCreateAddressService().createAddress(address);
-
+		
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
+
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
