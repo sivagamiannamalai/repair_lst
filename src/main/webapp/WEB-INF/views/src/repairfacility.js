@@ -7,19 +7,19 @@ $(document).ready(function(){
 function postRepairFacility(){
 
 	// Address vars
-	var streetAddress = $("#streetAddressInput").val();
+	var street = $("#streetAddressInput").val();
 	var city = $("#cityInput").val();
 	var state = $("#stateSelect").val();
 	var zip = $("#zipInput").val();
 
 	$("#facilityMessage").html("");
 
-	if(validateAddress(streetAddress, city, zip)){
+	if(validateAddress(street, city, state, zip)){
 
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/repair_localsportsteam/address/",
-			data: { street : streetAddress, city : city, state : state, zip : zip },
+			url: "http://localhost:8080/repair_lst/address/",
+			data: { street : street, city : city, state : state, zip : zip },
 			success: createAddressSuccess, 
 			error: createAddressFailure
 		});
@@ -56,7 +56,7 @@ function createAddressSuccess(data, status, jqXHR){
 
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/repair_localsportsteam/repairfacility/",
+			url: "http://localhost:8080/repair_lst/repairfacility/",
 			data: {
 				name : name, phone : phoneNumber, hourlyRate : laborRate,
 				specialization : specialty, addressId : facilityAddress
@@ -75,6 +75,7 @@ function createAddressSuccess(data, status, jqXHR){
 function createFacilitySuccess(data, status, jqXHR){
 
 	var successMessage = "Repair facility: " + data.name + "<br> Successfully created.";
+	$('html, body').animate({ scrollTop: 0 }, 'slow');
 
 	$("#facilityMessage").html(successMessage);
 
@@ -83,6 +84,7 @@ function createFacilitySuccess(data, status, jqXHR){
 function createFacilityFailure(data, status, jqXHR){
 
 	$("#facilityMessage").html("Repair facility failed to persist to the database.");
+	$('html, body').animate({ scrollTop: 0 }, 'slow');
 	
 }
 
@@ -136,11 +138,11 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 	return bool;
 };
 
-function validateAddress(streetAddress, city, zip){
+function validateAddress(street, city, state, zip){
 
 	var bool = false;
 
-	if(streetAddress == ""){
+	if(street == ""){
 		$("#street").removeClass("validText");
 		$("#street").addClass("errorText");
 	} else {
@@ -172,7 +174,7 @@ function validateAddress(streetAddress, city, zip){
 		$("#zip").removeClass("errorText");
 	}
 
-	if(streetAddress != "" && city != "" && zip != "") {
+	if(street != "" && city != "" && zip != "") {
 
 		bool = true;
 	}
