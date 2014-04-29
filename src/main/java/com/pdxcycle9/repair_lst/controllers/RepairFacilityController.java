@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pdxcycle9.repair_lst.entities.Address;
+
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
@@ -20,8 +20,7 @@ import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 public class RepairFacilityController {
 	@Autowired
 	CreateRepairFacilityService createRepairFacilityService;
-	@Autowired
-	SearchRepairFacilityService searchRepairFacilityService;
+	
 		
 	
 	/* 
