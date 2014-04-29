@@ -1,24 +1,20 @@
 package com.pdxcycle9.repair_lst.DAO;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 
 @Repository
-//@Component
 public class RepairFacilityDAO {
-	@Autowired		
-	SessionFactory sessionFactory;
-	//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
-	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {
+	@PersistenceContext(unitName = "repair_lst")
+	private EntityManager em;
+	
+	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		
-		Session session = sessionFactory.getCurrentSession();	
-		session.persist(repairFacility);			
+		em.persist(repairFacility);			
 		return repairFacility;
 	}
 	
