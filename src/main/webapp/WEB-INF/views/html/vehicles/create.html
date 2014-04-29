@@ -1,0 +1,124 @@
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="../../src/vehicle.js"></script>
+
+	<title>Local Sports Team Car Repair App - Add A vehicle</title>
+
+</head>
+<body>
+
+<nav>
+	<ul>
+		<li><a href="../index.html">Home</a></li>
+		<li><a href="#">Vehicle</a>
+			<ul>
+				<li><a href="../vehicles/retrieve.html">List Vehicles</a>
+				<li><a href="../vehicles/create.html">Add a Vehicle</a></li>
+				<li><a href="../vehicles/update.html">Update a Vehicle</a></li>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#">Repairs</a>
+			<ul>
+				<li><a href="#">View Repair History</a></li>
+				<li><a href="#">Add a Repair</a></li>
+				<li><a href="#">Update a Repair</a>
+			</ul>
+		</li>
+		<li><a href="#">Facilities</a>
+			<ul>
+				<li><a href="../repairfacility/retrieve.html">Search Facilities</a></li>
+				<li><a href="../repairfacility/create.html">Add a Facility</a></li>
+				<li><a href="../repairfacility/update.html">Update a Facility</a>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<!-- Start of Navigation - Copy from Team Files Template -->
+	<div id="content"> <!-- Start of content -->
+
+		<h1>Repair Tracker 1.0.0</h1>
+
+		<div id="creatVehicle"> <!-- Start of CreateRepairFacility -->
+		
+		<h3>Add a New Vehicle</h3>
+
+		<div id ="facilityMessage"></div>
+
+		<div class="formBox"> <!-- Start of formbox -->
+
+			<b>Car Information</b> <br/><br/>
+		
+			<span id="year">Year:</span> <select id="yearSelect">
+				<option value="1981">1981</option>
+				<option value="1982">1982</option>
+				<option value="1983">1983</option>
+				<option value="1984">1984</option>
+				<option value="1985">1985</option>
+				<option value="1986">1986</option>
+				<option value="1987">1987</option>
+				<option value="1988">1988</option>
+				<option value="1989">1989</option>
+				<option value="1990">1990</option>
+				<option value="1991">1991</option>
+				<option value="1992">1992</option>
+				<option value="1993">1993</option>
+				<option value="1994">1994</option>
+				<option value="1995">1995</option>
+				<option value="1996">1996</option>
+				<option value="1997">1997</option>
+				<option value="1998">1998</option>
+				<option value="1999">1999</option>
+				<option value="2000">2000</option>
+				<option value="2001">2001</option>
+				<option value="2002">2002</option>
+				<option value="2003">2003</option>
+				<option value="2004">2004</option>
+				<option value="2005">2005</option>
+				<option value="2006">2006</option>
+				<option value="2007">2007</option>
+				<option value="2008">2008</option>
+				<option value="2009">2009</option>
+				<option value="2010">2010</option>
+				<option value="2011">2011</option>
+				<option value="2012">2012</option>
+				<option value="2013">2013</option>
+				<option value="2014">2014</option>
+
+			</select>
+	<br/>		
+			<span id="make">Make:</span> <select id="makeSelectionBox">
+  <option id="selectMakeBox" value="-1" selected="selected">Make</option>
+  </select>
+	<br/>
+			<span id="model">Model:</span>  <select id="modelSelectionBox">
+  <option  id="selectVehicleBox" value="-1" selected="selected">Select your vehicle</option>
+  </select>
+			
+			<br/><br/>
+			
+			<span id="vin">VIN:</span> <input type="text" id="vinInput">
+			<br/><br/>
+			<span id="mileage">Mileage:</span> <input type="text" id="mileageInput">
+
+		</div>  <!-- End of formbox -->
+
+
+		<button id="createVehicleSubmit">Click to Add your Vehicle</button>
+
+		</div> <!-- End of CreateRepairFacility -->
+		
+	</div>  <!-- End of content -->
+
+
+
+
+</body>
+
+
+
+</html>
