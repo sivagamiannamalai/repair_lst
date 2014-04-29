@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
-import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.subservices.IsNotNull;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
@@ -27,7 +26,7 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
-	public Response createRepairFacility(RepairFacility repairFacility, Address address) {
+	public Response createRepairFacility(RepairFacility repairFacility) {
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();

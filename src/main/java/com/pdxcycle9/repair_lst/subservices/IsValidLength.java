@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.pdxcycle9.repair_lst.util.Error;
 
+@Component
 public class IsValidLength {
 	public boolean between1and255(String string, List<String> errors) {
 
@@ -16,9 +17,7 @@ public class IsValidLength {
 		} else {
 			errors.add(Error.IS_WRONG_LENGTH);
 		}
-
 		return result;
-
 	}
 	
 }

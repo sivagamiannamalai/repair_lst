@@ -37,8 +37,6 @@ public class RepairFacilityController {
 			@RequestParam(value = "addressId") int addressId)  {
 
 		RepairFacility repairFacility = new RepairFacility();
-		Address address = new Address();
-
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
@@ -46,8 +44,10 @@ public class RepairFacilityController {
 		//repairFacility.setSpecialization(specialization);
 		repairFacility.setAddressId(addressId);
 		
+		System.out.println("Inside Repairfacility Controller " + name + ", " + phone );
+		
 		Response response = createRepairFacilityService.createRepairFacility(
-				repairFacility, address);
+				repairFacility);
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
