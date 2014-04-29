@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pdxcycle9.repair_lst.entities.Address;
+
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
+import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 
 @Controller
 public class RepairFacilityController {
 	@Autowired
 	CreateRepairFacilityService createRepairFacilityService;
+	
 		
 	
 	/* 
@@ -37,8 +39,6 @@ public class RepairFacilityController {
 			@RequestParam(value = "addressId") int addressId)  {
 
 		RepairFacility repairFacility = new RepairFacility();
-		Address address = new Address();
-
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
@@ -46,12 +46,20 @@ public class RepairFacilityController {
 		//repairFacility.setSpecialization(specialization);
 		repairFacility.setAddressId(addressId);
 		
+		System.out.println("Inside Repairfacility Controller " + name + ", " + phone );
+		
 		Response response = createRepairFacilityService.createRepairFacility(
-				repairFacility, address);
+				repairFacility);
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
+	/*
+	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacility() { 
+		Response response = searchRepairFacilityService.retrieve();
+		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());*/
+	}
 
-	
-}
+
