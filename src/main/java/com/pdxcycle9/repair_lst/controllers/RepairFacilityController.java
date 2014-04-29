@@ -14,11 +14,14 @@ import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
+import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 
 @Controller
 public class RepairFacilityController {
 	@Autowired
 	CreateRepairFacilityService createRepairFacilityService;
+	@Autowired
+	SearchRepairFacilityService searchRepairFacilityService;
 		
 	
 	/* 
@@ -52,6 +55,12 @@ public class RepairFacilityController {
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
+	/*
+	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacility() { 
+		Response response = searchRepairFacilityService.retrieve();
+		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());*/
+	}
 
-	
-}
+
