@@ -3,6 +3,7 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -82,10 +83,12 @@ public class CreateAddressService {
 		   result = getAddressDAO().persistAddress(address);
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
-		} catch (Exception e){
+		} catch (ConstraintViolationException e){
+			errors.add(Error.DUPLICATE_RECORD);
+			failed(response, errors);
+		} catch (Exception e) {
 			errors.add(Error.CANNOT_PERSIST);
-			response.setResponseObject(errors);
-			response.setStatusCode(HttpStatus.BAD_REQUEST);
+			failed(response, errors);
 		}
 		 
 	}
