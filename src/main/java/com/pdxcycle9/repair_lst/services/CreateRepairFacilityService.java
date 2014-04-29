@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.entities.Address;
@@ -15,6 +16,7 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
+@Component
 public class CreateRepairFacilityService {
 	@Autowired
 	RepairFacilityDAO repairFacilityDAO;
