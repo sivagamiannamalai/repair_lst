@@ -80,7 +80,7 @@ public class CreateAddressService {
 		
 		Address result = null;
 		try {
-		   result = getAddressDAO().persistAddress(address);
+		   result = addressDAO.persistAddress(address);
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (ConstraintViolationException e){
