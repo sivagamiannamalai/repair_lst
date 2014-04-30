@@ -99,13 +99,13 @@ import org.hibernate.annotations.Target;
 			this.addressId = addressId;
 		}
 		
-		public void setSpecialization(List<Integer> specialization)  {
+		/*public void setSpecialization(List<Integer> specialization)  {
 		    this.specialization = specialization;
 		}
 		
 		public List<Integer> getSpecialization()  {
 			return this.specialization;
-		}
+		} */
 		
 		public String toString() {
 			return "RepairFacility[id " + id + ", name " + name + ", phone" + phone

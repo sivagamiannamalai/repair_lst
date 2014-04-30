@@ -45,7 +45,7 @@ public class RepairFacilityController {
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
 		//repairFacility.setRating(rating);		
-		repairFacility.setSpecialization(specialization);
+		//repairFacility.setSpecialization(specialization);
 		repairFacility.setAddressId(addressId);
 		
 		System.out.println("Inside Repairfacility Controller " + name + ", " + phone );

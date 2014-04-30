@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "specialization")
+
+
 public class Specialization {
 	
 	private List<Integer> specializationValues;
