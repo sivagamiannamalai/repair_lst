@@ -1,6 +1,7 @@
 package com.pdxcycle9.repair_lst.DAO;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -25,9 +26,10 @@ public class RepairFacilityDAO {
 		return repairFacility;
 	}
 	
-	public List<RepairFacility> retrieveRepairFacility() {	
-		List<RepairFacility> query = em.createQuery("SELECT e FROM lst_repairtracker.repair_facility e", RepairFacility.class).getResultList();
-				return query;
+	public List<RepairFacility> retrieveRepairFacility() {
+		System.out.println("Echo: Inside the repair facility DAO");
+		Query query = em.createQuery("SELECT e FROM lst_repairtracker.repair_facility e", RepairFacility.class);		
+		return query.getResultList();
 		  }
 	}
 	
