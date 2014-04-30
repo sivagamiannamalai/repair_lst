@@ -27,6 +27,11 @@ public class SearchRepairFacilityService {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
 
+	public Response retrieve() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*public Response retrieve() {
 
 		
