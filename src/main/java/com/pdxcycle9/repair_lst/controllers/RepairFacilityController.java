@@ -1,7 +1,7 @@
 package com.pdxcycle9.repair_lst.controllers;
 
+
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
-
-import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
-import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
+import com.pdxcycle9.repair_lst.util.Response;
 
 @Controller
 public class RepairFacilityController {
@@ -34,31 +30,33 @@ public class RepairFacilityController {
 	 * returns ResponseEntity object
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
-			"hourlyRate", "addressId" }, method = RequestMethod.POST, produces = "application/json")
+			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
+
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "name") String name,
-			@RequestParam(value = "phone") String phone,
+			@RequestParam(value = "phone") String phone,			
+			@RequestParam(value = "specialization[]") int[] specialization,
 			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
-			
 			@RequestParam(value = "addressId") int addressId)  {
+		
+		System.out.println("I am in the controller " + specialization[1]);
         
-		System.out.println("In RepairFacility Controller");
-		//@RequestParam(value = "specialization") List<Integer> specialization,
 		RepairFacility repairFacility = new RepairFacility();
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		repairFacility.setHourlyRate(hourlyRate);
-		//repairFacility.setRating(rating);		
-		//repairFacility.setSpecialization(specialization);
+		repairFacility.setHourlyRate(hourlyRate);	
 		repairFacility.setAddressId(addressId);
 		
-		System.out.println("Inside Repairfacility Controller " + name + ", " + phone );
+		System.out.println("I have set values " + addressId);
 		
 		Response response = createRepairFacilityService.createRepairFacility(
-				repairFacility);
+				repairFacility, specialization);	
 		System.out.println("Resoponse Object " + response.getResponseObject());
 		System.out.println("Resoponse Status Code " + response.getStatusCode());
+
+				
+
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());

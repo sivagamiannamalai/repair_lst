@@ -34,7 +34,7 @@ public class AddressController {
 		address.setStreet(street);
 		address.setZip(zip);
 
-		System.out.println("Inside COntroller " + city + "," + state);
+		System.out.println("Inside Controller " + city + "," + state);
 
 		Response response = getCreateAddressService().createAddress(address);
 		

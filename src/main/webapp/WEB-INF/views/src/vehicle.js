@@ -582,20 +582,26 @@ var modelTypeJsonList = {"ASTON MARTIN" :
 
 function createVehicle(){
 
-var year = $('#yearSelect:selected');
-var make = $('#makeSelectionBox:selected');
-var model = $('#modelSelectionBox:selected');
+var year = $('#yearSelect').children(":selected").val();
+var make = $('#makeSelectionBox').children(":selected").val();
+var model = $('#modelSelectionBox').children(":selected").val();
 var vin = $('#vinInput').val();
 var mileageRaw = $('#mileageInput').val();
 var mileageInt = parseInt(mileageRaw);
 var checkIfInt = isNaN(mileageInt);
 var modelValue = $('#modelSelectionBox').val();
-
+/*
+console.log(year);
+console.log(make);
+console.log(model);
+console.log(vin);
+console.log(mileageRaw);
+*/
 	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false){
 		console.log("AJAX hit");
 	$.ajax({
 		type: "POST",
-		url: "http://localhost:8080/repair_localsportsteam/vehicles",
+		url: "http://localhost:8080/repair_lst/vehicle",
 		data: {year: year, make: make, model: model, vin: vin, mileage: mileageInt},
 		success: successCreateVehicleFunction,
 		error: failureCreateVehicleFunction
@@ -625,6 +631,6 @@ function successCreateVehicleFunction() {
 	$("#vehicleMessage").text("You've successfully added a Vehicle to your collection");
 }
 function failureCreateVehicleFunction() {
-
+	$("#vehicleMessage").text("Super helpful error message");
 }
 	

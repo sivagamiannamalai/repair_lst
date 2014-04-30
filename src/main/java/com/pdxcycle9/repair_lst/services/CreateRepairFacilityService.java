@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
+import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.subservices.IsNotNull;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
@@ -29,14 +30,22 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
-	@Transactional
-	public Response createRepairFacility(RepairFacility repairFacility) {
+
+	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
+
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
+		ArrayList<Specialization> specializationList;
 		boolean fieldsNotNull = false;
 		boolean fieldsCorrectLength = false;		
 		boolean validPhone = false;
+
+		System.out.println("I made it to create");
+		
+		repairFacility.setSpecializations(makeSpecializationList(specialization));
+		
+		System.out.println("I made a specialization list " );
 		
 		
 		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors) &&
@@ -51,7 +60,7 @@ public class CreateRepairFacilityService {
 		
 		
 		int phoneLength = repairFacility.getPhone().length();
-		if (phoneLength == 10) {
+		if (phoneLength > 0) {
 			validPhone = true;
 		}
 		
@@ -90,6 +99,23 @@ public class CreateRepairFacilityService {
 		
 		
 		 
+	}
+	
+	public ArrayList<Specialization> makeSpecializationList(int[] specialization){
+		
+		ArrayList<Specialization> specializationList = new ArrayList<Specialization>();
+		
+		for(int i = 0; i < specialization.length; i++) {
+			
+			Specialization thingToAdd = new Specialization(specialization[i]);
+			
+			specializationList.add(thingToAdd);
+			
+		}
+		
+		System.out.println("This should be an array of specializations " + specializationList.size());
+		
+		return specializationList;
 	}
 
 }

@@ -1,9 +1,8 @@
 package com.pdxcycle9.repair_lst.entities;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-
 
 
 	@Entity
@@ -39,17 +36,25 @@ import javax.persistence.Table;
 		private int addressId;
 			 
 		
-		
+
 		/* @ManyToMany
 		 @JoinTable(name = "repair_facility_specialization",
 		          joinColumns={@JoinColumn(name="specialization_id")},
 		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
 		private List<Integer> specialization; */
 		
-		//public RepairFacility() {
-			
-		//}
 		
+		@ManyToMany
+		@JoinTable(name = "repair_facility_specialization",
+		          joinColumns={@JoinColumn(name="repair_facility_id")},
+		          inverseJoinColumns={@JoinColumn(name="specialization_id")})
+		private Collection<Specialization> specializations; 
+
+
+		public RepairFacility() {
+
+			
+		}		
 		
 		/*
 		 * Getters and setters for the RepairFacility entity variables
@@ -86,12 +91,7 @@ import javax.persistence.Table;
 		public void setRating(int rating) {
 			this.rating = rating;
 		}
-		//public User getUser() {
-		//	return user;
-		//}
-		//public void setUser(User user) {
-		//	this.user = user;
-		//}
+
 		public int getAddressId() {
 			return addressId;
 		}
@@ -99,13 +99,13 @@ import javax.persistence.Table;
 			this.addressId = addressId;
 		}
 		
-		/*public void setSpecialization(List<Integer> specialization)  {
-		    this.specialization = specialization;
+		public Collection<Specialization> getSpecializations() {
+			return specializations;
 		}
-		
-		public List<Integer> getSpecialization()  {
-			return this.specialization;
-		} */
+
+		public void setSpecializations(Collection<Specialization> specializations) {
+			this.specializations = specializations;
+		}
 		
 		public String toString() {
 			return "RepairFacility[id " + id + ", name " + name + ", phone" + phone

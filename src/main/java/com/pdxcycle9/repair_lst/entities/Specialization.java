@@ -1,32 +1,31 @@
 package com.pdxcycle9.repair_lst.entities;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "specialization")
+@Table(name ="specialization")
 public class Specialization {
 	
-	public Specialization() {
-		
-	}
+	@Id
+	private int id;
 	
-	public Specialization(int id) {
-		
-	}
-	
-	@Id @GeneratedValue
-	@Column(name = "specialization_id", unique = true, nullable = false)
-	private int id;	
-	
-	@Column(name = "type")
+	@Column
 	private String type;
+	
+	public Specialization() {
+
+		
+	}
+
+	public Specialization(int id) {
+
+		this.id = id;
+		
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -42,4 +41,5 @@ public class Specialization {
 		this.type = type;
 	}
 
+	
 }
