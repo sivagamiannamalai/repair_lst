@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.controllers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+
+
+import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
@@ -30,16 +34,17 @@ public class RepairFacilityController {
 	 * returns ResponseEntity object
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
-			"hourlyRate", "specialization", "addressId" }, method = RequestMethod.POST, produces = "application/json")
+			"hourlyRate", "addressId" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "name") String name,
 			@RequestParam(value = "phone") String phone,
-			@RequestParam(value = "hourlyRate") double hourlyRate,			
-			@RequestParam(value = "specialization") List<Integer> specialization,
+			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
+			
 			@RequestParam(value = "addressId") int addressId)  {
         
 		System.out.println("In RepairFacility Controller");
+		//@RequestParam(value = "specialization") List<Integer> specialization,
 		RepairFacility repairFacility = new RepairFacility();
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);

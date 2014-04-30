@@ -1,7 +1,10 @@
 package com.pdxcycle9.repair_lst.subservices;
 
+import java.math.BigDecimal;
 import java.util.List;
+
 import com.pdxcycle9.repair_lst.util.Error;
+
 import org.springframework.stereotype.Component;
 
 
@@ -36,6 +39,21 @@ public class IsNotNull {
 
 		if (val > 0) {
 
+			return true;
+		} else {
+			errors.add(Error.IS_NULL);
+		}
+
+		return result;
+
+	}
+	
+	public boolean isHourlyRateNotEmpty(BigDecimal val, List<String> errors) {
+
+		boolean result = false;
+		double doubleVal = val.doubleValue();
+
+		if (doubleVal > 0) {
 			return true;
 		} else {
 			errors.add(Error.IS_NULL);
