@@ -11,7 +11,7 @@ import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 
-//@Component
+@Component
 public class SearchRepairFacilityService {
 
 	@Autowired
