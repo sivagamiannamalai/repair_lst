@@ -61,7 +61,7 @@ public class CreateRepairFacilityService {
 			failed(response, errors);
 		}
 		
-		return new Response();
+		return response;
 	}
 	
 	public void failed(Response response, List<String> errors) {
@@ -77,6 +77,7 @@ public class CreateRepairFacilityService {
 		RepairFacility result = null;
 		try {
 		   result = repairFacilityDAO.persistRepairFacility(repairFacility);
+		   System.out.println("Result inside service " + result.getClass());
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (IdentifierGenerationException e){
@@ -86,6 +87,8 @@ public class CreateRepairFacilityService {
 			errors.add(Error.CANNOT_PERSIST);
 			failed(response, errors);
 		}
+		
+		
 		 
 	}
 

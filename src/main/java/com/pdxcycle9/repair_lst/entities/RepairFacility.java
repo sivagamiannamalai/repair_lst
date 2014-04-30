@@ -46,9 +46,9 @@ import javax.persistence.Table;
 		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
 		private List<Integer> specialization; */
 		
-		public RepairFacility() {
+		//public RepairFacility() {
 			
-		}
+		//}
 		
 		
 		/*

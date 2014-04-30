@@ -57,6 +57,8 @@ public class RepairFacilityController {
 		
 		Response response = createRepairFacilityService.createRepairFacility(
 				repairFacility);
+		System.out.println("Resoponse Object " + response.getResponseObject());
+		System.out.println("Resoponse Status Code " + response.getStatusCode());
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
