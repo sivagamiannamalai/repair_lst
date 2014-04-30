@@ -1,6 +1,7 @@
 package com.pdxcycle9.repair_lst.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,34 +28,12 @@ public class SearchRepairFacilityService {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
 
-	/*public Response retrieve() {
+	public Response retrieve() {
 
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-		List<RepairFacility> result = null;
-		
-		try {
-			result = repairFacilityDAO.retrieveRepairFacility();
-
-		} catch (Exception e) {
-			response.setStatusCode(HttpStatus.BAD_REQUEST);
-		}
-		return response;
-
-	}*/
-
-
-	/**
-	 * Function that retrieves all transaction types
-	 * @return
-	 */
-/*	public Response retrieve() {
-
-		
-		Response response = new Response();
-		List<String> errors = new ArrayList<String>();
-		List<RepairFacility> result = null;
+		Collection<RepairFacility> result = null;
 		
 		try {
 			result = repairFacilityDAO.retrieveRepairFacility();
@@ -65,6 +44,5 @@ public class SearchRepairFacilityService {
 		return response;
 
 	}
-*/
 
 }
