@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.entities;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Target;
+
 
 
 	@Entity
@@ -29,7 +30,7 @@ import org.hibernate.annotations.Target;
 		private String phone;
 		
 		@Column(name = "hourly_rate", nullable = false)
-		private double hourlyRate;
+		private BigDecimal hourlyRate;
 		
 		@Column (name = "rating")
 		private double rating;
@@ -40,7 +41,6 @@ import org.hibernate.annotations.Target;
 		
 		
 		/* @ManyToMany
-		 @Target(RepairFacility.class)	 
 		 @JoinTable(name = "repair_facility_specialization",
 		          joinColumns={@JoinColumn(name="specialization_id")},
 		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
@@ -74,10 +74,10 @@ import org.hibernate.annotations.Target;
 		public void setPhone(String phone) {
 			this.phone = phone;
 		}
-		public double getHourlyRate() {
+		public BigDecimal getHourlyRate() {
 			return hourlyRate;
 		}
-		public void setHourlyRate(double hourlyRate) {
+		public void setHourlyRate(BigDecimal hourlyRate) {
 			this.hourlyRate = hourlyRate;
 		}
 		public double getRating() {
@@ -99,13 +99,13 @@ import org.hibernate.annotations.Target;
 			this.addressId = addressId;
 		}
 		
-		public void setSpecialization(List<Integer> specialization)  {
+		/*public void setSpecialization(List<Integer> specialization)  {
 		    this.specialization = specialization;
 		}
 		
 		public List<Integer> getSpecialization()  {
 			return this.specialization;
-		}
+		} */
 		
 		public String toString() {
 			return "RepairFacility[id " + id + ", name " + name + ", phone" + phone

@@ -7,6 +7,8 @@ import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
@@ -15,7 +17,8 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Component
+@Service
+//@Component
 public class CreateRepairFacilityService {
 	@Autowired
 	RepairFacilityDAO repairFacilityDAO;
@@ -26,6 +29,7 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
+	@Transactional
 	public Response createRepairFacility(RepairFacility repairFacility) {
 		
 		Response response = new Response();
@@ -37,7 +41,7 @@ public class CreateRepairFacilityService {
 		
 		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors) &&
 		   isNotNull.isFieldNotNull(repairFacility.getPhone(), errors) && 
-		   isNotNull.isFieldNotEmpty(repairFacility.getHourlyRate(), errors))  {		
+		   isNotNull.isHourlyRateNotEmpty(repairFacility.getHourlyRate(), errors))  {		
 			fieldsNotNull = true;
 		}
 		
@@ -61,6 +65,7 @@ public class CreateRepairFacilityService {
 	}
 	
 	public void failed(Response response, List<String> errors) {
+		System.out.println("Inside Failed method");
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
