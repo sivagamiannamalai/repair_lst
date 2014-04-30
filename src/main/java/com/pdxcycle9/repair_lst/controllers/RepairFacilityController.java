@@ -1,7 +1,7 @@
 package com.pdxcycle9.repair_lst.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
-
-
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
-import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
+import com.pdxcycle9.repair_lst.util.Response;
 
 @Controller
 public class RepairFacilityController {
@@ -35,12 +31,13 @@ public class RepairFacilityController {
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
 			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
+
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "name") String name,
-			@RequestParam(value = "phone") String phone,
-			@RequestParam(value = "hourlyRate") double hourlyRate,			
+			@RequestParam(value = "phone") String phone,			
 			@RequestParam(value = "specialization[]") int[] specialization,
+			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
 			@RequestParam(value = "addressId") int addressId)  {
 		
 		System.out.println("I am in the controller " + specialization[1]);
@@ -62,7 +59,8 @@ public class RepairFacilityController {
 	
 	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<?> retrieveRepairFacility() { 
+	public ResponseEntity<Object> retrieveRepairFacility() { 
+		System.out.println("Echo: Inside repair facility controller -- GET");
 		Response response = searchRepairFacilityService.retrieve();
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}

@@ -1,6 +1,10 @@
 package com.pdxcycle9.repair_lst.entities;
 
+<<<<<<< HEAD
 import java.util.Collection;
+=======
+import java.math.BigDecimal;
+>>>>>>> b3dcd3976ea9b28f8fe99c14c0f23d82e19f4af1
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Target;
+
 
 
 	@Entity
@@ -30,7 +34,7 @@ import org.hibernate.annotations.Target;
 		private String phone;
 		
 		@Column(name = "hourly_rate", nullable = false)
-		private double hourlyRate;
+		private BigDecimal hourlyRate;
 		
 		@Column (name = "rating")
 		private double rating;
@@ -40,8 +44,12 @@ import org.hibernate.annotations.Target;
 			 
 		
 		
+<<<<<<< HEAD
 		 @ManyToMany
 		 @Target(RepairFacility.class)	 
+=======
+		/* @ManyToMany
+>>>>>>> b3dcd3976ea9b28f8fe99c14c0f23d82e19f4af1
 		 @JoinTable(name = "repair_facility_specialization",
 		          joinColumns={@JoinColumn(name="repair_facility_id")},
 		          inverseJoinColumns={@JoinColumn(name="specialization_id")})
@@ -76,10 +84,10 @@ import org.hibernate.annotations.Target;
 		public void setPhone(String phone) {
 			this.phone = phone;
 		}
-		public double getHourlyRate() {
+		public BigDecimal getHourlyRate() {
 			return hourlyRate;
 		}
-		public void setHourlyRate(double hourlyRate) {
+		public void setHourlyRate(BigDecimal hourlyRate) {
 			this.hourlyRate = hourlyRate;
 		}
 		public double getRating() {

@@ -1,13 +1,15 @@
 package com.pdxcycle9.repair_lst.DAO;
 
 
-import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 
@@ -23,9 +25,9 @@ public class RepairFacilityDAO {
 		return repairFacility;
 	}
 	
-	public Collection<RepairFacility> retrieveRepairFacility() {		
-		Query query = (Query) em.createQuery("SELECT * FROM lst_repairtracker.repair_facility");
-		return (Collection<RepairFacility>) query.getResultList();
+	public List<RepairFacility> retrieveRepairFacility() {	
+		List<RepairFacility> query = em.createQuery("SELECT e FROM lst_repairtracker.repair_facility e", RepairFacility.class).getResultList();
+				return query;
 		  }
 	}
 	
