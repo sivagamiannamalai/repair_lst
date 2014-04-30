@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.entities;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,13 +40,14 @@ import org.hibernate.annotations.Target;
 			 
 		
 		
-		/* @ManyToMany
+		 @ManyToMany
 		 @Target(RepairFacility.class)	 
 		 @JoinTable(name = "repair_facility_specialization",
-		          joinColumns={@JoinColumn(name="specialization_id")},
-		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
-		private List<Integer> specialization; */
-		
+		          joinColumns={@JoinColumn(name="repair_facility_id")},
+		          inverseJoinColumns={@JoinColumn(name="specialization_id")})
+		private Collection<Specialization> specializations; 
+
+
 		public RepairFacility() {
 			
 		}
@@ -86,12 +88,7 @@ import org.hibernate.annotations.Target;
 		public void setRating(int rating) {
 			this.rating = rating;
 		}
-		//public User getUser() {
-		//	return user;
-		//}
-		//public void setUser(User user) {
-		//	this.user = user;
-		//}
+
 		public int getAddressId() {
 			return addressId;
 		}
@@ -99,13 +96,13 @@ import org.hibernate.annotations.Target;
 			this.addressId = addressId;
 		}
 		
-		/*public void setSpecialization(List<Integer> specialization)  {
-		    this.specialization = specialization;
+		public Collection<Specialization> getSpecializations() {
+			return specializations;
 		}
-		
-		public List<Integer> getSpecialization()  {
-			return this.specialization;
-		} */
+
+		public void setSpecializations(Collection<Specialization> specializations) {
+			this.specializations = specializations;
+		}
 		
 		public String toString() {
 			return "RepairFacility[id " + id + ", name " + name + ", phone" + phone
