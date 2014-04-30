@@ -43,11 +43,16 @@ import javax.persistence.Table;
 		//           inverseJoinColumns={@JoinColumn(name="specalization_id")})
 		//private List<Integer> specialization;
 		
+		public RepairFacility() {
+			
+		}
+		
 		
 		/*
 		 * Getters and setters for the RepairFacility entity variables
 		 */
 
+		
 		public int getId() {
 			return id;
 		}
