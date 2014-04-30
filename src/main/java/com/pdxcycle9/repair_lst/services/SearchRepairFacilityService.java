@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Component
+@Service
 public class SearchRepairFacilityService {
 
 	@Autowired
@@ -27,19 +31,20 @@ public class SearchRepairFacilityService {
 	public void setRepairFacilityDAO(RepairFacilityDAO repairFacilityDAO) {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
-
+	@Transactional
 	public Response retrieve() {
 
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-		Collection<RepairFacility> result = null;
+		List<RepairFacility> result = null;
 		
 		try {
 			result = repairFacilityDAO.retrieveRepairFacility();
-
+			
 		} catch (Exception e) {
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
+			System.out.println("Echo: Inside search repair facility service");
 		}
 		return response;
 
