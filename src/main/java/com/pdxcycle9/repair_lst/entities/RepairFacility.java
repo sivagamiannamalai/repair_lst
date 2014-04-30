@@ -1,13 +1,8 @@
 package com.pdxcycle9.repair_lst.entities;
 
-<<<<<<< HEAD
-import java.util.Collection;
-=======
 import java.math.BigDecimal;
->>>>>>> b3dcd3976ea9b28f8fe99c14c0f23d82e19f4af1
-import java.util.List;
+import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-
 
 
 	@Entity
@@ -43,14 +36,8 @@ import javax.persistence.Table;
 		private int addressId;
 			 
 		
-		
-<<<<<<< HEAD
-		 @ManyToMany
-		 @Target(RepairFacility.class)	 
-=======
-		/* @ManyToMany
->>>>>>> b3dcd3976ea9b28f8fe99c14c0f23d82e19f4af1
-		 @JoinTable(name = "repair_facility_specialization",
+		@ManyToMany
+		@JoinTable(name = "repair_facility_specialization",
 		          joinColumns={@JoinColumn(name="repair_facility_id")},
 		          inverseJoinColumns={@JoinColumn(name="specialization_id")})
 		private Collection<Specialization> specializations; 
