@@ -37,13 +37,14 @@ public class RepairFacilityController {
 			@RequestParam(value = "hourlyRate") double hourlyRate,			
 			@RequestParam(value = "specialization") List<Integer> specialization,
 			@RequestParam(value = "addressId") int addressId)  {
-
+        
+		System.out.println("In RepairFacility Controller");
 		RepairFacility repairFacility = new RepairFacility();
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
 		//repairFacility.setRating(rating);		
-		//repairFacility.setSpecialization(specialization);
+		repairFacility.setSpecialization(specialization);
 		repairFacility.setAddressId(addressId);
 		
 		System.out.println("Inside Repairfacility Controller " + name + ", " + phone );

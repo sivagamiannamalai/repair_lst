@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Target;
+
 
 	@Entity
 	@Table(name = "repair_facility")
@@ -37,11 +39,12 @@ import javax.persistence.Table;
 			 
 		
 		
-		//  @ManyToMany(cascade = {CascadeType.ALL})
-		//@JoinTable(name = "repair_facility_specialization",
-		//           joinColumns={@JoinColumn(name="repair_facility_id")},
-		//           inverseJoinColumns={@JoinColumn(name="specalization_id")})
-		//private List<Integer> specialization;
+		/* @ManyToMany
+		 @Target(RepairFacility.class)	 
+		 @JoinTable(name = "repair_facility_specialization",
+		          joinColumns={@JoinColumn(name="specialization_id")},
+		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
+		private List<Integer> specialization; */
 		
 		public RepairFacility() {
 			
@@ -96,13 +99,13 @@ import javax.persistence.Table;
 			this.addressId = addressId;
 		}
 		
-	//	public void setSpecialization(List<Integer> specialization)  {
-	//		this.specialization = specialization;
-	//	}
+		public void setSpecialization(List<Integer> specialization)  {
+		    this.specialization = specialization;
+		}
 		
-	//	public List<Integer> getSpecialization()  {
-	//		return this.specialization;
-	//	}
+		public List<Integer> getSpecialization()  {
+			return this.specialization;
+		}
 		
 		public String toString() {
 			return "RepairFacility[id " + id + ", name " + name + ", phone" + phone
