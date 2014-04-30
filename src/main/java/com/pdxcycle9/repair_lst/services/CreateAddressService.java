@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.AddressDAO;
 import com.pdxcycle9.repair_lst.entities.Address;
+import com.pdxcycle9.repair_lst.subservices.IsNotNull;
+import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
@@ -19,51 +21,51 @@ public class CreateAddressService {
 	@Autowired
 	private	AddressDAO addressDAO;
 	
-	//@Autowired
-	//IsValidLength isValidLength;
+	@Autowired
+	IsValidLength isValidLength;
 	
-	//@Autowired
-	//IsNotNull isNotNull;
+	@Autowired
+	IsNotNull isNotNull;
 
 	@Transactional
 	public Response createAddress(Address address) {
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-//		boolean fieldsNotNull = false;
-//		boolean fieldsCorrectLength = false;
-//		boolean validZip = false;
-//				
-//		
-//		if(isNotNull.isFieldNotNull(address.getCity(), errors) && 
-//		   isNotNull.isFieldNotNull(address.getState(), errors) && 
-//		   isNotNull.isFieldNotNull(address.getStreet(), errors) && 
-//		   isNotNull.isFieldNotNull(address.getZip(), errors))   {
-//			
-//			fieldsNotNull = true;
-//			System.out.println("Value of fieldsNotNulll " + fieldsNotNull);
-//		}
-//		
-//		if(isValidLength.between1and255(address.getCity(), errors) &&
-//		   isValidLength.between1and255(address.getStreet(), errors))  {
-//			  fieldsCorrectLength = true;
-//			  System.out.println("Value of fieldsCorrectLength " + fieldsCorrectLength);
-//		}
-//		
-//		
-//		int zipLength = address.getZip().length();
-//		System.out.println("Zip length is " + zipLength);
-//		if (zipLength == 5 ) {
-//			validZip = true;
-//		}
-//		
-//				
-		//if(fieldsNotNull && fieldsCorrectLength && validZip) {
-		//	System.out.println("Service validated");
+    	boolean fieldsNotNull = false;
+		boolean fieldsCorrectLength = false;
+		boolean validZip = false;
+				
+		
+		if(isNotNull.isFieldNotNull(address.getCity(), errors) && 
+		   isNotNull.isFieldNotNull(address.getState(), errors) && 
+		   isNotNull.isFieldNotNull(address.getStreet(), errors) && 
+		   isNotNull.isFieldNotNull(address.getZip(), errors))   {
+			
+			fieldsNotNull = true;
+			System.out.println("Value of fieldsNotNulll " + fieldsNotNull);
+		}
+		
+		if(isValidLength.between1and255(address.getCity(), errors) &&
+		   isValidLength.between1and255(address.getStreet(), errors))  {
+			  fieldsCorrectLength = true;
+			  System.out.println("Value of fieldsCorrectLength " + fieldsCorrectLength);
+		}
+		
+		
+		int zipLength = address.getZip().length();
+		System.out.println("Zip length is " + zipLength);
+		if (zipLength == 5 ) {
+			validZip = true;
+		}
+		
+				
+		if(fieldsNotNull && fieldsCorrectLength && validZip) {
+			System.out.println("Service validated");
 			 persistAddress(address, response, errors);
-		//}  else {
-		//	failed(response, errors);
-		//}
+		}  else {
+			failed(response, errors);
+		}
 		
 		return response;
 	}
