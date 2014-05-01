@@ -22,8 +22,10 @@ public class RepairFacilityDAO {
 	
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		em.persist(repairFacility);			
+		em.persist(repairFacility);	
+		
 		return repairFacility;
+		
 	}
 	
 	public List<RepairFacility> retrieveRepairFacility() {
