@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.services.CreateAddressService;
+import com.pdxcycle9.repair_lst.services.FindAllAddressService;
 import com.pdxcycle9.repair_lst.util.Response;
 
 /* Controller to create a new address
@@ -21,7 +22,10 @@ public class AddressController {
 	//
 	@Autowired
 	private CreateAddressService createAddressService;
-
+	@Autowired
+	private FindAllAddressService findAllAddressService;
+	
+	
 	@RequestMapping(value = "/address", params = { "street", "city", "state",
 			"zip" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
@@ -45,13 +49,12 @@ public class AddressController {
 
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/address", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<Object> getAddress() {
 
-		Address address = new Address();
-		
-		Response response = getCreateAddressService().createAddress(address);
+	public ResponseEntity<Object> retrieveAllAddress() {
+
+		Response response = findAllAddressService.retrieve();
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
