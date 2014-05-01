@@ -20,4 +20,32 @@ public class IsValidLength {
 		return result;
 	}
 	
+	public boolean zipIsFive(String val, List<String> errors){
+		
+		boolean result = false;
+		
+		if (val.length()==5) {				
+			result = true;				
+		} else {				
+			errors.add(Error.IS_WRONG_LENGTH);				
+		}
+		
+		return result;
+		
+	}
+	
+	public boolean phoneIsTen(String val, List<String> errors) {
+		
+		boolean result = false;
+		
+		if (val.length()==10) {				
+			result = true;				
+		} else {				
+			errors.add(Error.IS_WRONG_LENGTH);				
+		}
+		
+		return result;
+		
+	}
+	
 }

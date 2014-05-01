@@ -15,6 +15,7 @@ import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
+import com.pdxcycle9.repair_lst.services.UpdateRepairFacilityService;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Controller
@@ -23,6 +24,8 @@ public class RepairFacilityController {
 	CreateRepairFacilityService createRepairFacilityService;
 	@Autowired
 	SearchRepairFacilityService searchRepairFacilityService;
+	@Autowired
+	UpdateRepairFacilityService updateRepairFacilityService;
 		
 	
 	/* 
@@ -71,6 +74,34 @@ public class RepairFacilityController {
 		System.out.println("Echo: Inside repair facility controller -- GET");
 		Response response = searchRepairFacilityService.retrieve();
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
+	}
+	
+	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
+			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
+
+	@ResponseBody
+	public ResponseEntity<Object> updateRepairFacility(
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "phone") String phone,			
+			@RequestParam(value = "specialization[]") int[] specialization,
+			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
+			@RequestParam(value = "addressId") int addressId)  {
+		
+        
+		RepairFacility repairFacility = new RepairFacility();
+		Address address = new Address(addressId);
+		repairFacility.setName(name);
+		repairFacility.setPhone(phone);
+		repairFacility.setHourlyRate(hourlyRate);	
+		
+		repairFacility.setAddressId(address);
+		
+		Response response = updateRepairFacilityService.updateRepairFacility(
+				repairFacility, specialization);			
+
+
+		return new ResponseEntity<Object>(response.getResponseObject(),
+				response.getStatusCode());
 	}
 }
 

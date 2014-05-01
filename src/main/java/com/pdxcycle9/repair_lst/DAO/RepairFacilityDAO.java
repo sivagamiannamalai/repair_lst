@@ -35,4 +35,16 @@ public class RepairFacilityDAO {
 
 		return (List<RepairFacility>) query.getResultList();
 	}
+	
+	/**
+	 * update the repair facility
+	 */
+	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
+		
+		em.persist(repairFacility);
+		
+		return repairFacility;
+		
+	}
+	
 }
