@@ -1,12 +1,15 @@
 package com.pdxcycle9.repair_lst.services;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
@@ -35,6 +38,7 @@ public class CreateRepairFacilityServiceTest {
 	@InjectMocks
 	private CreateRepairFacilityService createRepairFacilityService = new CreateRepairFacilityService();
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 		repairFacility = new RepairFacility();
@@ -51,13 +55,37 @@ public class CreateRepairFacilityServiceTest {
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
-	}
 		
+		when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenReturn(repairFacility);
+		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
+		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
+		when(isNotNull.isHourlyRateNotEmpty((BigDecimal)Matchers.any(), Matchers.anyList())).thenReturn(true);
+		when(isValidLength.isPhoneValidLength(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
+	}
+	
+	
+	
+	@Test		
 	public void testHappyPath() throws Exception {
  		response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
  		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals(RepairFacility.class, response.getResponseObject().getClass());
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void giveNullforNameandPhone() throws Exception {
+		String name = "Facility25";
+		String phone = "5127896541";
+		repairFacility.setName(name);
+		repairFacility.setPhone(phone);	
+				
+		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
+		when(isValidLength.isPhoneValidLength(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
+		
+		response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
+ 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 	}
 
 }
