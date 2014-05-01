@@ -2,6 +2,7 @@ package com.pdxcycle9.repair_lst.controllers;
 
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
+import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.UpdateRepairFacilityService;
@@ -64,35 +66,36 @@ public class RepairFacilityController {
 	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> retrieveRepairFacility() { 
-		System.out.println("Echo: Inside repair facility controller -- GET");
 		Response response = searchRepairFacilityService.retrieve();
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}
 	
-	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
-			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
-
+	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> updateRepairFacility(
+			@RequestParam(value = "id") int id,
 			@RequestParam(value = "name") String name,
-			@RequestParam(value = "phone") String phone,			
+			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "specialization[]") int[] specialization,
-			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
-			@RequestParam(value = "addressId") int addressId)  {
-		
+			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,
+			@RequestParam(value = "addressId") int addressId)  
+			{
+
+		System.out.println("Echo: Inside repair facility controller -- PUT");
         
 		RepairFacility repairFacility = new RepairFacility();
 		Address address = new Address(addressId);
+		//Specialization specializations = new Specialization();
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
+		//repairFacility.setSpecializations(specialization);
 		repairFacility.setHourlyRate(hourlyRate);	
-		
 		repairFacility.setAddressId(address);
+		
 		
 		Response response = updateRepairFacilityService.updateRepairFacility(
 				repairFacility, specialization);			
-
-
+		
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
