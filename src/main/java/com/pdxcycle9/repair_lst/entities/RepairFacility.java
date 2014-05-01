@@ -16,7 +16,8 @@ import javax.persistence.Table;
 	@Entity
 	@Table(name = "repair_facility")
 	public class RepairFacility {	
-		@Id @GeneratedValue
+		@Id 
+		@GeneratedValue
 		@Column(name = "repair_facility_id", unique = true, nullable = false)
 		private int id;	
 		
@@ -37,17 +38,17 @@ import javax.persistence.Table;
 			 
 		
 
-		/* @ManyToMany
-		 @JoinTable(name = "repair_facility_specialization",
-		          joinColumns={@JoinColumn(name="specialization_id")},
-		          inverseJoinColumns={@JoinColumn(name="repair_facility_id")})
-		private List<Integer> specialization; */
+//		@ManyToMany
+//		@JoinTable(name = "repair_facility_specialization",
+//		          joinColumns={@JoinColumn(name="specialization_fk")},
+//		          inverseJoinColumns={@JoinColumn(name="repair_facility_fk")})
+//		private Collection<Specialization> specializations;  
 		
 		
 		@ManyToMany
 		@JoinTable(name = "repair_facility_specialization",
-		          joinColumns={@JoinColumn(name="repair_facility_id")},
-		          inverseJoinColumns={@JoinColumn(name="specialization_id")})
+		          joinColumns={@JoinColumn(name="repair_facility_fk")},
+		          inverseJoinColumns={@JoinColumn(name="specialization_fk")})
 		private Collection<Specialization> specializations; 
 
 
