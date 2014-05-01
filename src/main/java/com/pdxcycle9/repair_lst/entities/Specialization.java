@@ -4,9 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({ @NamedQuery(name = "findAllSpecializations", query = "SELECT sp FROM Specialization sp") })
 @Entity
 @Table(name ="specialization")
 public class Specialization implements Serializable{
@@ -16,10 +21,12 @@ public class Specialization implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Column (name = "specialization_id")
+	@Id		
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column
+	@Column (name = "type")
 	private String type;
 	
 	public Specialization() {

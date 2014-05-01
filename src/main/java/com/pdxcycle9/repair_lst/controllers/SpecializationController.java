@@ -11,6 +11,7 @@ import com.pdxcycle9.repair_lst.services.RetrieveAllSpecializationsService;
 import com.pdxcycle9.repair_lst.util.Response;
 @Controller
 public class SpecializationController {
+	
 	@Autowired
 	RetrieveAllSpecializationsService retrieveAllSpecializationsService;
 
@@ -18,9 +19,11 @@ public class SpecializationController {
 	@RequestMapping(value = "/specialization", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> retrieveSpecializations() { 
-		System.out.println("Echo: Inside specialization controller -- GET");
-		Response response = retrieveAllSpecializationsService.retrieve();
-		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
+		
+			Response response = retrieveAllSpecializationsService.retrieve();
+
+			return new ResponseEntity<Object>(response.getResponseObject(),
+					response.getStatusCode());
 
 	}
 }
