@@ -1,12 +1,17 @@
 package com.pdxcycle9.repair_lst.DAO;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.entities.Address;
+import com.pdxcycle9.repair_lst.entities.RepairFacility;
 
 @Repository	
 public class AddressDAO {	
@@ -26,32 +31,15 @@ public class AddressDAO {
 			
 			return address;
 		}
-//			try {
-//			System.out.println("Hello");
-//			//Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//			//System.out.println(session);
-//			//System.out.println("Address1 is " + address);
-//			session.beginTransaction();
-//
-//			
-//			
-//			session.persist(address);
-//			
-//			//session.flush();
-//			
-//			System.out.println("Address2 is " + address);
-//			session.close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			return address;
-//		}
 
-//	public SessionFactory getSessionFactory() {
-//		return new AnnotationConfiguration().configure().buildSessionFactory();
-//	}
-//
-//	public void setSessionFactory(SessionFactory sessionFactory) {
-//		this.sessionFactory =  new AnnotationConfiguration().configure().buildSessionFactory();
-//	}
+		@Transactional
+		public List<Address> retrieveAllAddresses() {
+			
+			Query query = em.createNamedQuery("findAllAdresses");
+			
+			return (List<Address>) query.getResultList();
+			
+		}
+		
+		
 }
