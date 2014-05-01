@@ -32,7 +32,7 @@ public class CreateRepairFacilityService {
    
 	@Transactional
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
-
+		
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class CreateRepairFacilityService {
 
 		System.out.println("I made it to create");
 		
-		repairFacility.setSpecializations(makeSpecializationList(specialization));
+		//repairFacility.setSpecializations(makeSpecializationList(specialization));
 		
 		System.out.println("I made a specialization list " );
 		
