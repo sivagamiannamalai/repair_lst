@@ -46,25 +46,14 @@ public class RepairFacilityController {
 		Address address = new Address(addressId);
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		repairFacility.setHourlyRate(hourlyRate);	
-		//repairFacility.setAddressId(addressId);
-					
+		repairFacility.setHourlyRate(hourlyRate);						
 
 		
-		repairFacility.setAddressId(address);
-		
-		System.out.println("I have set values " + addressId);
-		
+		repairFacility.setAddressId(address);		
 
 		Response response = createRepairFacilityService.createRepairFacility(
 				repairFacility, specialization);	
-		
-		System.out.println("Resoponse Object " + response.getResponseObject());
-		System.out.println("Resoponse Status Code " + response.getStatusCode());
-
 				
-
-
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
