@@ -29,15 +29,21 @@ public class Address implements Serializable{
 	@Column(name="city",  nullable = false)
 	private String city;
 	
+	public Address() {
+		super();
+	}
+
+	public Address(int id) {
+		super();
+		this.id = id;
+	}
+
 	@Column(name="state",  nullable = false)
 	private String state;
 
 	@Column(name = "zip_code", nullable = false)
 	private String zip;
 	
-	public Address() {
-	
-	}
 
 	/*
 	 * Getters and setters for the AddressEntity variables

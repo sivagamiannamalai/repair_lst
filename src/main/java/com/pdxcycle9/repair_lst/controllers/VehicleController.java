@@ -37,8 +37,6 @@ public class VehicleController {
 		vehicle.setVin(vin);
 		vehicle.setMileage(mileage);
 
-		System.out.println("Inside Controller " + make + "," + model);
-
 		Response response = getCreateVehicleService().createVehicle(vehicle);
 		
 		return new ResponseEntity<Object>(response.getResponseObject(),

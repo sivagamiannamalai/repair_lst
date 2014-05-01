@@ -597,7 +597,7 @@ console.log(model);
 console.log(vin);
 console.log(mileageRaw);
 */
-	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false){
+	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false && mileageInt > 0){
 		console.log("AJAX hit");
 	$.ajax({
 		type: "POST",
@@ -620,7 +620,7 @@ console.log(mileageRaw);
 	
 	}
 	
-	else if (checkIfInt == true) {
+	else if (checkIfInt == true || mileageInt < 0) {
 	
 	$("#vehicleMessage").text("You must enter a valid Mileage");
 	

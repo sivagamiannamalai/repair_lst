@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="../../lib/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="../../src/sorting.js"></script>
-	
+	<script type="text/javascript" src="../../src/facilitysearch.js"></script>
 	<title>Local Sports Team Car Repair App - Search Facilities</title>
 
 </head>
@@ -53,7 +53,7 @@
 
 		<br><button id="retrieveAllButton">Find All</button>
 		
-		<div id="repairFacilitySearchResults">
+		<div>
 				<table class="tablesorter">
 			<thead>
 				<tr>
@@ -68,7 +68,7 @@
 					<th>Repair Specialtys</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="repairFacilitySearchResults">
 				<tr>
 					<th>Uncle Mack's</th>
 					<th>123 Fake Street</th>
