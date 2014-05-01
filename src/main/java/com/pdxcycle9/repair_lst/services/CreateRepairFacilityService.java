@@ -50,17 +50,13 @@ public class CreateRepairFacilityService {
 			fieldsNotNull = true;
 		}
 		
-		if(isValidLength.between1and255(repairFacility.getName(), errors)) {
+		if(isValidLength.between1and255(repairFacility.getName(), errors) &&
+				isValidLength.isPhoneValidLength(repairFacility.getPhone(), errors)) {
 			  fieldsCorrectLength = true;
 		}
-		
-		
-		int phoneLength = repairFacility.getPhone().length();
-		if (phoneLength > 0) {
-			validPhone = true;
-		}
-		
-		if(fieldsNotNull && fieldsCorrectLength && validPhone) {
+				
+				
+		if(fieldsNotNull && fieldsCorrectLength) {
 			 persistRepairFacility(repairFacility, response, errors);
 		}  else {
 			failed(response, errors);

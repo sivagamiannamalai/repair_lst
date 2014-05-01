@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.SpecializationDAO;
+import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.util.Response;
 
@@ -17,13 +18,12 @@ public class RetrieveAllSpecializationsService {
 
 	@Autowired
 	private SpecializationDAO specializationDAO;
-
-	/**
-	 * @param transactionDAO
-	 *            the transactionDAO to set
+	
+	/***
+	 * 
+	 * @param specializationDAO
 	 */
-	
-	
+
 	public void setSpecializationDAO(SpecializationDAO specializationDAO) {
 		this.specializationDAO = specializationDAO;
 	}
@@ -36,7 +36,7 @@ public class RetrieveAllSpecializationsService {
 		List<Specialization> result = null;
 		
 		try {
-			result = specializationDAO.retrieve();
+			result = specializationDAO.retrieveAllSpecializations();
 			response.setStatusCode(HttpStatus.OK);
 			response.setResponseObject(result);
 			
