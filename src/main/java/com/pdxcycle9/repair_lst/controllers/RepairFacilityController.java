@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
@@ -42,11 +43,19 @@ public class RepairFacilityController {
 
         
 		RepairFacility repairFacility = new RepairFacility();
+		Address address = new Address(addressId);
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);	
-		repairFacility.setAddressId(addressId);
+		//repairFacility.setAddressId(addressId);
 					
+
+		
+		repairFacility.setAddressId(address);
+		
+		System.out.println("I have set values " + addressId);
+		
+
 		Response response = createRepairFacilityService.createRepairFacility(
 				repairFacility, specialization);	
 		

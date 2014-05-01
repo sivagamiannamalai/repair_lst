@@ -41,10 +41,13 @@ public class SearchRepairFacilityService {
 		
 		try {
 			result = repairFacilityDAO.retrieveRepairFacility();
+			response.setStatusCode(HttpStatus.OK);
+			response.setResponseObject(result);
 			
 		} catch (Exception e) {
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
-			System.out.println("Echo: Inside search repair facility service");
+			response.setResponseObject(errors);
+			System.out.println(e.getMessage());
 		}
 		return response;
 
