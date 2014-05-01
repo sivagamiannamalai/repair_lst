@@ -54,13 +54,5 @@ public class CreateVehicleService {
 		 
 	}
 
-	public VehicleDAO getVehicleDAO() {
-		return vehicleDAO;
-	}
-
-	public void setVehicleDAO(VehicleDAO vehicleDAO) {
-		this.vehicleDAO = vehicleDAO;
-	}
-
 	
 }
