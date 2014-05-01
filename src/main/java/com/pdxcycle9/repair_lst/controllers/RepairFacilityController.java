@@ -30,7 +30,7 @@ public class RepairFacilityController {
 	 * returns ResponseEntity object
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
-			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
+			"hourlyRate","specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
 
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
@@ -40,7 +40,7 @@ public class RepairFacilityController {
 			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
 			@RequestParam(value = "addressId") int addressId)  {
 		
-		System.out.println("I am in the controller " + specialization[1]);
+		//System.out.println("I am in the controller " + specialization[1]);
         
 		RepairFacility repairFacility = new RepairFacility();
 		repairFacility.setName(name);
@@ -52,6 +52,7 @@ public class RepairFacilityController {
 		
 		Response response = createRepairFacilityService.createRepairFacility(
 				repairFacility, specialization);	
+		
 		System.out.println("Resoponse Object " + response.getResponseObject());
 		System.out.println("Resoponse Status Code " + response.getStatusCode());
 

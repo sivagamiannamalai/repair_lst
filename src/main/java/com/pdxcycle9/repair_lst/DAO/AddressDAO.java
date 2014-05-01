@@ -14,13 +14,8 @@ public class AddressDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 	
-		//@Resource(name="sessionFactory")
-		//private	SessionFactory sessionFactory;
-	
-//	@Autowired
-//	HibernateUtil hibernateUtil;
 
-		public Address persistAddress(Address address) {
+	public Address persistAddress(Address address) {
 			
 			em.persist(address);
 			

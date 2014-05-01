@@ -12,6 +12,10 @@ import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.services.CreateAddressService;
 import com.pdxcycle9.repair_lst.util.Response;
 
+/* Controller to create a new address
+ * accepts street, city, state and zip
+ * returns a Response Object and Response Status code
+ */
 @Controller
 public class AddressController {
 	//
@@ -33,9 +37,7 @@ public class AddressController {
 		address.setState(state);
 		address.setStreet(street);
 		address.setZip(zip);
-
-		System.out.println("Inside Controller " + city + "," + state);
-
+		
 		Response response = getCreateAddressService().createAddress(address);
 		
 		return new ResponseEntity<Object>(response.getResponseObject(),
@@ -48,14 +50,7 @@ public class AddressController {
 	public ResponseEntity<Object> getAddress() {
 
 		Address address = new Address();
-
-		// address.setCity(city);
-		// address.setState(state);
-		// address.setStreet(street);
-		// address.setZip(zip);
-		//
-		// System.out.println("Inside COntroller " + city + "," + state);
-
+		
 		Response response = getCreateAddressService().createAddress(address);
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
