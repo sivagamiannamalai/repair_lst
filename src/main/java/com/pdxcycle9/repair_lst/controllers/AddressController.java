@@ -10,14 +10,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.services.CreateAddressService;
+import com.pdxcycle9.repair_lst.services.FindAllAddressService;
 import com.pdxcycle9.repair_lst.util.Response;
 
+/* Controller to create a new address
+ * accepts street, city, state and zip
+ * returns a Response Object and Response Status code
+ */
 @Controller
 public class AddressController {
 	//
 	@Autowired
 	private CreateAddressService createAddressService;
-
+	@Autowired
+	private FindAllAddressService findAllAddressService;
+	
+	
 	@RequestMapping(value = "/address", params = { "street", "city", "state",
 			"zip" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
@@ -33,9 +41,7 @@ public class AddressController {
 		address.setState(state);
 		address.setStreet(street);
 		address.setZip(zip);
-
-		System.out.println("Inside Controller " + city + "," + state);
-
+		
 		Response response = getCreateAddressService().createAddress(address);
 		
 		return new ResponseEntity<Object>(response.getResponseObject(),
@@ -43,20 +49,12 @@ public class AddressController {
 
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/address", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<Object> getAddress() {
 
-		Address address = new Address();
+	public ResponseEntity<Object> retrieveAllAddress() {
 
-		// address.setCity(city);
-		// address.setState(state);
-		// address.setStreet(street);
-		// address.setZip(zip);
-		//
-		// System.out.println("Inside COntroller " + city + "," + state);
-
-		Response response = getCreateAddressService().createAddress(address);
+		Response response = findAllAddressService.retrieve();
 
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());

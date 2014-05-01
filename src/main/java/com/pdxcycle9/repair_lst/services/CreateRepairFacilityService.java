@@ -32,20 +32,16 @@ public class CreateRepairFacilityService {
    
 	@Transactional
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
-
+		
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		ArrayList<Specialization> specializationList;
 		boolean fieldsNotNull = false;
 		boolean fieldsCorrectLength = false;		
-		boolean validPhone = false;
-
-		System.out.println("I made it to create");
+		boolean validPhone = false;		
 		
-		repairFacility.setSpecializations(makeSpecializationList(specialization));
-		
-		System.out.println("I made a specialization list " );
+		repairFacility.setSpecializations(makeSpecializationList(specialization));	
 		
 		
 		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors) &&
@@ -74,7 +70,6 @@ public class CreateRepairFacilityService {
 	}
 	
 	public void failed(Response response, List<String> errors) {
-		System.out.println("Inside Failed method");
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
@@ -86,7 +81,6 @@ public class CreateRepairFacilityService {
 		RepairFacility result = null;
 		try {
 		   result = repairFacilityDAO.persistRepairFacility(repairFacility);
-		   System.out.println("Result inside service " + result.getClass());
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (IdentifierGenerationException e){
@@ -96,7 +90,6 @@ public class CreateRepairFacilityService {
 		} catch (Exception e) {
 			errors.add(Error.CANNOT_PERSIST);
 			failed(response, errors);
-			System.out.println(e.getMessage());
 		}
 		
 		
@@ -114,8 +107,6 @@ public class CreateRepairFacilityService {
 			specializationList.add(thingToAdd);
 			
 		}
-		
-		System.out.println("This should be an array of specializations " + specializationList.size());
 		
 		return specializationList;
 	}

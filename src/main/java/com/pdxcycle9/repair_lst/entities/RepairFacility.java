@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,7 +26,7 @@ public class RepairFacility implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "repair_facility_id", unique = true, nullable = false)
 	private int id;
 
@@ -43,16 +44,7 @@ public class RepairFacility implements Serializable{
 
 	@JoinColumn(name="address_id")
 	@Column(name = "address_fk")
-	private Address addressId;
-
-	/*
-	 * @ManyToMany
-	 * 
-	 * @JoinTable(name = "repair_facility_specialization",
-	 * joinColumns={@JoinColumn(name="specialization_id")},
-	 * inverseJoinColumns={@JoinColumn(name="repair_facility_id")}) private
-	 * List<Integer> specialization;
-	 */
+	private Address addressId;	
 
 	@ManyToMany
 	@JoinTable(name = "repair_facility_specialization", joinColumns = { @JoinColumn(name = "repair_facility_id") }, inverseJoinColumns = { @JoinColumn(name = "specialization_id") })
