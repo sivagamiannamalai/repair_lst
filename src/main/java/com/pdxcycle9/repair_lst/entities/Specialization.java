@@ -17,9 +17,10 @@ public class Specialization implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column (name = "specialization_id")
 	private int id;
 	
-	@Column
+	@Column (name = "type")
 	private String type;
 	
 	public Specialization() {

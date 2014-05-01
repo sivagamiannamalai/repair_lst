@@ -49,7 +49,7 @@ public class RepairFacility implements Serializable{
 //	@Column(name = "address_fk")
 //	private Address addressId;	
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
     @JoinColumn(name = "address_fk", nullable = false, referencedColumnName = "address_id")
     private Address address;
 
