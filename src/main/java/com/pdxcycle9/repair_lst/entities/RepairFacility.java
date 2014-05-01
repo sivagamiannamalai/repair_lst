@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -42,9 +45,14 @@ public class RepairFacility implements Serializable{
 	@Column(name = "rating")
 	private double rating;
 
-	@JoinColumn(name="address_id")
-	@Column(name = "address_fk")
-	private Address addressId;	
+//	@JoinColumn(name="address_id")
+//	@Column(name = "address_fk")
+//	private Address addressId;	
+	
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_fk", nullable = false, referencedColumnName = "address_id")
+    private Address address;
+
 
 	@ManyToMany
 	@JoinTable(name = "repair_facility_specialization", joinColumns = { @JoinColumn(name = "repair_facility_id") }, inverseJoinColumns = { @JoinColumn(name = "specialization_id") })
@@ -94,10 +102,9 @@ public class RepairFacility implements Serializable{
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
-
 
 
 	public Collection<Specialization> getSpecializations() {
@@ -108,36 +115,22 @@ public class RepairFacility implements Serializable{
 		this.specializations = specializations;
 	}
 
-	/**
-	 * @return the addressId
-	 */
-	public Address getAddressId() {
-		return addressId;
+	public Address getAddress() {
+		return address;
 	}
 
-	/**
-	 * @param addressId the addressId to set
-	 */
-	public void setAddressId(Address addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	/**
-	 * @param rating the rating to set
-	 */
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "RepairFacility [id=" + id + ", name=" + name + ", phone="
 				+ phone + ", hourlyRate=" + hourlyRate + ", rating=" + rating
-				+ ", addressId=" + addressId + ", specializations="
+				+ ", address=" + address + ", specializations="
 				+ specializations + "]";
 	}
+	
+	
 
 }

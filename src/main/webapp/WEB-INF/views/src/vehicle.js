@@ -620,7 +620,7 @@ console.log(mileageRaw);
 	
 	}
 	
-	else if (checkIfInt == true || mileageInt < 0) {
+	else if (checkIfInt == true || (mileageInt < 0 && mileageInt > 999999)) {
 	
 	$("#vehicleMessage").text("You must enter a valid Mileage");
 	

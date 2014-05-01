@@ -49,7 +49,7 @@ public class RepairFacilityController {
 		repairFacility.setHourlyRate(hourlyRate);						
 
 		
-		repairFacility.setAddressId(address);		
+		repairFacility.setAddress(address);		
 
 		Response response = createRepairFacilityService.createRepairFacility(
 				repairFacility, specialization);	
