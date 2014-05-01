@@ -26,6 +26,13 @@
 		</repository>
 	</repositories>
 	<dependencies>
+	<!-- Selenium -->
+	<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-java</artifactId>
+		<version>2.41.0</version>
+	</dependency>
+            
 	<!-- Java Mail API -->
     <dependency>
 	    <groupId>javax.mail</groupId>
