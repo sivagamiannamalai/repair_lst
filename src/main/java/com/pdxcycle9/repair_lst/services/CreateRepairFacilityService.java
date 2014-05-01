@@ -18,7 +18,7 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-
+@Transactional
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
@@ -30,7 +30,7 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
-	@Transactional
+	
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
 		
 		
@@ -82,10 +82,12 @@ public class CreateRepairFacilityService {
 		} catch (IdentifierGenerationException e){
 			errors.add(Error.DUPLICATE_RECORD);
 			failed(response, errors);
+			System.out.println(e.getMessage());
 			
 		} catch (Exception e) {
 			errors.add(Error.CANNOT_PERSIST);
 			failed(response, errors);
+			System.out.println(e.getMessage());
 		}
 		
 		

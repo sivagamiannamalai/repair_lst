@@ -26,26 +26,26 @@ public class Address implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="street",  nullable = false)
+	@Column(name="street")
 	private String street;
 	
-	@Column(name="city",  nullable = false)
+	@Column(name="city")
 	private String city;
+
+	@Column(name="state")
+	private String state;
+
+	@Column(name = "zip_code")
+	private String zip;
 	
 	public Address() {
-		super();
+
 	}
 
 	public Address(int id) {
-		super();
+
 		this.id = id;
 	}
-
-	@Column(name="state",  nullable = false)
-	private String state;
-
-	@Column(name = "zip_code", nullable = false)
-	private String zip;
 	
 
 	/*

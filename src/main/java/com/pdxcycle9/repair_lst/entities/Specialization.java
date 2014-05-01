@@ -21,9 +21,11 @@ public class Specialization implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+
 	@Column (name = "specialization_id")
 	@Id		
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private int id;
 	
 	@Column (name = "type")
