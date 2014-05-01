@@ -71,7 +71,6 @@ public class CreateAddressService {
 	}
 	
 	public void failed(Response response, List<String> errors) {
-		System.out.println("Validation failed");
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
