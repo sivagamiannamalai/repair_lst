@@ -17,10 +17,13 @@ public class RepairFacilityDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
-	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {
-
-		em.persist(repairFacility);
+	
+	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
+		
+		em.persist(repairFacility);	
+		
 		return repairFacility;
+		
 	}
 
 	@SuppressWarnings("unchecked")

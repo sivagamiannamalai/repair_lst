@@ -148,6 +148,4 @@ public class RepairFacility implements Serializable{
 				+ specializations + "]";
 	}
 
-
-
 }

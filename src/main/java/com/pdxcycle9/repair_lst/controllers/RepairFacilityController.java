@@ -41,7 +41,7 @@ public class RepairFacilityController {
 			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
 			@RequestParam(value = "addressId") int addressId)  {
 		
-		System.out.println("I am in the controller " + specialization[1]);
+//		System.out.println("I am in the controller " + specialization[1]);
         
 		RepairFacility repairFacility = new RepairFacility();
 		Address address = new Address(addressId);
