@@ -84,14 +84,16 @@ public class RepairFacilityController {
 		System.out.println("Echo: Inside repair facility controller -- PUT");
         
 		RepairFacility repairFacility = new RepairFacility();
+		Specialization specializations = new Specialization();
 		Address address = new Address(addressId);
-		//Specialization specializations = new Specialization();
+
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		//repairFacility.setSpecializations(specialization);
 		repairFacility.setHourlyRate(hourlyRate);	
-		repairFacility.setAddressId(address);
+		repairFacility.setAddress(address);
 		
+		//specializations.setId(specialization);
 		
 		Response response = updateRepairFacilityService.updateRepairFacility(
 				repairFacility, specialization);			
