@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,15 +43,11 @@ public class RepairFacility implements Serializable{
 
 	@Column(name = "rating")
 	private double rating;
-
-//	@JoinColumn(name="address_id")
-//	@Column(name = "address_fk")
-//	private Address addressId;	
 	
-	@ManyToOne(cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+	
+	@ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name = "address_fk", nullable = false, referencedColumnName = "address_id")
     private Address address;
-
 
 	@ManyToMany
 	@JoinTable(name = "repair_facility_specialization", joinColumns = { @JoinColumn(name = "repair_facility_id") }, inverseJoinColumns = { @JoinColumn(name = "specialization_id") })

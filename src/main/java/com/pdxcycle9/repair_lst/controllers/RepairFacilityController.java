@@ -2,7 +2,6 @@ package com.pdxcycle9.repair_lst.controllers;
 
 
 import java.math.BigDecimal;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
-import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.UpdateRepairFacilityService;
@@ -81,19 +79,14 @@ public class RepairFacilityController {
 			@RequestParam(value = "addressId") int addressId)  
 			{
 
-		System.out.println("Echo: Inside repair facility controller -- PUT");
         
 		RepairFacility repairFacility = new RepairFacility();
-		Specialization specializations = new Specialization();
 		Address address = new Address(addressId);
 
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		//repairFacility.setSpecializations(specialization);
 		repairFacility.setHourlyRate(hourlyRate);	
 		repairFacility.setAddress(address);
-		
-		//specializations.setId(specialization);
 		
 		Response response = updateRepairFacilityService.updateRepairFacility(
 				repairFacility, specialization);			
