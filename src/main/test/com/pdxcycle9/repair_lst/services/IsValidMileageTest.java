@@ -41,6 +41,7 @@ public class IsValidMileageTest {
 	public void testOne() throws Exception {
 		vehicle.setMileage(1);
 		assertEquals(true, isValidMileage.between0and999999(vehicle.getMileage(), errors));
+		
 
 	}
 
