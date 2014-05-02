@@ -11,20 +11,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.VehicleDAO;
 import com.pdxcycle9.repair_lst.entities.Vehicle;
+import com.pdxcycle9.repair_lst.subservices.IsValidMileage;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
-
+@Transactional
 @Service
 public class CreateVehicleService {
 	@Autowired
 	private	VehicleDAO vehicleDAO;
 	
-	@Transactional
+	@Autowired
+	private IsValidMileage isValidMileage;
+	
 	public Response createVehicle(Vehicle vehicle) {
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		 persistVehicle(vehicle, response, errors);
+		boolean validMileage = false;
+		
+		if (isValidMileage.between0and999999(vehicle.getMileage(), errors)) {
+			validMileage = true;
+			
+			System.out.println("Mileage is between 0 and 999999");
+		}
 
 	return response;
 	}
