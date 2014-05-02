@@ -1,6 +1,5 @@
 package com.pdxcycle9.repair_lst.controllers;
 
-
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,51 +25,52 @@ public class RepairFacilityController {
 	SearchRepairFacilityService searchRepairFacilityService;
 	@Autowired
 	UpdateRepairFacilityService updateRepairFacilityService;
-		
-	
-	/* 
-	 * Controller for creating repair facility
-	 * accepts name, phone, hourlyRate, specialization and addressId 
-	 * returns ResponseEntity object
+
+	/*
+	 * Controller for creating repair facility accepts name, phone, hourlyRate,
+	 * specialization and addressId returns ResponseEntity object
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
-			"hourlyRate","specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
-
+			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "name") String name,
-			@RequestParam(value = "phone") String phone,			
+			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "specialization[]") int[] specialization,
-			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,			
-			@RequestParam(value = "addressId") int addressId)  {		
+			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,
+			@RequestParam(value = "addressId") int addressId) {
 
-        
 		RepairFacility repairFacility = new RepairFacility();
 		Address address = new Address(addressId);
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		repairFacility.setHourlyRate(hourlyRate);						
+		repairFacility.setHourlyRate(hourlyRate);
 
-		
-		repairFacility.setAddress(address);		
+		repairFacility.setAddress(address);
 
 		Response response = createRepairFacilityService.createRepairFacility(
-				repairFacility, specialization);	
-				
+				repairFacility, specialization);
+
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
-	
-	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
-	@ResponseBody
-	public ResponseEntity<Object> retrieveRepairFacility() { 
 
-		Response response = searchRepairFacilityService.retrieveAll();
-		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
-		
+	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacility() {
+		ResponseEntity<Object> returnObject = null;
+		try {
+			Response response = searchRepairFacilityService.retrieveAll();
+			returnObject = new ResponseEntity<Object>(
+					response.getResponseObject(), response.getStatusCode());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnObject;
 	}
-	
-	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
+
+	@RequestMapping(value = "/repairfacility", params = { "id", "name",
+			"phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> updateRepairFacility(
 			@RequestParam(value = "id") int id,
@@ -78,24 +78,20 @@ public class RepairFacilityController {
 			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "specialization[]") int[] specialization,
 			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,
-			@RequestParam(value = "addressId") int addressId)  
-			{
+			@RequestParam(value = "addressId") int addressId) {
 
-        
 		RepairFacility repairFacility = new RepairFacility();
 		Address address = new Address(addressId);
 
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		repairFacility.setHourlyRate(hourlyRate);	
+		repairFacility.setHourlyRate(hourlyRate);
 		repairFacility.setAddress(address);
-		
+
 		Response response = updateRepairFacilityService.updateRepairFacility(
-				repairFacility, specialization);			
-		
+				repairFacility, specialization);
+
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
 }
-
-

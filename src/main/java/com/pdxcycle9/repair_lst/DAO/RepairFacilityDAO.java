@@ -31,12 +31,17 @@ public class RepairFacilityDAO {
 	@Transactional
 	public List<RepairFacility> retrieveAllRepairFacility() {
 
-		Query query = em.createNamedQuery("findAllRepairFacilities");
 		List<RepairFacility> results = new ArrayList <RepairFacility>() ;
 		
-		results = (List<RepairFacility>) query.getResultList();
+		try{
 		
-		System.out.println(results);
+			Query query = em.createNamedQuery("findAllRepairFacilities");
+		
+			results = (List<RepairFacility>) query.getResultList();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return results;
 	}
