@@ -68,6 +68,17 @@ public class RepairFacilityController {
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}
 	
+	/**
+	 * update controller, takes id to change and grabs specialization and address objects
+	 * 
+	 * @param id
+	 * @param name
+	 * @param phone
+	 * @param specialization
+	 * @param hourlyRate
+	 * @param addressId
+	 * @return
+	 */
 	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> updateRepairFacility(
