@@ -5,8 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="../../css/table.css">
 	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="../../lib/jquery.tablesorter.js"></script>
-	<script type="text/javascript" src="../../src/sorting.js"></script>
 	<script type="text/javascript" src="../../src/facilitysearch.js"></script>
+		<script type="text/javascript" src="../../src/sorting.js"></script>
 	<title>Local Sports Team Car Repair App - Search Facilities</title>
 
 </head>
@@ -54,65 +54,23 @@
 		<br><button id="retrieveAllButton">Find All</button>
 		
 		<div>
-				<table class="tablesorter">
+				<table id="repairFacilityTable" class="tablesorter">
 			<thead>
 				<tr>
+				
 					<th>Name</th>
 					<th>Address</th>
 					<th>City</th>
 					<th>State</th>
 					<th>Zip Code</th>
 					<th>Phone Number</th>
-					<th>Hourly Labor Rate</th>
+					<th>Hourly Rate</th>
 					<th>Rating</th>
 					<th>Repair Specialtys</th>
 				</tr>
 			</thead>
 			<tbody id="repairFacilitySearchResults">
-				<tr>
-					<th>Uncle Mack's</th>
-					<th>123 Fake Street</th>
-					<th>Anytown</th>
-					<th>OR</th>
-					<th>97689</th>
-					<th>502-555-2768</th>
-					<th>$85</th>
-					<th>4.0</th>
-					<th>Trucks</th>
-				</tr>
-				<tr>
-					<th>Because Racecar Import Tuners</th>
-					<th>456 Fake Street</th>
-					<th>Anytown</th>
-					<th>OR</th>
-					<th>97681</th>
-					<th>502-555-2768</th>
-					<th>$95</th>
-					<th>3.5</th>
-					<th>Performance, Imports</th>
-				</tr>
-				<tr>
-					<th>I Know A Guy Budget Repair</th>
-					<th>45 Regrets Road</th>
-					<th>Anytown</th>
-					<th>OR</th>
-					<th>97689</th>
-					<th>502-555-2768</th>
-					<th>$35</th>
-					<th>2.0</th>
-					<th>Domestic</th>
-				</tr>
-				<tr>
-					<th>Sick Paint Bro Auto Detailing</th>
-					<th>6347 SW Sucker Ave</th>
-					<th>Anytown</th>
-					<th>OR</th>
-					<th>97689</th>
-					<th>502-555-2768</th>
-					<th>$150</th>
-					<th>4.0</th>
-					<th>Repair</th>
-				</tr>
+				
 			</tbody>
 		</table>
 		</div>

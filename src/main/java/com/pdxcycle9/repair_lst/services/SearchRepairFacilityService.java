@@ -32,7 +32,7 @@ public class SearchRepairFacilityService {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
 	@Transactional
-	public Response retrieve() {
+	public Response retrieveAll() {
 
 		
 		Response response = new Response();
@@ -40,11 +40,13 @@ public class SearchRepairFacilityService {
 		List<RepairFacility> result = null;
 		
 		try {
-			result = repairFacilityDAO.retrieveRepairFacility();
+
+			result = repairFacilityDAO.retrieveAllRepairFacility();
 			response.setStatusCode(HttpStatus.OK);
 			response.setResponseObject(result);
 			
 		} catch (Exception e) {
+
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
 			System.out.println(e.getMessage());
