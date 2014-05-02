@@ -20,23 +20,15 @@ public class IsValidLength {
 		return result;
 	}
 	
-	public boolean zipIsFive(String val, List<String> errors){
+	public boolean zipIsFive(String zip, List<String> errors){
 		
-		boolean result = false;		
-		
-		if (val.length()==5) {	
-			try {
-				int zipInt = Integer.parseInt(val);
-			} catch (NumberFormatException e) {
-				errors.add(Error.ZIP_INVALID);
-			}
-			result = true;				
-		} else {				
-			errors.add(Error.IS_WRONG_LENGTH);				
+		boolean result = false;	
+		if(zip.length() == 5) {
+			result = true;
+		} else {
+			errors.add(Error.ZIP_INVALID);
 		}
-				
 		return result;
-		
 	}
 	
 

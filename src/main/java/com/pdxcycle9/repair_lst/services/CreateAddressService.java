@@ -3,6 +3,8 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.RollbackException;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,6 +77,9 @@ public class CreateAddressService {
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (ConstraintViolationException e){
+			errors.add(Error.DUPLICATE_RECORD);
+			failed(response, errors);
+		} catch (RollbackException e){
 			errors.add(Error.DUPLICATE_RECORD);
 			failed(response, errors);
 		} catch (Exception e) {
