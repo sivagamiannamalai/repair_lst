@@ -11,9 +11,12 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+import org.hibernate.exception.ConstraintViolationException;
+
+import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.entities.Vehicle;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.DAO.VehicleDAO;
@@ -56,11 +59,36 @@ public class CreateVehicleServiceTest {
 		
 		when(vehicleDAO.persistVehicle(vehicle)).thenReturn(vehicle);
 	}
-
+	
 	@Test
 	public void vehicleIsValid() throws Exception {
 		response = createVehicleService.createVehicle(vehicle);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals(Vehicle.class, response.getResponseObject().getClass());
 	}
-}
+	
+    @Test
+    public void hitTheSecondCatchWithCannotPersist() {               
+                
+                 when(vehicleDAO.persistVehicle(vehicle)).thenThrow(new RuntimeException());
+                response = createVehicleService.createVehicle(vehicle);
+    
+                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+                 assertEquals(Error.DUPLICATE_RECORD, errors.get(0));
+ }
+
+ @Test
+    public void hitTheFirstCatchWithDuplicateRecord() {
+                
+                 ConstraintViolationException e = new ConstraintViolationException("String",null,"String");
+                
+                 when(vehicleDAO.persistVehicle(vehicle)).thenThrow(e);
+                response = createVehicleService.createVehicle(vehicle);
+    
+                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+                 assertEquals(Error.CANNOT_PERSIST, errors.get(0));
+
+ }
+
+    }
+

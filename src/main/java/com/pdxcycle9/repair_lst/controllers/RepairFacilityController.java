@@ -64,8 +64,10 @@ public class RepairFacilityController {
 	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> retrieveRepairFacility() { 
-		Response response = searchRepairFacilityService.retrieve();
+
+		Response response = searchRepairFacilityService.retrieveAll();
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
+		
 	}
 	
 	/**

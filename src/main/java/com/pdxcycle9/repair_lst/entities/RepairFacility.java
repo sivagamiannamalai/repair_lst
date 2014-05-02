@@ -50,7 +50,9 @@ public class RepairFacility implements Serializable{
     private Address address;
 
 	@ManyToMany
-	@JoinTable(name = "repair_facility_specialization", joinColumns = { @JoinColumn(name = "repair_facility_id") }, inverseJoinColumns = { @JoinColumn(name = "specialization_id") })
+	@JoinTable(name = "repair_facility_specialization", 
+	joinColumns = { @JoinColumn(name = "repair_facility_fk") }, 
+	inverseJoinColumns = { @JoinColumn(name = "specialization_fk") })
 	private Collection<Specialization> specializations;
 
 	public RepairFacility() {
