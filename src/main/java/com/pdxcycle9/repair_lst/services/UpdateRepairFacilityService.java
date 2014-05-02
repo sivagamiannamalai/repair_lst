@@ -108,12 +108,14 @@ public class UpdateRepairFacilityService {
 			int[] specialization) {
 
 		ArrayList<Specialization> specializationList = new ArrayList<Specialization>();
+		
+		Specialization thingToUpdate = null;
 
 		for (int i = 0; i < specialization.length; i++) {
 
-			Specialization thingToUpdate = new Specialization(specialization[i]);
+			thingToUpdate = new Specialization(specialization[i]);
 
-			specializationList.set(i, thingToUpdate);
+			specializationList.add(thingToUpdate);
 
 		}
 
