@@ -60,7 +60,7 @@ public class UpdateRepairFacilityServiceTest {
 		when(repairFacilityDAO.updateRepairFacility(repairFacility)).thenReturn(repairFacility);
 		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
-		when(isNotNull.isHourlyRateNotEmpty((BigDecimal)Matchers.any(), Matchers.anyList())).thenReturn(true);
+		when(isNotNull.isHourlyRateValid((BigDecimal)Matchers.any(), Matchers.anyList())).thenReturn(true);
 		when(isValidLength.isPhoneValidLength(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		
 	}
