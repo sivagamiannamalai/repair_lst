@@ -39,7 +39,6 @@ public class IsValidLength {
 		
 	}
 	
-	
 
 	public boolean isPhoneValidLength(String phone, List<String> errors)  {
 		boolean result = false;

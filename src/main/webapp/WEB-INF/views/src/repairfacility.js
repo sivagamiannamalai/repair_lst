@@ -4,7 +4,12 @@ $(document).ready(function(){
 
 });
 
+
+var errorMessage = "";
+
 function postRepairFacility(){
+
+	errorMessage = "";
 
 	// Address vars
 	var street = $("#streetAddressInput").val();
@@ -26,7 +31,8 @@ function postRepairFacility(){
 
 	} else {
 
-		$("#facilityMessage").text("Fields that need to be filled out are highlighted in red.");
+		$("#facilityMessage").html("Fields that need to be filled out are highlighted in red. <br>" 
+			+ errorMessage);
 		$('html, body').animate({ scrollTop: 0 }, 'slow');
 
 	} 
@@ -35,7 +41,7 @@ function postRepairFacility(){
 
 function createAddressFailure(data, status, jqXHR){
 
-	$("#facilityMessage").text("Some part of creating an address failed.");
+	$("#facilityMessage").text("An error occured: " + data.responseJSON[0]);
 	$('html, body').animate({ scrollTop: 0 }, 'slow');
 
 }
@@ -67,7 +73,9 @@ function createAddressSuccess(data, status, jqXHR){
 
 	} else {
 
-		$("#facilityMessage").text("All fields are required to submit a new repair facility.");
+		$("#facilityMessage").html("Fields that need to be filled out are highlighted in red. <br>" 
+			+ errorMessage);
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 
 	}
 }
@@ -83,7 +91,7 @@ function createFacilitySuccess(data, status, jqXHR){
 
 function createFacilityFailure(data, status, jqXHR){
 
-	$("#facilityMessage").html("Repair facility failed to persist to the database.");
+	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
 	$('html, body').animate({ scrollTop: 0 }, 'slow');
 	
 }
@@ -95,67 +103,90 @@ function createFacilityFailure(data, status, jqXHR){
 // provides "is it filled" validation for the facility formBox
 function validateFacility(name, phoneNumber, laborRate, specialty){
 
-	var bool = false;
+	var nameBool = false;
+	var phoneBool = false;
+	var laborBool = false;
+	var specialtyBool = false;
+	var allChecksBool = false;
 
 	if(name == ""){
 		$("#repName").addClass("errorText");
 		$("#repName").removeClass("validText");
+		errorMessage += "Must enter a facility name <br>";
 	} else {
 		$("#repName").addClass("validText");
 		$("#repName").removeClass("errorText");
+		nameBool = true;
 	}
 
 	if(phoneNumber == ""){
 		$("#repPhone").addClass("errorText");
 		$("#repPhone").removeClass("validText");
+		errorMessage += "Must enter a facility phone number <br>";
 	} else {
 		$("#repPhone").addClass("validText");
 		$("#repPhone").removeClass("errorText");
+		phoneBool = true;
 	}
 
 	if(laborRate == ""){
 		$("#repRate").addClass("errorText");
 		$("#repRate").removeClass("validText");
-	} else {
+		errorMessage += "Must enter a labor rate (can be 0.00) <br>";
+	} 
+	else if(isNaN(laborRate)) {
+		$("#repRate").addClass("errorText");
+		$("#repRate").removeClass("validText");
+		errorMessage += "Labor rate must be a number <br>";
+	}else {
 		$("#repRate").addClass("validText");
 		$("#repRate").removeClass("errorText");
+		laborBool = true;
 	}
 
 	if(specialty.length < 1){
 		$("#repSpec").addClass("errorText");
 		$("#repSpec").removeClass("validText");
+		errorMessage += "Must select at least one specialty <br>";
 	} else {
 		$("#repSpec").addClass("validText");
 		$("#repSpec").removeClass("errorText");
+		specialtyBool = true;
 	}
 
-	if(name != "" && phoneNumber != "" && laborRate != "" && 
-		specialty.length > 0) {
+	if(nameBool && phoneBool && laborBool && specialtyBool) {
 
-		bool = true;
+		allChecksBool = true;
 	}
 
-	return bool;
+	return allChecksBool;
 };
 
 function validateAddress(street, city, state, zip){
 
-	var bool = false;
+	var streetBool = false;
+	var cityBool = false;
+	var zipBool = false;
+	var allChecksBool = false;
 
 	if(street == ""){
 		$("#street").removeClass("validText");
 		$("#street").addClass("errorText");
+		errorMessage += "Must enter a street address <br>";
 	} else {
 		$("#street").removeClass("errorText");
 		$("#street").addClass("validText");
+		streetBool = true;
 	}
 
 	if(city == ""){
 		$("#city").addClass("errorText");
 		$("#city").removeClass("validText");
+		errorMessage += "Must enter a city <br>";
 	} else {
 		$("#city").addClass("validText");
 		$("#city").removeClass("errorText");
+		cityBool = true;
 	}
 
 	if(state == ""){
@@ -169,15 +200,27 @@ function validateAddress(street, city, state, zip){
 	if(zip == ""){
 		$("#zip").addClass("errorText");
 		$("#zip").removeClass("validText");
+		errorMessage += "Must enter a 5 digit zip code <br>";
+	} 
+	else if(isNaN(zip)){
+		$("#zip").addClass("errorText");
+		$("#zip").removeClass("validText");
+		errorMessage += "Zip code must be a number <br>";
+	}
+	else if(zip.length > 5){
+		$("#zip").addClass("errorText");
+		$("#zip").removeClass("validText");
+		errorMessage += "Must enter a 5 digit zip code <br>";
 	} else {
 		$("#zip").addClass("validText");
 		$("#zip").removeClass("errorText");
+		zipBool = true;
 	}
 
-	if(street != "" && city != "" && zip != "") {
+	if(streetBool && cityBool && zipBool) {
 
-		bool = true;
+		allChecksBool = true;
 	}
 
-	return bool;
+	return allChecksBool;
 };
