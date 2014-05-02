@@ -46,8 +46,7 @@ public class RepairFacilityDAO {
 	 */
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
-		em.persist(repairFacility);
-		//em.refresh(repairFacility);
+		em.merge(repairFacility);
 		
 		return repairFacility;
 		

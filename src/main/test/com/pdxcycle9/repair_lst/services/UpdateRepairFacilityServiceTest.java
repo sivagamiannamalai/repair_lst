@@ -81,8 +81,8 @@ public class UpdateRepairFacilityServiceTest {
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);	
 				
-		//when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
-		//when(isValidLength.isPhoneValidLength(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
+		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
+		when(isValidLength.isPhoneValidLength(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
 		
 		response = updateRepairFacilityService.updateRepairFacility(repairFacility, specialization);
  		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
