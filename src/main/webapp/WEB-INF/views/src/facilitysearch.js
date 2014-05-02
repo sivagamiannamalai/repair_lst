@@ -31,10 +31,10 @@ function populateRepairFacilities(data){
 				
 				for (var s = 0; s < specializationsLength; s++){
 					if (s < specializationsLength - 1){
-					$("#specializations"+i+"").append(data[i].specializations[s].type + ', ');
+					$("#specializations"+i).append(data[i].specializations[s].type + ', ');
 					}
 					else {
-					$("#specializations"+i+"").append(data[i].specializations[s].type);
+					$("#specializations"+i).append(data[i].specializations[s].type);
 					}
 				}
 		$("#repairFacilitySearchResults").append('</th>');

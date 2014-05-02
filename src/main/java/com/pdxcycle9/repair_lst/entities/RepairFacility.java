@@ -49,7 +49,7 @@ public class RepairFacility implements Serializable{
     @JoinColumn(name = "address_fk", nullable = false, referencedColumnName = "address_id")
     private Address address;
 
-	@ManyToMany
+	@ManyToMany(fetch= FetchType.EAGER)
 	@JoinTable(name = "repair_facility_specialization", 
 	joinColumns = { @JoinColumn(name = "repair_facility_fk") }, 
 	inverseJoinColumns = { @JoinColumn(name = "specialization_fk") })

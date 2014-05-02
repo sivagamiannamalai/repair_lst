@@ -68,25 +68,9 @@ public class RepairFacilityController {
 		}
 		return returnObject;
 	}
-<<<<<<< HEAD
-
-	@RequestMapping(value = "/repairfacility", params = { "id", "name",
-			"phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
-=======
 	
-	/**
-	 * update controller, takes id to change and grabs specialization and address objects
-	 * 
-	 * @param id
-	 * @param name
-	 * @param phone
-	 * @param specialization
-	 * @param hourlyRate
-	 * @param addressId
-	 * @return
-	 */
 	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
->>>>>>> 03ffa9eb57abb18d6250b1def6766ee56a521d46
+
 	@ResponseBody
 	public ResponseEntity<Object> updateRepairFacility(
 			@RequestParam(value = "id") int id,
