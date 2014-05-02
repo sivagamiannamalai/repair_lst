@@ -34,21 +34,6 @@ public class IsValidLength {
 		
 	}
 	
-	public boolean phoneIsTen(String val, List<String> errors) {
-		
-		boolean result = false;
-		
-		if (val.length()==10) {				
-			result = true;				
-		} else {				
-			errors.add(Error.IS_WRONG_LENGTH);				
-		}
-		
-		return result;
-		
-	}
-		
-
 	public boolean isPhoneValidLength(String phone, List<String> errors)  {
 		boolean result = false;
 		if(phone.length() == 10) {

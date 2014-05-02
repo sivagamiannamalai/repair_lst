@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,12 +29,16 @@ public class RepairFacilityDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<RepairFacility> retrieveRepairFacility() {
-		//System.out.println("Echo: Inside the repair facility DAO");
-		Query query = em.createNamedQuery("findAllRepairFacilities");
-		
+	public List<RepairFacility> retrieveAllRepairFacility() {
 
-		return (List<RepairFacility>) query.getResultList();
+		Query query = em.createNamedQuery("findAllRepairFacilities");
+		List<RepairFacility> results = new ArrayList <RepairFacility>() ;
+		
+		results = (List<RepairFacility>) query.getResultList();
+		
+		System.out.println(results);
+		
+		return results;
 	}
 	
 	/**
@@ -42,7 +47,7 @@ public class RepairFacilityDAO {
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
 		em.persist(repairFacility);
-		em.refresh(repairFacility);
+		//em.refresh(repairFacility);
 		
 		return repairFacility;
 		
