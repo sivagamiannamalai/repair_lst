@@ -45,7 +45,6 @@ public class RepairFacilityController {
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
-
 		repairFacility.setAddress(address);
 
 		Response response = createRepairFacilityService.createRepairFacility(

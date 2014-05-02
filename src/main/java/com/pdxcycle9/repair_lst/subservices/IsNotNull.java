@@ -48,15 +48,15 @@ public class IsNotNull {
 
 	}
 	
-	public boolean isHourlyRateNotEmpty(BigDecimal val, List<String> errors) {
+	public boolean isHourlyRateValid(BigDecimal val, List<String> errors) {
 
 		boolean result = false;
 		double doubleVal = val.doubleValue();
 
-		if (doubleVal > 0) {
+		if (doubleVal >= 0) {
 			return true;
 		} else {
-			errors.add(Error.IS_NULL);
+			errors.add(Error.RATE_INVALID);
 		}
 
 		return result;

@@ -52,7 +52,7 @@ public class UpdateRepairFacilityService {
 		if (
 				isNotNull.isFieldNotNull(repairFacility.getName(), errors)
 				&& isNotNull.isFieldNotNull(repairFacility.getPhone(), errors)
-				&& isNotNull.isHourlyRateNotEmpty(repairFacility.getHourlyRate(), errors)
+				&& isNotNull.isHourlyRateValid(repairFacility.getHourlyRate(), errors)
 				&& isValidLength.between1and255(repairFacility.getName(), errors)
 				&& isValidLength.isPhoneValidLength(repairFacility.getPhone(), errors))
 
@@ -108,12 +108,14 @@ public class UpdateRepairFacilityService {
 			int[] specialization) {
 
 		ArrayList<Specialization> specializationList = new ArrayList<Specialization>();
+		
+		Specialization thingToUpdate = null;
 
 		for (int i = 0; i < specialization.length; i++) {
 
-			Specialization thingToUpdate = new Specialization(specialization[i]);
+			thingToUpdate = new Specialization(specialization[i]);
 
-			specializationList.set(i, thingToUpdate);
+			specializationList.add(thingToUpdate);
 
 		}
 

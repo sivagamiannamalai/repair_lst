@@ -22,24 +22,30 @@ public class IsValidLength {
 	
 	public boolean zipIsFive(String val, List<String> errors){
 		
-		boolean result = false;
+		boolean result = false;		
 		
-		if (val.length()==5) {				
+		if (val.length()==5) {	
+			try {
+				int zipInt = Integer.parseInt(val);
+			} catch (NumberFormatException e) {
+				errors.add(Error.ZIP_INVALID);
+			}
 			result = true;				
 		} else {				
 			errors.add(Error.IS_WRONG_LENGTH);				
 		}
-		
+				
 		return result;
 		
 	}
 	
+
 	public boolean isPhoneValidLength(String phone, List<String> errors)  {
 		boolean result = false;
-		if(phone.length() == 10) {
+		if(phone.length() < 15) {
 			result = true;
 		} else {
-			errors.add(Error.IS_WRONG_LENGTH);
+			errors.add(Error.PHONE_INVALID);
 		}
 		return result;
 
