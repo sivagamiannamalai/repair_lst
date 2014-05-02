@@ -2,11 +2,13 @@ package com.pdxcycle9.repair_lst.subservices;
 
 import java.util.List;
 
-import com.pdxcycle9.repair_lst.util.Error;
+import org.springframework.stereotype.Component;
 
+import com.pdxcycle9.repair_lst.util.Error;
+@Component
 public class IsValidMileage {
 	
-	public boolean between1and999999(int miles, List<String> errors) {
+	public boolean between0and999999(int miles, List<String> errors) {
 
 		boolean result = false;
 

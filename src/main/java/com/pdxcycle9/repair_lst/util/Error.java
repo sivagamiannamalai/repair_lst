@@ -12,7 +12,7 @@ public class Error {
     	
     	public static final String IS_EMPTY = "No records retrieved";
     	
-    	public static final String MILEAGE_IS_OUT_OF_RANGE = "Error: Mileage must be between 1 and 999999";
+    	public static final String MILEAGE_IS_OUT_OF_RANGE = "Error: Mileage must be between 0 and 999999";
     	
     	public static final String DUPLICATE_RECORD = "Error: Record already exists";
 
