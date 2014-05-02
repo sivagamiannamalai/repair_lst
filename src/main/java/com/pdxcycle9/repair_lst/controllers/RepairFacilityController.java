@@ -49,9 +49,7 @@ public class RepairFacilityController {
 		Address address = new Address(addressId);
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
-		repairFacility.setHourlyRate(hourlyRate);						
-
-		
+		repairFacility.setHourlyRate(hourlyRate);			
 		repairFacility.setAddress(address);		
 
 		Response response = createRepairFacilityService.createRepairFacility(

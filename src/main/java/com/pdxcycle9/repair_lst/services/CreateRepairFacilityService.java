@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,18 +34,16 @@ public class CreateRepairFacilityService {
 		
 		
 		Response response = new Response();
-		List<String> errors = new ArrayList<String>();
-		ArrayList<Specialization> specializationList;
+		List<String> errors = new ArrayList<String>();		
 		boolean fieldsNotNull = false;
-		boolean fieldsCorrectLength = false;		
-		boolean validPhone = false;		
+		boolean fieldsCorrectLength = false;				
 		
 		repairFacility.setSpecializations(makeSpecializationList(specialization));	
 		
 		
 		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors) &&
 		   isNotNull.isFieldNotNull(repairFacility.getPhone(), errors) && 
-		   isNotNull.isHourlyRateNotEmpty(repairFacility.getHourlyRate(), errors))  {		
+		   isNotNull.isHourlyRateValid(repairFacility.getHourlyRate(), errors))  {		
 			fieldsNotNull = true;
 		}
 		
@@ -81,18 +78,15 @@ public class CreateRepairFacilityService {
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (IdentifierGenerationException e){
 			errors.add(Error.DUPLICATE_RECORD);
-			failed(response, errors);
-			System.out.println(e.getMessage());
-			
+			failed(response, errors);		
 		} catch (Exception e) {
 			errors.add(Error.CANNOT_PERSIST);
-			failed(response, errors);
-			System.out.println(e.getMessage());
-		}
-		
+			failed(response, errors);			
+		}	
 		
 		 
 	}
+	
 	
 	public ArrayList<Specialization> makeSpecializationList(int[] specialization){
 		

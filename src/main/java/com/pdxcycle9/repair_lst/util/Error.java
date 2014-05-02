@@ -15,6 +15,13 @@ public class Error {
     	public static final String MILEAGE_IS_OUT_OF_RANGE = "Error: Mileage must be between 1 and 999999";
     	
     	public static final String DUPLICATE_RECORD = "Error: Record already exists";
+    	
+    	public static final String RATE_INVALID = "Error: Hourly Rate should be 0 or greater";
+    	
+    	public static final String ZIP_INVALID = "Error: Zip should be exactly 5 digits";
+    	
+    	public static final String PHONE_INVALID = "Error: Invalid phone number";
+
 
 		
 }

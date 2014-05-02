@@ -33,8 +33,7 @@ public class CreateAddressService {
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
     	boolean fieldsNotNull = false;
-		boolean fieldsCorrectLength = false;
-		boolean validZip = false;
+		boolean fieldsCorrectLength = false;		
 				
 		
 		if(isNotNull.isFieldNotNull(address.getCity(), errors) && 
@@ -42,26 +41,17 @@ public class CreateAddressService {
 		   isNotNull.isFieldNotNull(address.getStreet(), errors) && 
 		   isNotNull.isFieldNotNull(address.getZip(), errors))   {
 			
-			fieldsNotNull = true;
-			System.out.println("Value of fieldsNotNulll " + fieldsNotNull);
+			fieldsNotNull = true;			
 		}
 		
 		if(isValidLength.between1and255(address.getCity(), errors) &&
-		   isValidLength.between1and255(address.getStreet(), errors))  {
-			  fieldsCorrectLength = true;
-			  System.out.println("Value of fieldsCorrectLength " + fieldsCorrectLength);
-		}
-		
-		
-		int zipLength = address.getZip().length();
-		System.out.println("Zip length is " + zipLength);
-		if (zipLength == 5 ) {
-			validZip = true;
-		}
-		
+		   isValidLength.between1and255(address.getStreet(), errors) &&
+		   isValidLength.zipIsFive(address.getZip(), errors))  {
+			  fieldsCorrectLength = true;			  
+		}		
 				
-		if(fieldsNotNull && fieldsCorrectLength && validZip) {
-			System.out.println("Service validated");
+				
+		if(fieldsNotNull && fieldsCorrectLength) {			
 			 persistAddress(address, response, errors);
 		}  else {
 			failed(response, errors);
