@@ -17,7 +17,7 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Transactional
+@Transactional (noRollbackFor = Exception.class)
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
