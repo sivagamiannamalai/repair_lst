@@ -34,7 +34,17 @@ public class IsValidLength {
 
 	public boolean isPhoneValidLength(String phone, List<String> errors)  {
 		boolean result = false;
-		if(phone.length() < 15) {
+		boolean isNumber = false;
+		int phoneNum = 0;
+		
+		try {
+			phoneNum = Integer.parseInt(phone);
+			isNumber =  true;
+		} catch (Exception e) {
+			
+		}
+
+		if(phone.length() == 10 && isNumber) {
 			result = true;
 		} else {
 			errors.add(Error.PHONE_INVALID);

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pdxcycle9.repair_lst.DAO.AddressDAO;
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.util.Response;
+import com.pdxcycle9.repair_lst.util.Error;
 
 @Service
 public class DeleteAddressService {
@@ -28,6 +29,8 @@ public class DeleteAddressService {
 			response.setResponseObject(address);
 			System.out.println("Response object inside DeleteService " + response);
 		} catch(Exception e) {
+			errors.add(Error.CANNOT_UPDATE);
+			response.setResponseObject(errors);
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 		}
 		return response;
