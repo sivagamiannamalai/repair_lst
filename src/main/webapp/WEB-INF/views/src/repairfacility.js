@@ -68,7 +68,7 @@ function createAddressSuccess(data, status, jqXHR){
 				specialization : specialty, addressId : facilityAddress
 				},
 			success: createFacilitySuccess, 
-			error: createFacilityFailure
+			error: createFacilityFailure(facilityAddress)
 		});
 
 	} else {
@@ -89,11 +89,29 @@ function createFacilitySuccess(data, status, jqXHR){
 
 }
 
-function createFacilityFailure(data, status, jqXHR){
+function createFacilityFailure(facilityAddress){
 
 	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
 	$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+	$.ajax({
+			type: "DELETE",
+			url: "http://localhost:8080/repair_lst/address/",
+			data: {
+				addressId : facilityAddress
+				},
+			success: deleteAddressSuccess, 
+			error: deleteAddressFailure
+		});
 	
+}
+
+function deleteAddressSuccess() {
+
+}
+
+function deleteAddressFailure() {
+
 }
 
 /*

@@ -36,7 +36,7 @@ function getInfoOfSelectedRepairFacility (){
 
 function populateRepairFacilityUpdateFields(data) {
 
-	$("#repairFacilitySpecializationCheckboxes").find('input[type=checkbox]:checked').removeAttr('checked');
+	$("#repairFacilitySpecializationCheckboxes").find('input[type=checkbox]:checked').prop('checked', false);
 	
 	$("#streetAddressInput").val(data.address.street);
 	$("#cityInput").val(data.address.city);
@@ -47,8 +47,8 @@ function populateRepairFacilityUpdateFields(data) {
 	$("#repairFacilityLaborRate").val(data.hourlyRate);
 	
 		for (var s = 0; s < data.specializations.length; s++){
-			console.log(data.specializations[s].id);
-			$("#repairFacilitySpecializationCheckboxes").find('input[value="'+data.specializations[s].id+'"]').change().attr('checked', 'checked');
+
+			$("#repairFacilitySpecializationCheckboxes").find('input[value="'+data.specializations[s].id+'"]').prop('checked', true);
 		}
 	
 }

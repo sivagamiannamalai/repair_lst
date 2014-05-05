@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
-import org.hibernate.id.IdentifierGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import com.pdxcycle9.repair_lst.subservices.IsNotNull;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
-
 
 @Service
 public class CreateRepairFacilityService {
@@ -79,7 +77,7 @@ public class CreateRepairFacilityService {
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (Exception e) {
 			if (e.getCause().getClass() == ConstraintViolationException.class) {
-                errors.add(Error.DUPLICATE_RECORD);			
+                errors.add(Error.DUPLICATE_FACILITY);			
 			    failed(response, errors);
 			}   		
 		}			
