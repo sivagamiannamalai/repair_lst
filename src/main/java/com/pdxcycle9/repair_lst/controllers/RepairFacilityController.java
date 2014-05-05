@@ -56,6 +56,23 @@ public class RepairFacilityController {
 				response.getStatusCode());
 	}
 
+	@RequestMapping(value = "/repairfacility/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacilityByID( @PathVariable int id) {
+		ResponseEntity<Object> returnObject = null;
+
+		int repairFacilityId = id;	
+				
+		try {
+			Response response = searchRepairFacilityService.retrieveByID(repairFacilityId);
+			returnObject = new ResponseEntity<Object>(
+					response.getResponseObject(), response.getStatusCode());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnObject;
+	}
+	
 	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> retrieveRepairFacility() {
@@ -70,6 +87,17 @@ public class RepairFacilityController {
 		return returnObject;
 	}
 	
+	/**
+	 * update controller, takes id to change, grabs specialization and address objects
+	 * 
+	 * @param id
+	 * @param name
+	 * @param phone
+	 * @param specialization
+	 * @param hourlyRate
+	 * @param addressId
+	 * @return
+	 */
 	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
 
 	@ResponseBody
@@ -96,22 +124,6 @@ public class RepairFacilityController {
 				response.getStatusCode());
 	}
 	
-	@RequestMapping(value = "/repairfacility/{id}", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public ResponseEntity<Object> retrieveRepairFacilityByID( @PathVariable int id) {
-		ResponseEntity<Object> returnObject = null;
-		
-		RepairFacility repairFacility = new RepairFacility();
-		repairFacility.setId(id);		
-				
-		try {
-			Response response = searchRepairFacilityService.retrieveByID(repairFacility);
-			returnObject = new ResponseEntity<Object>(
-					response.getResponseObject(), response.getStatusCode());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return returnObject;
-	}
+
 	
 }

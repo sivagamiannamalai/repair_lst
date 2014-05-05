@@ -21,8 +21,15 @@ public class RepairFacilityDAO {
 	@Transactional
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		 em.persist(repairFacility);			 
-		 return repairFacility;		
+		try {
+			em.persist(repairFacility);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+		return repairFacility;
+
 	}
 	
 	
@@ -49,19 +56,26 @@ public class RepairFacilityDAO {
 	/**
 	 * update the repair facility
 	 */
+	@Transactional
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
+		System.out.println("I'm updating what now?");
 		em.merge(repairFacility);
-		
+
 		return repairFacility;
-		
 	}
 	
-	public RepairFacility retrieveRepairFacilityByID(RepairFacility repairFacility) {		
+	@Transactional
+	public RepairFacility retrieveRepairFacilityByID(int repairFacilityId) {		
+
+
+		RepairFacility result = new RepairFacility();
 		
-		em.merge(repairFacility);
+		Query query = em.createNamedQuery("findRepairFacilityById");
+		query.setParameter("id", repairFacilityId);
 		
-		return repairFacility;
+		result = (RepairFacility) query.getSingleResult();
+		return result;
 		
 	}
 	

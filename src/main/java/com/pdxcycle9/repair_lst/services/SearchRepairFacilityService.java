@@ -1,14 +1,10 @@
 package com.pdxcycle9.repair_lst.services;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,16 +17,15 @@ public class SearchRepairFacilityService {
 
 	@Autowired
 	private RepairFacilityDAO repairFacilityDAO;
-
-	/**
-	 * @param transactionDAO
-	 *            the transactionDAO to set
-	 */
-	
 	
 	public void setRepairFacilityDAO(RepairFacilityDAO repairFacilityDAO) {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
+	
+	/**
+	 * function to call DAO to retrieve all repair facilities
+	 * @return response
+	 */
 	@Transactional
 	public Response retrieveAll() {
 
@@ -56,16 +51,17 @@ public class SearchRepairFacilityService {
 	}
 
 	@Transactional
-	public Response retrieveByID(RepairFacility repairFacility) {
+	public Response retrieveByID(int repairFacilityId) {
 
-		
+
+
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		RepairFacility result = null;
 		
 		try {
 
-			result = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility);
+			result = repairFacilityDAO.retrieveRepairFacilityByID(repairFacilityId);
 			response.setStatusCode(HttpStatus.OK);
 			response.setResponseObject(result);
 			

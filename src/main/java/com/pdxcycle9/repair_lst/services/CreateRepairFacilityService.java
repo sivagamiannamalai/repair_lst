@@ -17,7 +17,6 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
