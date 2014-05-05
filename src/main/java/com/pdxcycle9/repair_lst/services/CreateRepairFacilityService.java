@@ -77,7 +77,7 @@ public class CreateRepairFacilityService {
 		   response.setStatusCode(HttpStatus.OK);
 		} catch (Exception e) {
 			if (e.getCause().getClass() == ConstraintViolationException.class) {
-                errors.add(Error.DUPLICATE_RECORD);			
+                errors.add(Error.DUPLICATE_FACILITY);			
 			    failed(response, errors);
 			}   		
 		}			
