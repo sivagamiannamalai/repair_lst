@@ -33,15 +33,9 @@ public class RepairFacilityDAO {
 
 		List<RepairFacility> results = new ArrayList <RepairFacility>() ;
 		
-		try{
-		
 			Query query = em.createNamedQuery("findAllRepairFacilities");
 		
 			results = (List<RepairFacility>) query.getResultList();
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		return results;
 	}
@@ -52,9 +46,13 @@ public class RepairFacilityDAO {
 	@Transactional
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
+		try{
 		System.out.println("I'm updating what now?");
 		em.merge(repairFacility);
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
 		return repairFacility;
 	}
 	

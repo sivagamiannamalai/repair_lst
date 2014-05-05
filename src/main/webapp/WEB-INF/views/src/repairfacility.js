@@ -68,7 +68,7 @@ function createAddressSuccess(data, status, jqXHR){
 				specialization : specialty, addressId : facilityAddress
 				},
 			success: createFacilitySuccess, 
-			error: createFacilityFailure
+			error: createFacilityFailure(facilityAddress)
 		});
 
 	} else {
@@ -89,11 +89,29 @@ function createFacilitySuccess(data, status, jqXHR){
 
 }
 
-function createFacilityFailure(data, status, jqXHR){
+function createFacilityFailure(facilityAddress){
 
 	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
 	$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+	$.ajax({
+			type: "DELETE",
+			url: "http://localhost:8080/repair_lst/address/",
+			data: {
+				addressId : facilityAddress
+				},
+			success: deleteAddressSuccess, 
+			error: deleteAddressFailure
+		});
 	
+}
+
+function deleteAddressSuccess() {
+
+}
+
+function deleteAddressFailure() {
+
 }
 
 /*
@@ -122,7 +140,17 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 	if(phoneNumber == ""){
 		$("#repPhone").addClass("errorText");
 		$("#repPhone").removeClass("validText");
-		errorMessage += "Must enter a facility phone number <br>";
+		errorMessage += "Must enter a 10-digit facility phone number <br>";
+	} 
+	else if(isNaN(phoneNumber)) {
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
+		errorMessage += "Phone number may contain only numeric characters <br>";
+	}
+	else if(phoneNumber.length !== 10) {
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
+		errorMessage += "Phone number may be only 10 digits long <br>";
 	} else {
 		$("#repPhone").addClass("validText");
 		$("#repPhone").removeClass("errorText");
@@ -207,7 +235,7 @@ function validateAddress(street, city, state, zip){
 		$("#zip").removeClass("validText");
 		errorMessage += "Zip code must be a number <br>";
 	}
-	else if(zip.length > 5){
+	else if(zip.length !== 5){
 		$("#zip").addClass("errorText");
 		$("#zip").removeClass("validText");
 		errorMessage += "Must enter a 5 digit zip code <br>";

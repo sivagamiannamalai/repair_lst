@@ -18,9 +18,6 @@ public class SearchRepairFacilityService {
 	@Autowired
 	private RepairFacilityDAO repairFacilityDAO;
 	
-	public void setRepairFacilityDAO(RepairFacilityDAO repairFacilityDAO) {
-		this.repairFacilityDAO = repairFacilityDAO;
-	}
 	
 	/**
 	 * function to call DAO to retrieve all repair facilities
@@ -44,7 +41,6 @@ public class SearchRepairFacilityService {
 
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
-			System.out.println(e.getMessage());
 		}
 		return response;
 
@@ -69,7 +65,7 @@ public class SearchRepairFacilityService {
 
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
-			System.out.println(e.getMessage());
+
 		}
 		return response;
 
