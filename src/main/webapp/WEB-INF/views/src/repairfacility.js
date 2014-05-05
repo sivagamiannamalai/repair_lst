@@ -96,10 +96,7 @@ function createFacilityFailure(facilityAddress){
 
 	$.ajax({
 			type: "DELETE",
-			url: "http://localhost:8080/repair_lst/address/",
-			data: {
-				addressId : facilityAddress
-				},
+			url: "http://localhost:8080/repair_lst/address" + "/" + facilityAddress,
 			success: deleteAddressSuccess, 
 			error: deleteAddressFailure
 		});
@@ -166,7 +163,12 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 		$("#repRate").addClass("errorText");
 		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate must be a number <br>";
-	}else {
+	}
+	else if(laborRate.length > 5)) {
+		$("#repRate").addClass("errorText");
+		$("#repRate").removeClass("validText");
+		errorMessage += "Labor rate cannot be longer than 5 characters <br>";
+	} else {
 		$("#repRate").addClass("validText");
 		$("#repRate").removeClass("errorText");
 		laborBool = true;
