@@ -19,17 +19,10 @@ public class RepairFacilityDAO {
 	private EntityManager em;
 
 	@Transactional
-	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
+	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {			
 		
-		try {
-			em.persist(repairFacility);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		
+		em.persist(repairFacility);		
 		return repairFacility;
-
 	}
 	
 	
