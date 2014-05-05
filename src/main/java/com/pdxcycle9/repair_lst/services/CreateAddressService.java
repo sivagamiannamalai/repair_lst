@@ -29,7 +29,7 @@ public class CreateAddressService {
 	@Autowired
 	IsNotNull isNotNull;
 
-	@Transactional
+	
 	public Response createAddress(Address address) {
 		
 		Response response = new Response();
@@ -79,7 +79,7 @@ public class CreateAddressService {
 		   response.setStatusCode(HttpStatus.OK);
 		}  catch (Exception e) {
 			if (e.getCause().getClass() == ConstraintViolationException.class) {
-                errors.add(Error.DUPLICATE_RECORD);			
+                errors.add(Error.DUPLICATE_ADDRESS);			
 			    failed(response, errors);
 			}    
 		}
