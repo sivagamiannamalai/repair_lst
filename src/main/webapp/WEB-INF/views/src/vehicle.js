@@ -597,7 +597,7 @@ console.log(model);
 console.log(vin);
 console.log(mileageRaw);
 */
-	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false && mileageInt > 0){
+	if (modelValue !== "-1" && vinValidator(vin) == true && checkIfInt == false && mileageInt >= 0 && mileageInt <= 999999){
 		console.log("AJAX hit");
 	$.ajax({
 		type: "POST",

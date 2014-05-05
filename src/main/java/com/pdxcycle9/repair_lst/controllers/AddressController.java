@@ -40,10 +40,10 @@ public class AddressController {
 		address.setCity(city);
 		address.setState(state);
 		address.setStreet(street);
-		address.setZip(zip);
-		
+		address.setZip(zip);		
+				
 		Response response = getCreateAddressService().createAddress(address);
-		
+				
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 

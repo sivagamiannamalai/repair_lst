@@ -18,25 +18,30 @@ public class RepairFacilityDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
-	
+	@Transactional
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		em.persist(repairFacility);	
-		
-		return repairFacility;
-		
+		 em.persist(repairFacility);			 
+		 return repairFacility;		
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<RepairFacility> retrieveAllRepairFacility() {
 
-		Query query = em.createNamedQuery("findAllRepairFacilities");
 		List<RepairFacility> results = new ArrayList <RepairFacility>() ;
 		
-		results = (List<RepairFacility>) query.getResultList();
+		try{
 		
-		System.out.println(results);
+			Query query = em.createNamedQuery("findAllRepairFacilities");
+		
+			results = (List<RepairFacility>) query.getResultList();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return results;
 	}
@@ -52,5 +57,14 @@ public class RepairFacilityDAO {
 
 		return repairFacility;
 	}
+	
+	public RepairFacility retrieveRepairFacilityByID(RepairFacility repairFacility) {		
+		
+		em.merge(repairFacility);
+		
+		return repairFacility;
+		
+	}
+	
 	
 }
