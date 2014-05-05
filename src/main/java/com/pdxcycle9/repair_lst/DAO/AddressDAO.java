@@ -5,13 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.pdxcycle9.repair_lst.entities.Address;
-import com.pdxcycle9.repair_lst.util.Response;
+
 
 
 @Repository	
