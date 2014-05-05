@@ -40,15 +40,9 @@ public class RepairFacilityDAO {
 
 		List<RepairFacility> results = new ArrayList <RepairFacility>() ;
 		
-		try{
-		
 			Query query = em.createNamedQuery("findAllRepairFacilities");
 		
 			results = (List<RepairFacility>) query.getResultList();
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		return results;
 	}
