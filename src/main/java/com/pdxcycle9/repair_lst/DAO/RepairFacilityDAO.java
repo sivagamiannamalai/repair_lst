@@ -58,11 +58,17 @@ public class RepairFacilityDAO {
 		return repairFacility;
 	}
 	
-	public RepairFacility retrieveRepairFacilityByID(RepairFacility repairFacility) {		
+	@Transactional
+	public RepairFacility retrieveRepairFacilityByID(int repairFacilityId) {		
+
+
+		RepairFacility result = new RepairFacility();
 		
-		em.merge(repairFacility);
+		Query query = em.createNamedQuery("findRepairFacilityById");
+		query.setParameter("id", repairFacilityId);
 		
-		return repairFacility;
+		result = (RepairFacility) query.getSingleResult();
+		return result;
 		
 	}
 	

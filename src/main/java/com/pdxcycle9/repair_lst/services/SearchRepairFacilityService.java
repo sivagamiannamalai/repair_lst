@@ -56,16 +56,17 @@ public class SearchRepairFacilityService {
 	}
 
 	@Transactional
-	public Response retrieveByID(RepairFacility repairFacility) {
+	public Response retrieveByID(int repairFacilityId) {
 
-		
+
+
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		RepairFacility result = null;
 		
 		try {
 
-			result = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility);
+			result = repairFacilityDAO.retrieveRepairFacilityByID(repairFacilityId);
 			response.setStatusCode(HttpStatus.OK);
 			response.setResponseObject(result);
 			
