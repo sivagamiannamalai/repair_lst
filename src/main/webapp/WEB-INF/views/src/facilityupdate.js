@@ -29,14 +29,26 @@ function getInfoOfSelectedRepairFacility (){
 	var selectedRepairFacilityID = $("#repairFacilityDropDown").children(":selected").attr("id");
 	 $.ajax({
         type: "GET",
-        url: "http://localhost:8080/repair_lst/repairfacility",
-		data: { id :  selectedRepairFacilityID},
+        url: "http://localhost:8080/repair_lst/repairfacility/"+ selectedRepairFacilityID,
         success: populateRepairFacilityUpdateFields
     });
 }
 
-function populateRepairFacilityUpdateFields() {
+function populateRepairFacilityUpdateFields(data) {
 
-
-
+	$("#repairFacilitySpecializationCheckboxes").find('input[type=checkbox]:checked').removeAttr('checked');
+	
+	$("#streetAddressInput").val(data.address.street);
+	$("#cityInput").val(data.address.city);
+	$("#stateSelect").find('option[value="'+data.address.state+'"]').attr('selected', 'selected');
+	$("#zipInput").val(data.address.zip);
+	$("#repairFacilityName").val(data.name);
+	$("#repairFacilityPhoneNumber").val(data.phone);
+	$("#repairFacilityLaborRate").val(data.hourlyRate);
+	
+		for (var s = 0; s < data.specializations.length; s++){
+			console.log(data.specializations[s].id);
+			$("#repairFacilitySpecializationCheckboxes").find('input[value="'+data.specializations[s].id+'"]').change().attr('checked', 'checked');
+		}
+	
 }
