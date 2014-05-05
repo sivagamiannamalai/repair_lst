@@ -140,7 +140,17 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 	if(phoneNumber == ""){
 		$("#repPhone").addClass("errorText");
 		$("#repPhone").removeClass("validText");
-		errorMessage += "Must enter a facility phone number <br>";
+		errorMessage += "Must enter a 10-digit facility phone number <br>";
+	} 
+	else if(isNaN(repPhone)) {
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
+		errorMessage += "Phone number may contain only numeric characters <br>";
+	}
+	else if(repPhone.length === 10) {
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
+		errorMessage += "Phone number may be only 10 digits long <br>";
 	} else {
 		$("#repPhone").addClass("validText");
 		$("#repPhone").removeClass("errorText");
