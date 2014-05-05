@@ -55,4 +55,28 @@ public class SearchRepairFacilityService {
 
 	}
 
+	@Transactional
+	public Response retrieveByID(RepairFacility repairFacility) {
+
+		
+		Response response = new Response();
+		List<String> errors = new ArrayList<String>();
+		RepairFacility result = null;
+		
+		try {
+
+			result = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility);
+			response.setStatusCode(HttpStatus.OK);
+			response.setResponseObject(result);
+			
+		} catch (Exception e) {
+
+			response.setStatusCode(HttpStatus.BAD_REQUEST);
+			response.setResponseObject(errors);
+			System.out.println(e.getMessage());
+		}
+		return response;
+
+	}
+	
 }
