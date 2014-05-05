@@ -99,6 +99,8 @@ public class UpdateRepairFacilityService {
 			failed(response, errors);
 
 		} catch (Exception e) {
+			System.out.println(repairFacility);
+			e.printStackTrace();
 			errors.add(Error.CANNOT_UPDATE);
 			response.setResponseObject(errors);
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
