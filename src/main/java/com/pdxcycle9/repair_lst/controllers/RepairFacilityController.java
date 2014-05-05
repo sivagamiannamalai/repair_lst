@@ -69,7 +69,7 @@ public class RepairFacilityController {
 	}
 	
 	/**
-	 * update controller, takes id to change and grabs specialization and address objects
+	 * update controller, takes id to change, grabs specialization and address objects
 	 * 
 	 * @param id
 	 * @param name

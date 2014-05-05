@@ -44,12 +44,13 @@ public class RepairFacilityDAO {
 	/**
 	 * update the repair facility
 	 */
+	@Transactional
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
+		System.out.println("I'm updating what now?");
 		em.merge(repairFacility);
-		
+
 		return repairFacility;
-		
 	}
 	
 }

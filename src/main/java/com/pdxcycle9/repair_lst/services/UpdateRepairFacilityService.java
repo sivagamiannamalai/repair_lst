@@ -18,7 +18,6 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.util.Error;
 
-@Transactional
 @Service
 public class UpdateRepairFacilityService {
 
@@ -60,7 +59,7 @@ public class UpdateRepairFacilityService {
 
 			response.setStatusCode(HttpStatus.OK);
 			updateRepairFacility(repairFacility, response, errors);
-
+			System.out.println(response);
 		} else {
 
 			failed(response, errors);
@@ -83,10 +82,12 @@ public class UpdateRepairFacilityService {
 	 * @param response
 	 * @param errors
 	 */
+	@Transactional
 	public void updateRepairFacility(RepairFacility repairFacility,
 			Response response, List<String> errors) {
 
 		RepairFacility result = null;
+
 		try {
 			result = repairFacilityDAO.updateRepairFacility(repairFacility);
 			response.setResponseObject(result);
@@ -100,6 +101,7 @@ public class UpdateRepairFacilityService {
 			errors.add(Error.CANNOT_UPDATE);
 			response.setResponseObject(errors);
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
+
 		}
 
 	}
