@@ -89,6 +89,7 @@ public class UpdateRepairFacilityService {
 		RepairFacility result = null;
 
 		try {
+			repairFacility = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility.getId());
 			result = repairFacilityDAO.updateRepairFacility(repairFacility);
 			response.setResponseObject(result);
 			response.setStatusCode(HttpStatus.OK);
