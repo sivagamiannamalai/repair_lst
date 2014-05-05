@@ -47,7 +47,7 @@ public class RepairFacilityDAO {
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
 		try{
-		System.out.println("I'm updating what now?");
+		
 		em.merge(repairFacility);
 		} catch (Exception e) {
 			e.printStackTrace();
