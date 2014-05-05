@@ -27,10 +27,17 @@ public class AddressDAO {
 		@Transactional
 		public List<Address> retrieveAllAddresses() {
 			
-			Query query = em.createNamedQuery("findAllAdresses");
-			
+			Query query = em.createNamedQuery("findAllAdresses");			
 			return (List<Address>) query.getResultList();
 			
+		}
+		
+		
+		@Transactional
+		public Address deleteAddress(Address address) {
+			System.out.println("In the deleteAddress method");
+		    em.remove(address);
+		    return address;
 		}
 		
 		
