@@ -20,17 +20,17 @@ public class DeleteAddressService {
 	AddressDAO addressDAO;
 	
 	@Transactional
-	public Response delete(Address address) {
+	public Response delete(int addressId) {
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		try {
-			addressDAO.deleteAddress(address);
+			addressDAO.deleteAddress(addressId);
 			response.setStatusCode(HttpStatus.OK);
-			response.setResponseObject(address);
+			//response.setResponseObject(address);
 			System.out.println("Response object inside DeleteService " + response);
 		} catch(Exception e) {
-			errors.add(Error.CANNOT_UPDATE);
-			response.setResponseObject(errors);
+			//errors.add(Error.CANNOT_UPDATE);
+			//response.setResponseObject(errors);
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 		}
 		return response;
