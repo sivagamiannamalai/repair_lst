@@ -18,7 +18,7 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Transactional 
+
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
@@ -30,7 +30,7 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
-	@Transactional
+	
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
 		
 		
