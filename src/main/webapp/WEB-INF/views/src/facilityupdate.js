@@ -13,6 +13,9 @@ function getAllRepairFacilitiesForUpdate () {
 }
 
 function populateRepairFacilityDropDown(data){
+	
+	 $("#repairFacilityDropDown").append('<option id="-1"> </option>');
+
     for(var i = 0; i < data.length; i++){
         $("#repairFacilityDropDown").append(
 		'<option id="' + 
