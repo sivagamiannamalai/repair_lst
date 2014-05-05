@@ -18,7 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "findAllRepairFacilities", query = "SELECT rf FROM RepairFacility rf") })
+@NamedQueries({ @NamedQuery(name = "findAllRepairFacilities", query = "SELECT rf FROM RepairFacility rf"),
+				@NamedQuery(name = "findRepairFacilityById", query = "SELECT rf FROM RepairFacility rf WHERE rf.id = :id") })
 @Entity
 @Table(name = "repair_facility")
 public class RepairFacility implements Serializable{
