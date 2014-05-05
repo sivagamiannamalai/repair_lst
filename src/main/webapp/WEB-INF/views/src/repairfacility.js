@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 
 var errorMessage = "";
+var facilityAddress = "";
 
 function postRepairFacility(){
 
@@ -53,7 +54,7 @@ function createAddressSuccess(data, status, jqXHR){
 	var phoneNumber = $("#repairFacilityPhoneNumber").val();
 	var laborRate = $("#repairFacilityLaborRate").val();
 	var specialty = [];
-	var facilityAddress = data.id;
+	facilityAddress = data.id;
 
 	$(':checkbox:checked').each(function(i){
           specialty[i] = $(this).val();
@@ -68,7 +69,7 @@ function createAddressSuccess(data, status, jqXHR){
 				specialization : specialty, addressId : facilityAddress
 				},
 			success: createFacilitySuccess, 
-			error: createFacilityFailure(facilityAddress)
+			error: createFacilityFailure
 		});
 
 	} else {
@@ -89,7 +90,7 @@ function createFacilitySuccess(data, status, jqXHR){
 
 }
 
-function createFacilityFailure(facilityAddress){
+function createFacilityFailure(data, status, jqXHR){
 
 	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
 	$('html, body').animate({ scrollTop: 0 }, 'slow');
@@ -108,6 +109,8 @@ function deleteAddressSuccess() {
 }
 
 function deleteAddressFailure() {
+
+	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
 
 }
 
@@ -164,7 +167,7 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate must be a number <br>";
 	}
-	else if(laborRate.length > 5)) {
+	else if(laborRate.length > 5) {
 		$("#repRate").addClass("errorText");
 		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate cannot be longer than 5 characters <br>";
