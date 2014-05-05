@@ -142,12 +142,12 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 		$("#repPhone").removeClass("validText");
 		errorMessage += "Must enter a 10-digit facility phone number <br>";
 	} 
-	else if(isNaN(repPhone)) {
+	else if(isNaN(phoneNumber)) {
 		$("#repPhone").addClass("errorText");
 		$("#repPhone").removeClass("validText");
 		errorMessage += "Phone number may contain only numeric characters <br>";
 	}
-	else if(repPhone.length === 10) {
+	else if(phoneNumber.length !== 10) {
 		$("#repPhone").addClass("errorText");
 		$("#repPhone").removeClass("validText");
 		errorMessage += "Phone number may be only 10 digits long <br>";
@@ -235,7 +235,7 @@ function validateAddress(street, city, state, zip){
 		$("#zip").removeClass("validText");
 		errorMessage += "Zip code must be a number <br>";
 	}
-	else if(zip.length > 5){
+	else if(zip.length !== 5){
 		$("#zip").addClass("errorText");
 		$("#zip").removeClass("validText");
 		errorMessage += "Must enter a 5 digit zip code <br>";
