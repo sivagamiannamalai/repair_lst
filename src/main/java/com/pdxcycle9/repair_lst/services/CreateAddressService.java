@@ -68,6 +68,7 @@ public class CreateAddressService {
 	}
 	
 	
+	@Transactional
 	public void persistAddress(Address address, Response response,
 			                             List<String> errors)  {
 		
@@ -76,15 +77,11 @@ public class CreateAddressService {
 		   result = addressDAO.persistAddress(address);
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
-		} catch (ConstraintViolationException e){
-			errors.add(Error.DUPLICATE_RECORD);
-			failed(response, errors);
-		} catch (RollbackException e){
-			errors.add(Error.DUPLICATE_RECORD);
-			failed(response, errors);
-		} catch (Exception e) {
-			errors.add(Error.CANNOT_PERSIST);
-			failed(response, errors);
+		}  catch (Exception e) {
+			if (e.getCause().getClass() == ConstraintViolationException.class) {
+                errors.add(Error.DUPLICATE_RECORD);			
+			    failed(response, errors);
+			}    
 		}
 		 
 	}

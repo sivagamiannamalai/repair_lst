@@ -29,7 +29,7 @@ public class RepairFacility implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "repair_facility_id", unique = true, nullable = false)
+	@Column(name = "repair_facility_id")
 	private int id;
 
 	@Column(name = "name", unique = true, nullable = false)

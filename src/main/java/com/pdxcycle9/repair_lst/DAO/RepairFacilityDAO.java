@@ -18,14 +18,14 @@ public class RepairFacilityDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
-	
+	@Transactional
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		em.persist(repairFacility);	
-		
-		return repairFacility;
-		
+		 em.persist(repairFacility);			 
+		 return repairFacility;		
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Transactional
