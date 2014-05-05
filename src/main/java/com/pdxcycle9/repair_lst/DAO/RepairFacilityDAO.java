@@ -57,4 +57,13 @@ public class RepairFacilityDAO {
 		
 	}
 	
+	public RepairFacility retrieveRepairFacilityByID(RepairFacility repairFacility) {		
+		
+		em.merge(repairFacility);
+		
+		return repairFacility;
+		
+	}
+	
+	
 }
