@@ -21,7 +21,12 @@ public class RepairFacilityDAO {
 	
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
-		em.persist(repairFacility);	
+		try {
+			em.persist(repairFacility);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		return repairFacility;
 		

@@ -21,16 +21,15 @@ public class SearchRepairFacilityService {
 
 	@Autowired
 	private RepairFacilityDAO repairFacilityDAO;
-
-	/**
-	 * @param transactionDAO
-	 *            the transactionDAO to set
-	 */
-	
 	
 	public void setRepairFacilityDAO(RepairFacilityDAO repairFacilityDAO) {
 		this.repairFacilityDAO = repairFacilityDAO;
 	}
+	
+	/**
+	 * function to call DAO to retrieve all repair facilities
+	 * @return response
+	 */
 	@Transactional
 	public Response retrieveAll() {
 
