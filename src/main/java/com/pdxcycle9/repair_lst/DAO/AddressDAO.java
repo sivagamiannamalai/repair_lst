@@ -10,16 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pdxcycle9.repair_lst.entities.Address;
 
 
+
 @Repository	
 public class AddressDAO {	
 	
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 	
-
+    @Transactional
 	public Address persistAddress(Address address) {
 			
-			em.persist(address);			
+			em.persist(address);  			
 			return address;
 		}
 

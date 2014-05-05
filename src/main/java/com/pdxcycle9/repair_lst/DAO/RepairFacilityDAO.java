@@ -18,7 +18,7 @@ public class RepairFacilityDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
-	
+	@Transactional
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {		
 		
 		try {
@@ -29,8 +29,10 @@ public class RepairFacilityDAO {
 		}	
 		
 		return repairFacility;
-		
+
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -54,12 +56,28 @@ public class RepairFacilityDAO {
 	/**
 	 * update the repair facility
 	 */
+	@Transactional
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
+		System.out.println("I'm updating what now?");
 		em.merge(repairFacility);
-		
+
 		return repairFacility;
+	}
+	
+	@Transactional
+	public RepairFacility retrieveRepairFacilityByID(int repairFacilityId) {		
+
+
+		RepairFacility result = new RepairFacility();
+		
+		Query query = em.createNamedQuery("findRepairFacilityById");
+		query.setParameter("id", repairFacilityId);
+		
+		result = (RepairFacility) query.getSingleResult();
+		return result;
 		
 	}
+	
 	
 }

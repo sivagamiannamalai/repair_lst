@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class RepairFacilityController {
 	SearchRepairFacilityService searchRepairFacilityService;
 	@Autowired
 	UpdateRepairFacilityService updateRepairFacilityService;
+	
 
 	/*
 	 * Controller for creating repair facility accepts name, phone, hourlyRate,
@@ -54,6 +56,23 @@ public class RepairFacilityController {
 				response.getStatusCode());
 	}
 
+	@RequestMapping(value = "/repairfacility/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacilityByID( @PathVariable int id) {
+		ResponseEntity<Object> returnObject = null;
+
+		int repairFacilityId = id;	
+				
+		try {
+			Response response = searchRepairFacilityService.retrieveByID(repairFacilityId);
+			returnObject = new ResponseEntity<Object>(
+					response.getResponseObject(), response.getStatusCode());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnObject;
+	}
+	
 	@RequestMapping(value = "/repairfacility", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> retrieveRepairFacility() {
@@ -68,6 +87,17 @@ public class RepairFacilityController {
 		return returnObject;
 	}
 	
+	/**
+	 * update controller, takes id to change, grabs specialization and address objects
+	 * 
+	 * @param id
+	 * @param name
+	 * @param phone
+	 * @param specialization
+	 * @param hourlyRate
+	 * @param addressId
+	 * @return
+	 */
 	@RequestMapping(value = "/repairfacility", params = { "id", "name", "phone", "specialization[]", "hourlyRate", "addressId" }, method = RequestMethod.PUT, produces = "application/json")
 
 	@ResponseBody
@@ -93,4 +123,7 @@ public class RepairFacilityController {
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
+	
+
+	
 }

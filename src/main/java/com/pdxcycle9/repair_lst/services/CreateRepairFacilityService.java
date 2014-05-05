@@ -3,7 +3,7 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.id.IdentifierGenerationException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,6 @@ import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Transactional 
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
@@ -67,7 +66,7 @@ public class CreateRepairFacilityService {
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 	
-	
+	@Transactional
 	public void persistRepairFacility(RepairFacility repairFacility, Response response,
 			                             List<String> errors)  {
 		
@@ -76,14 +75,12 @@ public class CreateRepairFacilityService {
 		   result = repairFacilityDAO.persistRepairFacility(repairFacility);
 		   response.setResponseObject(result);
 		   response.setStatusCode(HttpStatus.OK);
-		} catch (IdentifierGenerationException e){
-			errors.add(Error.DUPLICATE_RECORD);
-			failed(response, errors);		
 		} catch (Exception e) {
-			errors.add(Error.CANNOT_PERSIST);
-			failed(response, errors);			
-		}	
-		
+			if (e.getCause().getClass() == ConstraintViolationException.class) {
+                errors.add(Error.DUPLICATE_RECORD);			
+			    failed(response, errors);
+			}   		
+		}			
 		 
 	}
 	
