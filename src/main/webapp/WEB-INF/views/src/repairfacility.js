@@ -110,7 +110,7 @@ function deleteAddressSuccess() {
 
 function deleteAddressFailure() {
 
-	$("#facilityMessage").html("An error occured: " + data.responseJSON[0]);
+	$("#facilityMessage").text("Deleting and address to prevent duplication failed.  Please contact your local DBA (Erwin) for a resolution.");
 
 }
 
@@ -167,7 +167,7 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate must be a number <br>";
 	}
-	else if(laborRate.length > 5) {
+	else if(laborRate.length > 6) {
 		$("#repRate").addClass("errorText");
 		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate cannot be longer than 5 characters <br>";
