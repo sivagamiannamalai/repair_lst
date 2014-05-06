@@ -20,16 +20,20 @@ import com.pdxcycle9.repair_lst.util.Response;
 @Service
 public class CreateRepairFacilityService {
 	@Autowired
-	RepairFacilityDAO repairFacilityDAO;
+	private RepairFacilityDAO repairFacilityDAO;
 	
 	@Autowired
-	IsValidLength isValidLength;
+	private IsValidLength isValidLength;
 	
 	@Autowired
-	IsNotNull isNotNull;
+	private IsNotNull isNotNull;
    
-	/*
+	
+	/**
 	 * function that creates a repair facility
+	 * @param repairFacility
+	 * @param specialization
+	 * @return Response object
 	 */
 	
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
@@ -64,16 +68,23 @@ public class CreateRepairFacilityService {
 		return response;
 	}
 	
-	/*
+	
+	/**
 	 * function that sets the response object to the errors
+	 * @param response
+	 * @param errors
 	 */
 	public void failed(Response response, List<String> errors) {
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 	
-	/*
+	
+	/**
 	 * function that persists the repair facility
+	 * @param repairFacility
+	 * @param response
+	 * @param errors
 	 */
 	@Transactional
 	public void persistRepairFacility(RepairFacility repairFacility, Response response,

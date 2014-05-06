@@ -15,13 +15,10 @@ import com.pdxcycle9.repair_lst.services.DeleteAddressService;
 import com.pdxcycle9.repair_lst.services.FindAllAddressService;
 import com.pdxcycle9.repair_lst.util.Response;
 
-/* Controller to create a new address
- * accepts street, city, state and zip
- * returns a Response Object and Response Status code
- */
+
 @Controller
 public class AddressController {
-	//
+
 	@Autowired
 	private CreateAddressService createAddressService;
 	@Autowired
@@ -29,7 +26,14 @@ public class AddressController {
 	@Autowired
 	private DeleteAddressService deleteAddressService;
 	
-	
+	/**
+	 * Method that creates a new Address
+	 * @param street
+	 * @param city
+	 * @param state
+	 * @param zip
+	 * @return ResponseEntity<Object>
+	 */
 	@RequestMapping(value = "/address", params = { "street", "city", "state",
 			"zip" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
@@ -64,19 +68,17 @@ public class AddressController {
 				response.getStatusCode());
 	}
 
-	/*
+	
+	/**
 	 * Controller for deleting an address by ID
-	 * accepts the addressID
-	 * returns a Response Object and Response Status code
+	 * @param addressId
+	 * @return a Response Object and Response Status code
 	 */
 	@RequestMapping(value = "/address/{addressId}", method = RequestMethod.DELETE)
 	@ResponseBody
 
 	public ResponseEntity<Object> deleteAddress(@PathVariable int addressId) {
-        System.out.println("AddressID to be deleted " + addressId);
-        
-		//Address address = new Address();
-		//address.setId(addressId);        
+        	 
 		Response response = deleteAddressService.delete(addressId);
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
