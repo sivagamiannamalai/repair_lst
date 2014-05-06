@@ -59,7 +59,7 @@ public class UpdateRepairFacilityService {
 
 			response.setStatusCode(HttpStatus.OK);
 			updateRepairFacility(repairFacility, response, errors);
-			System.out.println(response);
+
 		} else {
 
 			failed(response, errors);
@@ -102,7 +102,6 @@ public class UpdateRepairFacilityService {
 			failed(response, errors);
 
 		} catch (Exception e) {
-			System.out.println(repairFacility);
 			e.printStackTrace();
 			errors.add(Error.CANNOT_UPDATE);
 			response.setResponseObject(errors);
