@@ -112,6 +112,7 @@ public class RepairFacilityController {
 		RepairFacility repairFacility = new RepairFacility();
 		Address address = new Address(addressId);
 
+		repairFacility.setId(id);
 		repairFacility.setName(name);
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);

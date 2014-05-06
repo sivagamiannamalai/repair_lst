@@ -22,25 +22,24 @@ public class CreateVehicleSuccessTest {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
   
-  /* Additional, valid VINs for testing:
-   * YS3CK48D1L1150907
-   * 1YVHP85C285334023
-   * 4S3BL696973100519
-   * 1FMBU01B51K204577
-   * 2HGFG1B81AH294439
-   *
-   * For more randomly generated VINs, visit: http://randomvin.com/
-   * Be sure to verify the VIN on the same site before replacing the value
-   * in 'vinInput'.
+  /* 
+   * For more VINs run ValidVINRetriever as a JUnit test, copy
+   * the VIN number that reaches console output and replace the 
+   * .sendKeys String argument with the new VIN on line 37 
    */
   
   @Test
   public void testVehicleAddSuccess() throws Exception {
     driver.get(baseUrl + "file:///H:/code_training/repair_lst/src/main/webapp/WEB-INF/views/html/vehicles/create.html");
     new Select(driver.findElement(By.id("makeSelectionBox"))).selectByVisibleText("BENTLEY");
+    //Select selectRandomMake = driver.getSelectOptions(By.id("makeSelectionBox"))
+    Select comboBox = new Select(driver.findElement(By.id("superior")));
+    String selectedComboValue = comboBox.getFirstSelectedOption().getText();
+    System.out.println("Selected combo value: " + selectedComboValue);
+    
     new Select(driver.findElement(By.id("modelSelectionBox"))).selectByVisibleText("CONTINENTAL FLYING SPUR");
     driver.findElement(By.id("vinInput")).clear();
-    driver.findElement(By.id("vinInput")).sendKeys("KMHVD34N4XU600231");
+    driver.findElement(By.id("vinInput")).sendKeys("KMHVD34N4XU600231"); // Add new VIN here
     driver.findElement(By.id("mileageInput")).clear();
     driver.findElement(By.id("mileageInput")).sendKeys("0");
     driver.findElement(By.id("createVehicleSubmit")).click();

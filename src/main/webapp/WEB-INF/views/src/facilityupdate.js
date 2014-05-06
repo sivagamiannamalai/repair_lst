@@ -13,9 +13,6 @@ function getAllRepairFacilitiesForUpdate () {
 }
 
 function populateRepairFacilityDropDown(data){
-	
-	 $("#repairFacilityDropDown").append('<option id="-1"> </option>');
-
     for(var i = 0; i < data.length; i++){
         $("#repairFacilityDropDown").append(
 		'<option id="' + 
@@ -30,11 +27,15 @@ function populateRepairFacilityDropDown(data){
 
 function getInfoOfSelectedRepairFacility (){
 	var selectedRepairFacilityID = $("#repairFacilityDropDown").children(":selected").attr("id");
+	 
+	 if (selectedRepairFacilityID > 0){
+	 
 	 $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/repairfacility/"+ selectedRepairFacilityID,
         success: populateRepairFacilityUpdateFields
     });
+	}
 }
 
 function populateRepairFacilityUpdateFields(data) {

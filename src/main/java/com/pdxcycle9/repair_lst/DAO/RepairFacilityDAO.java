@@ -46,14 +46,8 @@ public class RepairFacilityDAO {
 	@Transactional
 	public RepairFacility updateRepairFacility(RepairFacility repairFacility) {		
 		
-		try{
+		return em.merge(repairFacility);
 		
-		em.merge(repairFacility);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e);
-		}
-		return repairFacility;
 	}
 	
 	@Transactional
