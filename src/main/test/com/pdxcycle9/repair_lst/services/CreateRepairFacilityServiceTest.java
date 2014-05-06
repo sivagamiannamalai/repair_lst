@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,6 +58,7 @@ public class CreateRepairFacilityServiceTest {
 		repairFacility.setHourlyRate(hourlyRate);
 		
 		when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenReturn(repairFacility);
+		
 		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		when(isNotNull.isHourlyRateValid((BigDecimal)Matchers.any(), Matchers.anyList())).thenReturn(true);
@@ -86,6 +88,15 @@ public class CreateRepairFacilityServiceTest {
 		
 		response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
  		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void getErrorForDuplicateRepairFacility() {
+		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(new ConstraintViolationException("String", null, "String"));
+		 response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
+		 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+		 assertEquals(Error.class, response.getResponseObject().getClass());
 	}
 
 }

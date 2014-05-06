@@ -3,6 +3,7 @@ package com.pdxcycle9.repair_lst.services;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.util.Response;
+import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.DAO.AddressDAO;
 import com.pdxcycle9.repair_lst.subservices.IsNotNull;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
@@ -77,5 +79,12 @@ public class CreateAddressServiceTest {
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 	}
 	
-
+    @SuppressWarnings("unchecked")
+    @Test
+    public void getErrorForDuplicateAddress() {
+    	when(createAddressService.createAddress(address)).thenThrow(new ConstraintViolationException("String", null, "String"));
+    	response = createAddressService.createAddress(address);
+    	assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    	assertEquals(Error.class, response.getResponseObject().getClass());
+    }
 }

@@ -75,9 +75,9 @@ public class AddressController {
 	public ResponseEntity<Object> deleteAddress(@PathVariable int addressId) {
         System.out.println("AddressID to be deleted " + addressId);
         
-		Address address = new Address();
-		address.setId(addressId);
-		Response response = deleteAddressService.delete(address);
+		//Address address = new Address();
+		//address.setId(addressId);        
+		Response response = deleteAddressService.delete(addressId);
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());
 	}
