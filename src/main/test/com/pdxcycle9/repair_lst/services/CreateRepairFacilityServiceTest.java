@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -89,10 +90,10 @@ public class CreateRepairFacilityServiceTest {
  		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 	}
 	
-	@SupressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Test
 	public void getErrorForDuplicateRepairFacility() {
-		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(new ConstraintViolationException());
+		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(new ConstraintViolationException("String", null, "String"));
 		 response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
 		 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 		 assertEquals(Error.class, response.getResponseObject().getClass());

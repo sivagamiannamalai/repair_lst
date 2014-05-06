@@ -3,6 +3,7 @@ package com.pdxcycle9.repair_lst.services;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,11 +79,11 @@ public class CreateAddressServiceTest {
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 	}
 	
-    @SupressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     @Test
     public void getErrorForDuplicateAddress() {
-    	when(addressDAO.persistAddress(address)).thenThrow(new ConstraintViolationException());
-    	response = addressDAO.persistAddress(address);
+    	when(createAddressService.createAddress(address)).thenThrow(new ConstraintViolationException("String", null, "String"));
+    	response = createAddressService.createAddress(address);
     	assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     	assertEquals(Error.class, response.getResponseObject().getClass());
     }
