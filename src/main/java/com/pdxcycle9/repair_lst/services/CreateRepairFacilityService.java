@@ -28,6 +28,9 @@ public class CreateRepairFacilityService {
 	@Autowired
 	IsNotNull isNotNull;
    
+	/*
+	 * function that creates a repair facility
+	 */
 	
 	public Response createRepairFacility(RepairFacility repairFacility, int[] specialization) {
 		
@@ -61,11 +64,17 @@ public class CreateRepairFacilityService {
 		return response;
 	}
 	
+	/*
+	 * function that sets the response object to the errors
+	 */
 	public void failed(Response response, List<String> errors) {
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 	
+	/*
+	 * function that persists the repair facility
+	 */
 	@Transactional
 	public void persistRepairFacility(RepairFacility repairFacility, Response response,
 			                             List<String> errors)  {
