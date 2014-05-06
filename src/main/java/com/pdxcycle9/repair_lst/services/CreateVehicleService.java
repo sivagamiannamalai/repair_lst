@@ -28,18 +28,19 @@ public class CreateVehicleService {
 
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-		boolean validMileage = false;
 
-		if (isValidMileage.between0and999999(vehicle.getMileage(), errors)) {
-			validMileage = true;
+		if (isValidMileage.between0and999999(vehicle.getMileage())) {
+
 			persistVehicle(vehicle, response, errors);
 
 		} else {
+			errors.add(Error.MILEAGE_IS_OUT_OF_RANGE);
 			failed(response, errors);
 
 		}
 
 		return response;
+		
 	}
 
 	public void failed(Response response, List<String> errors) {
