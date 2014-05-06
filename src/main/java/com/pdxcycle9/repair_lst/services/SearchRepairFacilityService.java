@@ -45,7 +45,12 @@ public class SearchRepairFacilityService {
 		return response;
 
 	}
-
+/**
+ * Calls DAO to get information of one repair facility, located by the ID given by
+ * @param repairFacilityId
+ * @return a repair facility object with the information needed
+ */
+	
 	@Transactional
 	public Response retrieveByID(int repairFacilityId) {
 

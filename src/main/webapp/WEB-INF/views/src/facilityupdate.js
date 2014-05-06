@@ -48,13 +48,20 @@ function getInfoOfSelectedRepairFacility (){
 }
 
 function populateRepairFacilityUpdateFields(data) {
+	
+	var laborRate = (data.hourlyRate).toFixed(2);
+	
 	selectedRepairfacilityAddressID = data.address.id;
-
+	$("#facilityMessage").html("");
+	$("#repName").removeClass();	
+	$("#repPhone").removeClass();	
+	$("#repRate").removeClass();	
+	$("#repSpec").removeClass();
 	$("#repairFacilitySpecializationCheckboxes").find('input[type=checkbox]:checked').prop('checked', false);
 	
 	$("#repairFacilityName").val(data.name);
 	$("#repairFacilityPhoneNumber").val(data.phone);
-	$("#repairFacilityLaborRate").val(data.hourlyRate);
+	$("#repairFacilityLaborRate").val(laborRate);
 	
 		for (var s = 0; s < data.specializations.length; s++){
 
@@ -129,64 +136,65 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 	var laborBool = false;
 	var specialtyBool = false;
 	var allChecksBool = false;
+	var rate = parseFloat(laborRate);
 
 	if(name == ""){
-		$("#repairFacilityName").addClass("errorText");
-		$("#repairFacilityName").removeClass("validText");
+		$("#repName").addClass("errorText");
+		$("#repName").removeClass("validText");
 		errorMessage += "Must enter a facility name <br>";
 	} else {
-		$("#repairFacilityName").addClass("validText");
-		$("#repairFacilityName").removeClass("errorText");
+		$("#repName").addClass("validText");
+		$("#repName").removeClass("errorText");
 		nameBool = true;
 	}
 
 	if(phoneNumber == ""){
-		$("#repairFacilityPhoneNumber").addClass("errorText");
-		$("#repairFacilityPhoneNumber").removeClass("validText");
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
 		errorMessage += "Must enter a 10-digit facility phone number <br>";
 	} 
 	else if(isNaN(phoneNumber)) {
-		$("#repairFacilityPhoneNumber").addClass("errorText");
-		$("#repairFacilityPhoneNumber").removeClass("validText");
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
 		errorMessage += "Phone number may contain only numeric characters <br>";
 	}
 	else if(phoneNumber.length !== 10) {
-		$("#repairFacilityPhoneNumber").addClass("errorText");
-		$("#repairFacilityPhoneNumber").removeClass("validText");
+		$("#repPhone").addClass("errorText");
+		$("#repPhone").removeClass("validText");
 		errorMessage += "Phone number may be only 10 digits long <br>";
 	} else {
-		$("#repairFacilityPhoneNumber").addClass("validText");
-		$("#repairFacilityPhoneNumber").removeClass("errorText");
+		$("#repPhone").addClass("validText");
+		$("#repPhone").removeClass("errorText");
 		phoneBool = true;
 	}
 
 	if(laborRate == ""){
-		$("#repairFacilityLaborRate").addClass("errorText");
-		$("#repairFacilityLaborRate").removeClass("validText");
+		$("#repRate").addClass("errorText");
+		$("#repRate").removeClass("validText");
 		errorMessage += "Must enter a labor rate (can be 0.00) <br>";
 	} 
 	else if(isNaN(laborRate)) {
-		$("#repairFacilityLaborRate").addClass("errorText");
-		$("#repairFacilityLaborRate").removeClass("validText");
+		$("#repRate").addClass("errorText");
+		$("#repRate").removeClass("validText");
 		errorMessage += "Labor rate must be a number <br>";
 	}
-	else if(laborRate.length > 5) {
-		$("#repairFacilityLaborRate").addClass("errorText");
-		$("#repairFacilityLaborRate").removeClass("validText");
-		errorMessage += "Labor rate cannot be longer than 5 characters <br>";
+	else if( rate >= 1000) {
+		$("#repRate").addClass("errorText");
+		$("#repRate").removeClass("validText");
+		errorMessage += "Labor rate cannot be more than $1000/hr <br>";
 	} else {
-		$("#repairFacilityLaborRate").addClass("validText");
-		$("#repairFacilityLaborRate").removeClass("errorText");
+		$("#repRate").addClass("validText");
+		$("#repRate").removeClass("errorText");
 		laborBool = true;
 	}
 
 	if(specialty.length < 1){
-		$("#repairFacilitySpecializationCheckboxes").addClass("errorText");
-		$("#repairFacilitySpecializationCheckboxes").removeClass("validText");
+		$("#repSpec").addClass("errorText");
+		$("#repSpec").removeClass("validText");
 		errorMessage += "Must select at least one specialty <br>";
 	} else {
-		$("#repairFacilitySpecializationCheckboxes").addClass("validText");
-		$("#repairFacilitySpecializationCheckboxes").removeClass("errorText");
+		$("#repSpec").addClass("validText");
+		$("#repSpec").removeClass("errorText");
 		specialtyBool = true;
 	}
 

@@ -170,7 +170,7 @@ function validateFacility(name, phoneNumber, laborRate, specialty){
 	else if(laborRate.length > 6) {
 		$("#repRate").addClass("errorText");
 		$("#repRate").removeClass("validText");
-		errorMessage += "Labor rate cannot be longer than 5 characters <br>";
+		errorMessage += "Labor rate cannot be longer than 6 characters <br>";
 	} else {
 		$("#repRate").addClass("validText");
 		$("#repRate").removeClass("errorText");

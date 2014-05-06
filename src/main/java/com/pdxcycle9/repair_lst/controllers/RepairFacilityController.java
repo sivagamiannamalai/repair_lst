@@ -28,9 +28,15 @@ public class RepairFacilityController {
 	UpdateRepairFacilityService updateRepairFacilityService;
 	
 
-	/*
-	 * Controller for creating repair facility accepts name, phone, hourlyRate,
-	 * specialization and addressId returns ResponseEntity object
+	
+	/**
+	 * Controller for creating repair facility
+	 * @param name
+	 * @param phone
+	 * @param specialization
+	 * @param hourlyRate
+	 * @param addressId
+	 * @return ResponseEntity object
 	 */
 	@RequestMapping(value = "/repairfacility", params = { "name", "phone",
 			"hourlyRate", "specialization[]", "addressId" }, method = RequestMethod.POST, produces = "application/json")
