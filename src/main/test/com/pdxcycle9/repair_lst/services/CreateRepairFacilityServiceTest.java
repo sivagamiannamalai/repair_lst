@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
@@ -20,6 +22,7 @@ import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.subservices.IsNotNull;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Response;
+import com.pdxcycle9.repair_lst.util.Error;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CreateRepairFacilityServiceTest {
@@ -27,6 +30,7 @@ public class CreateRepairFacilityServiceTest {
 	RepairFacility repairFacility;
 	Response response;
 	int[] specialization;
+	List<String> errors;
 	
 	@Mock
 	private IsNotNull isNotNull;
@@ -44,6 +48,7 @@ public class CreateRepairFacilityServiceTest {
 	public void setUp() throws Exception {
 		repairFacility = new RepairFacility();
 		response = new Response();
+		errors = new ArrayList<String>();
 		
 		String name = "Facility25";
 		String phone = "5127896541";
@@ -93,10 +98,12 @@ public class CreateRepairFacilityServiceTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void getErrorForDuplicateRepairFacility() {
-		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(new ConstraintViolationException("String", null, "String"));
+		 ConstraintViolationException e = new ConstraintViolationException("String", null, "String");
+		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(e);
 		 response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
 		 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-		 assertEquals(Error.class, response.getResponseObject().getClass());
+		// assertEquals(Error.class, response.getResponseObject().getClass());
+		 assertEquals(Error.DUPLICATE_FACILITY, errors.get(0));
 	}
 
 }

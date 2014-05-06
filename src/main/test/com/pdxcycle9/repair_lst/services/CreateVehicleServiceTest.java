@@ -76,6 +76,8 @@ public class CreateVehicleServiceTest {
 		assertEquals(Vehicle.class, response.getResponseObject().getClass());
 	}
 
+
+
 	@Test
 	public void hitTheFirstCatchWithDuplicateRecord() {
 
