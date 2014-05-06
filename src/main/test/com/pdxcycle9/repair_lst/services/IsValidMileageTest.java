@@ -40,7 +40,7 @@ public class IsValidMileageTest {
 	@Test
 	public void testOne() throws Exception {
 		vehicle.setMileage(1);
-		assertEquals(true, isValidMileage.between0and999999(vehicle.getMileage(), errors));
+		assertEquals(true, isValidMileage.between0and999999(vehicle.getMileage()));
 		
 
 	}
@@ -49,16 +49,14 @@ public class IsValidMileageTest {
 	public void testNegativeOne() throws Exception {
 		vehicle.setMileage(-1);
 		assertEquals(false,
-				isValidMileage.between0and999999(vehicle.getMileage(), errors));
-		assertEquals(Error.MILEAGE_IS_OUT_OF_RANGE, errors.get(0));
+				isValidMileage.between0and999999(vehicle.getMileage()));
 	}
 
 	@Test
 	public void testOneMillion() throws Exception {
 		vehicle.setMileage(1000000);
 		assertEquals(false,
-				isValidMileage.between0and999999(vehicle.getMileage(), errors));
-		assertEquals(Error.MILEAGE_IS_OUT_OF_RANGE, errors.get(0));
+				isValidMileage.between0and999999(vehicle.getMileage()));
 	}
 
 }
