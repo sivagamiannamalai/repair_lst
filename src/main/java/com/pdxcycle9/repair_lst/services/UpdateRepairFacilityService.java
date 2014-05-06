@@ -31,7 +31,7 @@ public class UpdateRepairFacilityService {
 	IsNotNull isNotNull;
 
 	/**
-	 * update repair facility method
+	 * update repair facility validation
 	 * 
 	 * @param repairFacility
 	 * @param address
@@ -86,13 +86,16 @@ public class UpdateRepairFacilityService {
 	public void updateRepairFacility(RepairFacility repairFacility,
 			Response response, List<String> errors) {
 
-		RepairFacility result = null;
+		RepairFacility original = null;
+        RepairFacility updated = repairFacility;
+
 
 		try {
-			repairFacility = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility.getId());
-			result = repairFacilityDAO.updateRepairFacility(repairFacility);
-			response.setResponseObject(result);
-			response.setStatusCode(HttpStatus.OK);
+			original = repairFacilityDAO.retrieveRepairFacilityByID(repairFacility.getId());
+            updateRepairFacility(original, updated);
+            repairFacilityDAO.updateRepairFacility(original);
+            response.setResponseObject(repairFacilityDAO.retrieveRepairFacilityByID(original.getId()));
+            response.setStatusCode(HttpStatus.OK);
 
 		} catch (IdentifierGenerationException e) {
 			errors.add(Error.DUPLICATE_RECORD);
@@ -107,6 +110,17 @@ public class UpdateRepairFacilityService {
 
 		}
 
+	}
+	
+	private void updateRepairFacility(RepairFacility original, RepairFacility updated){
+        original.setAddress(updated.getAddress());
+        original.setHourlyRate(updated.getHourlyRate());
+        original.setName(updated.getName());
+        original.setPhone(updated.getPhone());
+        original.setRating(updated.getRating());
+        original.setSpecializations(updated.getSpecializations());
+        
+        
 	}
 
 	public ArrayList<Specialization> updateSpecializationList(
