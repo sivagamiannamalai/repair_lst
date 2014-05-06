@@ -33,6 +33,7 @@ public class CreateAddressServiceTest {
 	private String city;
 	private Response response;
 	List<String> errors;
+	RuntimeException e;
 	
 	@Mock
 	private AddressDAO addressDAO;
@@ -89,12 +90,16 @@ public class CreateAddressServiceTest {
 	
     @SuppressWarnings("unchecked")
     @Test
-    public void getErrorForDuplicateAddress() {
+    public void getErrorForDuplicateAddress() {    	
     	
-    	ConstraintViolationException e = new ConstraintViolationException("String",null,"String");
-    	when(addressDAO.persistAddress(address)).thenThrow(e);
+    	e = new RuntimeException();        
+    	when(addressDAO.persistAddress(address)).thenThrow(e);    	
+    	e.initCause(new ConstraintViolationException("String", null, "String"));
+    	
     	response = createAddressService.createAddress(address);
+    	errors =(ArrayList<String>) response.getResponseObject();
+    	
     	assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());    	
-    	assertEquals(Error.DUPLICATE_ADDRESS, response.getResponseObject());
+    	assertEquals(Error.DUPLICATE_ADDRESS, errors.get(0));
     }
 }

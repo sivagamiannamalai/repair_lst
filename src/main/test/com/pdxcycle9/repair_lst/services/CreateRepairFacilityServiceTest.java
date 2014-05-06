@@ -31,6 +31,7 @@ public class CreateRepairFacilityServiceTest {
 	Response response;
 	int[] specialization;
 	List<String> errors;
+	RuntimeException e;
 	
 	@Mock
 	private IsNotNull isNotNull;
@@ -98,11 +99,16 @@ public class CreateRepairFacilityServiceTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void getErrorForDuplicateRepairFacility() {
-		 ConstraintViolationException e = new ConstraintViolationException("String", null, "String");
+		
+		 e = new RuntimeException();		 
 		 when(repairFacilityDAO.persistRepairFacility(repairFacility)).thenThrow(e);
+		 e.initCause(new ConstraintViolationException("String", null, "String"));
+		
+		 
 		 response = createRepairFacilityService.createRepairFacility(repairFacility, specialization);
-		 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-		// assertEquals(Error.class, response.getResponseObject().getClass());
+		 errors =(ArrayList<String>) response.getResponseObject();
+		 
+		 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());		
 		 assertEquals(Error.DUPLICATE_FACILITY, errors.get(0));
 	}
 
