@@ -29,9 +29,11 @@ public class CreateAddressService {
 	@Autowired
 	private IsNotNull isNotNull;
 
-	/* 
+
+	/**
 	 * function that validates the city, state, street and zipcode
-	 * returns a Response object
+	 * @param address
+	 * @return Response object
 	 */
 	
 	public Response createAddress(Address address) {
@@ -72,8 +74,11 @@ public class CreateAddressService {
 	}
 	
 	
-	/*
+	/**
 	 * function that persists the address to the database
+	 * @param address
+	 * @param response
+	 * @param errors
 	 */
 	@Transactional
 	public void persistAddress(Address address, Response response,
