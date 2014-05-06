@@ -18,6 +18,10 @@ public class RepairFacilityDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
+	/*
+	 * persists a repair facility
+	 * returns the repair facility
+	 */
 	@Transactional
 	public RepairFacility persistRepairFacility(RepairFacility repairFacility) {			
 		

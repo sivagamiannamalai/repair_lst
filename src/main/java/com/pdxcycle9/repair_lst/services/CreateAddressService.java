@@ -24,11 +24,15 @@ public class CreateAddressService {
 	private	AddressDAO addressDAO;
 	
 	@Autowired
-	IsValidLength isValidLength;
+	private IsValidLength isValidLength;
 	
 	@Autowired
-	IsNotNull isNotNull;
+	private IsNotNull isNotNull;
 
+	/* 
+	 * function that validates the city, state, street and zipcode
+	 * returns a Response object
+	 */
 	
 	public Response createAddress(Address address) {
 		
@@ -68,6 +72,9 @@ public class CreateAddressService {
 	}
 	
 	
+	/*
+	 * function that persists the address to the database
+	 */
 	@Transactional
 	public void persistAddress(Address address, Response response,
 			                             List<String> errors)  {

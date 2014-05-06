@@ -17,6 +17,11 @@ public class AddressDAO {
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 	
+	/*
+	 * persists an address
+	 * returns the address
+	 */
+	
     @Transactional
 	public Address persistAddress(Address address) {
 			
