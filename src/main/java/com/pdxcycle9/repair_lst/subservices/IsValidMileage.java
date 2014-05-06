@@ -9,16 +9,13 @@ import com.pdxcycle9.repair_lst.util.Error;
 @Component
 public class IsValidMileage {
 
-	public boolean between0and999999(int miles, List<String> errors) {
+	public boolean between0and999999(int miles) {
 
 		boolean result = false;
 
 		if (miles >= 0 && miles <= 999999) {
 			result = true;
-		} else {
-			errors.add(Error.MILEAGE_IS_OUT_OF_RANGE);
-		}
-
+		} 
 		return result;
 
 	}
