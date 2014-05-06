@@ -34,8 +34,7 @@ public class AddressDAO {
 		
 		
 		@Transactional
-		public void deleteAddress(int addressId) {
-			System.out.println("In the deleteAddress method");
+		public void deleteAddress(int addressId) {			
 			Address address = em.find(Address.class, addressId);
 		    em.remove(address);		   
 		}
