@@ -48,6 +48,9 @@ function getInfoOfSelectedRepairFacility (){
 }
 
 function populateRepairFacilityUpdateFields(data) {
+	
+	var laborRate = (data.hourlyRate).toFixed(2);
+	
 	selectedRepairfacilityAddressID = data.address.id;
 	$("#facilityMessage").html("");
 	$("#repName").removeClass();	
@@ -58,7 +61,7 @@ function populateRepairFacilityUpdateFields(data) {
 	
 	$("#repairFacilityName").val(data.name);
 	$("#repairFacilityPhoneNumber").val(data.phone);
-	$("#repairFacilityLaborRate").val(data.hourlyRate);
+	$("#repairFacilityLaborRate").val(laborRate);
 	
 		for (var s = 0; s < data.specializations.length; s++){
 
