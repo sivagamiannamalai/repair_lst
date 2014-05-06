@@ -3,6 +3,9 @@ package com.pdxcycle9.repair_lst.services;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,6 +32,7 @@ public class CreateAddressServiceTest {
 	private String street;
 	private String city;
 	private Response response;
+	List<String> errors;
 	
 	@Mock
 	private AddressDAO addressDAO;
@@ -44,10 +48,13 @@ public class CreateAddressServiceTest {
 	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
+		errors = new ArrayList<String>();
+		
 		street = "Street 1";
 		city = "Beaverton";
 		state = "OR";
 	    zip = "97229";
+	    
 	    address = new Address();
 		address.setCity(city);
 		address.setStreet(street);
@@ -58,6 +65,7 @@ public class CreateAddressServiceTest {
 		when(addressDAO.persistAddress(address)).thenReturn(address);
 		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
+		when(isValidLength.zipIsFive(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
 		
 	}
 	
@@ -82,9 +90,11 @@ public class CreateAddressServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void getErrorForDuplicateAddress() {
-    	when(createAddressService.createAddress(address)).thenThrow(new ConstraintViolationException("String", null, "String"));
+    	
+    	ConstraintViolationException e = new ConstraintViolationException("String",null,"String");
+    	when(addressDAO.persistAddress(address)).thenThrow(e);
     	response = createAddressService.createAddress(address);
-    	assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    	assertEquals(Error.class, response.getResponseObject().getClass());
+    	assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());    	
+    	assertEquals(Error.DUPLICATE_ADDRESS, response.getResponseObject());
     }
 }

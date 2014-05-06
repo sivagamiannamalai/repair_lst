@@ -83,10 +83,10 @@ public class CreateVehicleServiceTest {
                  ConstraintViolationException e = new ConstraintViolationException("String",null,"String");
                 
                  when(vehicleDAO.persistVehicle(vehicle)).thenThrow(e);
-                response = createVehicleService.createVehicle(vehicle);
+                 response = createVehicleService.createVehicle(vehicle);
     
                  assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-                 assertEquals(Error.CANNOT_PERSIST, errors.get(0));
+                 assertEquals(Error.CANNOT_PERSIST, response.getResponseObject());
 
  }
 
