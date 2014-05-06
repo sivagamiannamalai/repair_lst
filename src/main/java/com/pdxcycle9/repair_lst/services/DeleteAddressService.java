@@ -17,7 +17,7 @@ import com.pdxcycle9.repair_lst.util.Error;
 public class DeleteAddressService {
 	
 	@Autowired
-	AddressDAO addressDAO;
+	private AddressDAO addressDAO;
 	
 	@Transactional
 	public Response delete(int addressId) {
@@ -25,15 +25,19 @@ public class DeleteAddressService {
 		List<String> errors = new ArrayList<String>();
 		try {
 			addressDAO.deleteAddress(addressId);
-			response.setStatusCode(HttpStatus.OK);
-			//response.setResponseObject(address);
-			System.out.println("Response object inside DeleteService " + response);
-		} catch(Exception e) {
-			//errors.add(Error.CANNOT_UPDATE);
-			//response.setResponseObject(errors);
+			response.setStatusCode(HttpStatus.OK);			
+		} catch(Exception e) {			
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 		}
 		return response;
+	}
+
+	public AddressDAO getAddressDAO() {
+		return addressDAO;
+	}
+
+	public void setAddressDAO(AddressDAO addressDAO) {
+		this.addressDAO = addressDAO;
 	}
 
 }
