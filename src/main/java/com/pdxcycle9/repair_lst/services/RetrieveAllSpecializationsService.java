@@ -27,6 +27,12 @@ public class RetrieveAllSpecializationsService {
 	public void setSpecializationDAO(SpecializationDAO specializationDAO) {
 		this.specializationDAO = specializationDAO;
 	}
+	
+	/***
+	 * Attempts to contact the specialization DAO in order to retrieve
+	 * all specializations.
+	 * @return
+	 */
 	@Transactional
 	public Response retrieve() {
 
@@ -43,8 +49,7 @@ public class RetrieveAllSpecializationsService {
 		} catch (Exception e) {
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
-			System.out.println(e.getMessage());
-		}
+			}
 		return response;
 
 	}
