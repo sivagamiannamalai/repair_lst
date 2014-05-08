@@ -630,7 +630,7 @@ console.log(mileageRaw);
 function successCreateVehicleFunction() {
 	$("#vehicleMessage").text("You've successfully added a Vehicle to your collection");
 }
-function failureCreateVehicleFunction() {
-	$("#vehicleMessage").text("Super helpful error message");
+function failureCreateVehicleFunction(data, status, jqXHR) {
+	$("#vehicleMessage").html("Error: Vehicle with VIN already exists");
 }
 	
