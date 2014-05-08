@@ -185,7 +185,5 @@ public class RepairItem implements Serializable{
 				+ repairTypeId + ", repairFacilityId=" + repairFacilityId + ", vehicleId=" + vehicleId + ","
 				+ "parts=" + parts + "]";
 	}
-	
-	
 
 }
