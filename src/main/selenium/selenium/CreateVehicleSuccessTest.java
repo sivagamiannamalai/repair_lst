@@ -32,17 +32,16 @@ public class CreateVehicleSuccessTest {
   public void testVehicleAddSuccess() throws Exception {
     driver.get(baseUrl + "file:///H:/code_training/repair_lst/src/main/webapp/WEB-INF/views/html/vehicles/create.html");
     new Select(driver.findElement(By.id("makeSelectionBox"))).selectByVisibleText("BENTLEY");
-    //Select selectRandomMake = driver.getSelectOptions(By.id("makeSelectionBox"))
-    Select comboBox = new Select(driver.findElement(By.id("superior")));
-    String selectedComboValue = comboBox.getFirstSelectedOption().getText();
-    System.out.println("Selected combo value: " + selectedComboValue);
-    
     new Select(driver.findElement(By.id("modelSelectionBox"))).selectByVisibleText("CONTINENTAL FLYING SPUR");
     driver.findElement(By.id("vinInput")).clear();
-    driver.findElement(By.id("vinInput")).sendKeys("KMHVD34N4XU600231"); // Add new VIN here
+    driver.findElement(By.id("vinInput")).sendKeys("1FMZU64W64U535337"); // Add new VIN here
     driver.findElement(By.id("mileageInput")).clear();
     driver.findElement(By.id("mileageInput")).sendKeys("0");
     driver.findElement(By.id("createVehicleSubmit")).click();
+    String bodyText = driver.findElement(By.id("vehicleMessage")).getText();
+    //Assert.assertTrue("Text not found!", bodyText.contains("You've successfully added a Vehicle to your collection"));
+    // AssertEquals is checking for the text BEFORE the text appears -- Thread.sleep(time in MS) is not going to work
+    // Find a work-around
     assertEquals("You've successfully added a Vehicle to your collection", driver.findElement(By.id("vehicleMessage")).getText());
   }
 
