@@ -3,7 +3,6 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.RollbackException;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;

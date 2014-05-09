@@ -14,11 +14,12 @@ function login() {
 	}	
 }
 
-//function that verified the username and password
+//function that verifies the username and password
 function verifyUser(userName, password)  {
 $.ajax( {
     type: "GET",
-    url: "http://localhost:8080/repair_lst/security",
+    url: "http://localhost:8080/repair_lst/user",
+    data: {userName : userName, password : password},
     success: validationSuccess,
     error: validationFailure
 });
