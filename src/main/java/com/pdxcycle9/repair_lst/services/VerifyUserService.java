@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.exception.ConstraintViolationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.UserDAO;
+import com.pdxcycle9.repair_lst.entities.User;
 import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Response;
 import com.pdxcycle9.repair_lst.util.Error;
@@ -40,6 +40,7 @@ public class VerifyUserService {
 		 if(isValidLength.isValidUser(userName) &&
 		    isValidLength.isValidUser(password)) {
 			 
+			 System.out.println("Validation passed");
 			 findUser(userName, password, response, errors);
 		 } else {
 			 errors.add(Error.INVALID_INPUT);
@@ -50,6 +51,8 @@ public class VerifyUserService {
 	 
 	 
 	 public void failed(Response response, List<String> errors) {
+		 
+		 System.out.println("In the failed method");
 		 response.setResponseObject(errors);
 		 response.setStatusCode(HttpStatus.BAD_REQUEST);
 	 }
@@ -67,8 +70,8 @@ public class VerifyUserService {
 			              List<String> errors) {
 		 
 		 try {
-			 int userId = userDAO.findUserId(userName, password);
-			 response.setResponseObject(userId);
+			 User user = userDAO.findUser(userName, password);
+			 response.setResponseObject(user);
 			 response.setStatusCode(HttpStatus.OK);
 		 } catch (Exception e) {
 		      if(e.getCause().getClass() == ConstraintViolationException.class) {
