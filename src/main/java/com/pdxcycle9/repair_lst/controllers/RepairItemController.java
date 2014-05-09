@@ -30,7 +30,7 @@ public class RepairItemController {
 	
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
 			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
-			"repairFacilityId", "vehicleId", "parts[]" }, method = RequestMethod.POST, produces = "application/json")
+			"repairFacilityId", "vehicleId" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "description") String description,

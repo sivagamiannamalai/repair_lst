@@ -53,6 +53,17 @@ public class IsValidLength {
 			errors.add(Error.NO_PARTS_ENTERED);
 		}
 		return result;
+	}
+
+	public boolean isValidUser(String input, List<String> errors) {
+		boolean result = false;
+		
+		if(input.length() > 0 && input.length() <= 32) {
+			result = true;
+		} else {
+			errors.add(Error.PHONE_INVALID);
+		}
+		return result;
 
 	}
 	

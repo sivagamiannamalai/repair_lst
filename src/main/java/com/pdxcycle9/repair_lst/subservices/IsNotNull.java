@@ -3,8 +3,11 @@ package com.pdxcycle9.repair_lst.subservices;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.util.Error;
+import com.pdxcycle9.repair_lst.util.Response;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 
@@ -51,16 +54,39 @@ public class IsNotNull {
 	public boolean isHourlyRateValid(BigDecimal val, List<String> errors) {
 
 		boolean result = false;
-		double doubleVal = val.doubleValue();
-
-		if (doubleVal >= 0) {
-			return true;
-		} else {
+		try {
+			double doubleVal = val.doubleValue();
+			if (doubleVal >= 0) {
+				result = true;				
+			}
+		}
+		catch (Exception e) {
 			errors.add(Error.RATE_INVALID);
 		}
 
 		return result;
 
+	}
+	
+	public boolean isAddressIdValid(Address address, List<String> errors, Response response) {
+
+		boolean result = false;
+		int intVal = address.getId();
+			if (intVal > 0) {
+				result = true;				
+			} else {
+				errors.add(Error.ADDRESSID_INVALID);
+				failed(response, errors);
+			}
+
+		return result;
+
+	}
+	
+	public void failed(Response response, List<String> errors) {
+
+		response.setResponseObject(errors);
+		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 
 
