@@ -37,8 +37,8 @@ public class VerifyUserService {
 		 Response response = new Response();
 		 List<String> errors = new ArrayList<String>();
 		 
-		 if(isValidLength.isValidUser(userName) &&
-		    isValidLength.isValidUser(password)) {
+		 if(isValidLength.isValidUser(userName, errors) &&
+		    isValidLength.isValidUser(password, errors)) {
 			 
 			 findUser(userName, password, response, errors);
 		 } else {

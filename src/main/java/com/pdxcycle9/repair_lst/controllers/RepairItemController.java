@@ -9,14 +9,11 @@ import javax.persistence.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pdxcycle9.repair_lst.entities.Address;
-import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
 import com.pdxcycle9.repair_lst.services.AddPartsToRepairItemService;
 import com.pdxcycle9.repair_lst.services.CreateRepairItemService;
@@ -33,7 +30,7 @@ public class RepairItemController {
 	
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
 			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
-			"repairFacilityId", "vehicleId", "parts[]" }, method = RequestMethod.POST, produces = "application/json")
+			"repairFacilityId", "vehicleId" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "description") String description,
@@ -45,8 +42,7 @@ public class RepairItemController {
 			@RequestParam(value = "userId") int userId,
 			@RequestParam(value = "repairTypeId") int repairTypeId,
 			@RequestParam(value = "repairFacilityId") int repairFacilityId,
-			@RequestParam(value = "vehicleId") int vehicleId,
-			@RequestParam(value = "parts[]") int[] parts){
+			@RequestParam(value = "vehicleId") int vehicleId){
 
 		RepairItem repairItem = new RepairItem();
 
@@ -61,7 +57,7 @@ public class RepairItemController {
 		repairItem.setRepairFacilityId(repairFacilityId);
 		repairItem.setVehicleId(vehicleId);
 
-		Response response = createRepairItemService.createRepairItem(repairItem, parts);
+		Response response = createRepairItemService.createRepairItem(repairItem);
 
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}
