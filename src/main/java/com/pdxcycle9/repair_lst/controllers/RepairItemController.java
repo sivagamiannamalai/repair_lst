@@ -22,7 +22,6 @@ import com.pdxcycle9.repair_lst.services.AddPartsToRepairItemService;
 import com.pdxcycle9.repair_lst.services.CreateRepairItemService;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@NamedQueries(@NamedQuery(name = "findRepairItemById", query = "SELECT ri FROM RepairItem ri WHERE ri.id = :id"))
 @Controller
 public class RepairItemController {
 	
@@ -30,7 +29,7 @@ public class RepairItemController {
 	CreateRepairItemService createRepairItemService;
 	
 	@Autowired 
-	private AddPartsToRepairItemService addParts;
+	AddPartsToRepairItemService addParts;
 	
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
 			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
