@@ -44,4 +44,13 @@ public class IsValidLength {
 
 	}
 	
+	public boolean isValidUser(String input) {
+		boolean result = false;
+		
+		if(input.length() > 0 && input.length() <= 32) {
+			result = true;
+		}		
+		return result;
+	}
+	
 }
