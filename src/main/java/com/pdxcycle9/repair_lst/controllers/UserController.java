@@ -31,7 +31,8 @@ public class UserController {
 			@RequestParam(value = "userName") String userName, 
 			@RequestParam(value = "password") String password) {
 		
-		
+		System.out.println("In the Controller");
+		System.out.println("userName is " + userName + "password is " + password);
 		Response response = verifyUserService.verifyUser(userName, password);
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				                          response.getStatusCode());

@@ -50,7 +50,7 @@ public class UpdateRepairFacilityService {
 		if (
 				isNotNull.isFieldNotNull(repairFacility.getName(), errors)
 				&& isNotNull.isFieldNotNull(repairFacility.getPhone(), errors)
-				&& isNotNull.isHourlyRateValid(repairFacility.getHourlyRate(), errors)
+				&& isNotNull.isBigDecimalValid(repairFacility.getHourlyRate(), errors)
 				&& isNotNull.isAddressIdValid(repairFacility.getAddress(), errors, response)
 				&& isValidLength.between1and255(repairFacility.getName(), errors)
 				&& isValidLength.isPhoneValidLength(repairFacility.getPhone(), errors))

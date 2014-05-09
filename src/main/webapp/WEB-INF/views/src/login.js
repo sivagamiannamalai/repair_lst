@@ -16,6 +16,7 @@ function login() {
 
 //function that verifies the username and password
 function verifyUser(userName, password)  {
+	
 $.ajax( {
     type: "GET",
     url: "http://localhost:8080/repair_lst/user",
@@ -28,11 +29,14 @@ $.ajax( {
 // get the userId if the validation passes
 function validationSuccess(data, status, jqXHR) {
     var userId = data.id;
+    $("#username").text(data.userName);
+    //alert("Welcome " + data.userName);
 }
 
 
 function validationFailure(data)  {
    var message = data.responseJSON[0];
+   alert(message);
    login();
 
 }
