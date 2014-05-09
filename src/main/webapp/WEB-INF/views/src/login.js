@@ -1,5 +1,5 @@
 var attempts = 0;
-$("document").ready(function {
+$("document").ready(function() {
      login();     
 });
 
@@ -18,8 +18,8 @@ function login() {
 function verifyUser(userName, password)  {
 $.ajax( {
     type: "GET",
-    url: "http://localhost:8080/repair_lst/security"
-    success: validationSuccess
+    url: "http://localhost:8080/repair_lst/security",
+    success: validationSuccess,
     error: validationFailure
 });
 }
