@@ -1,21 +1,45 @@
 package com.pdxcycle9.repair_lst.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.pdxcycle9.repair_lst.entities.Part;
+import com.pdxcycle9.repair_lst.entities.RepairItem;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Service
 public class AddPartsToRepairItemService {
 
+	
+	/**
+	 * Create a repair item object, calls makePartsList to set parts, then after validation
+	 * makes a call to the DAO to persist the new part/repair item relationships
+	 * @param repairItemId
+	 * @param part
+	 * @return response
+	 */
 	public Response addPartsToRepairItem(int repairItemId, int[] part) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Response response = new Response();
+		List<String> errors = new ArrayList<String>();	
+		
+		RepairItem repairItem = new RepairItem(repairItemId);
+		
+		repairItem.setParts(makePartsList(part));
+		
+		
+		
+		return response;
 	}
 	
-	
+/**
+ * Creates an array list of parts with IDs passed from the controller	
+ * @param part
+ * @return partList
+ */
 public ArrayList<Part> makePartsList(int[] part){
 		
 		ArrayList<Part> partList = new ArrayList<Part>();
@@ -30,6 +54,16 @@ public ArrayList<Part> makePartsList(int[] part){
 		
 		return partList;
 	}
+
+/**
+ * function that sets the response object to the errors
+ * @param response
+ * @param errors
+ */
+public void failed(Response response, List<String> errors) {
+	response.setResponseObject(errors);
+	response.setStatusCode(HttpStatus.BAD_REQUEST);
+}
 	
 
 }
