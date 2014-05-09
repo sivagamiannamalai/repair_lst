@@ -2,6 +2,7 @@
 <head>
 
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../css/addRepairItem.css">
 	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="../../src/repairitem.js"></script>
 
@@ -39,23 +40,54 @@
 </nav>
 
 <!-- Start of Navigation - Copy from Team Files Template -->
-	<div id="content"> <!-- Start of content -->
+	<div id="content"> <!-- Start of content -->	
+		<div id="createRepairItem"> <!-- Start of create a repair item -->
 
 		<h1>Repair Tracker 1.0.0</h1>
-		<div id="logininfo"><h2>Logged in as: <span id="username">username</span></h2></div>
-		<div id="createRepairItem"> 
+			<div id="logininfo"><h2>Logged in as: <span id="username">username</span></h2></div>
+				
+		<h3>Add a Repair</h3>		
+		<form class ="formBox"> <!-- Start of formBox -->
+			<b>Select your Vehicle: <b>
+			<br/>
+			<select id = "vehicleDropDown"></select>
+			<br/>
+			<b>Select a Repair Facility: <b>
+			<br/>
+			<select id = "repairFacilityDropDown"></select>
+			<br/>
+			<b>Select Type of Repair: <b>
+			<br/>
+			<select id = "typeofRepairDropDown"></select>
+			<br/>
+			
+			<span id="repairItemDate">Date of Repair:</span> <input type="text" id="repairItemDateOfRepairInput"> 
+			<br/>
+			<span id="repairItemMiles">Mileage at time of Repair:</span> <input type="text" id="repairItemMileageInput"> 
+			<br/>
+			<span id="repairItemLabor">Labor Hours:</span> <input type="text" id="repairItemLaborHoursInput"> 
+			<br/>
+			<span id="repairItemHourlyRate">Hourly Rate:</span> <input type="text" id="repairItemHourlyRateInput"> 
+			<br/>
+			<span id="repairItemDesc">Description:</span> <input type="text" id="repairItemDescriptionInput"> 
+			<br/>
+			<span id="repairItemRating">Rate the Quality of the Repair:<br/><div id="wrenchRating">
+				<img src="../../img/wholewrench.png" id="oneWrench" />
+				<img src="../../img/wholewrench.png" id="twoWrench" />
+				<img src="../../img/wholewrench.png" id="threeWrench" />
+				<img src="../../img/wholewrench.png" id="fourWrench" />
+				<img src="../../img/wholewrench.png" id="fiveWrench" />
+			</div></span>
+			
+			
+			
+			<div id ="repairItemMessage"></div>		
+			<button id="submitRepairItem">Click to Add a Repair</button>
+		</form> <!-- End of formBox -->
+		</div> <!-- End of createRepairItem -->	
 		
-		<h3>Add a Repair</h3>
-
-		<div id ="repairItemMessage"></div>
-
-		
-		<button id="repairItemSubmit">Click to Add a Repair</button>
-
-		</div> <!-- End of CreateRepairFacility -->
 		
 	</div>  <!-- End of content -->
-
 
 
 

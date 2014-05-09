@@ -1,0 +1,21 @@
+input[type="text"] {
+	display: block;
+    width: 24em;    
+}
+
+div#wrenchRating {
+	margin: 0 auto 0 auto;	
+	display: block;
+	min-height: 2em;
+	width: 12em;		
+}
+
+#submitRepairItem {
+	margin: 0 auto 0 auto;
+	display: block;
+}
+
+span#repairItemRating {
+	display: block;
+	text-align: center;
+}
