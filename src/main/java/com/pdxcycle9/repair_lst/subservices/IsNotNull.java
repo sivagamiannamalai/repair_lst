@@ -51,7 +51,7 @@ public class IsNotNull {
 
 	}
 	
-	public boolean isHourlyRateValid(BigDecimal val, List<String> errors) {
+	public boolean isBigDecimalValid(BigDecimal val, List<String> errors) {
 
 		boolean result = false;
 		try {
