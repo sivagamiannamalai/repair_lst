@@ -3,6 +3,7 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pdxcycle9.repair_lst.DAO.RepairItemDAO;
 import com.pdxcycle9.repair_lst.entities.Part;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
+import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Service
@@ -25,19 +27,47 @@ public class AddPartsToRepairItemService {
 	 * @param part
 	 * @return response
 	 */
-	@Transactional
 	public Response addPartsToRepairItem(int repairItemId, int[] part) {
 
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();	
+		RepairItem repairItem = new RepairItem();
 		
-		RepairItem repairItem = repairItemDAO.retrieveRepairItemByID(repairItemId);
+		if(!Double.isNaN(repairItemId)) {
+			
+			repairItem = getRepairItem(repairItemId, repairItem);
+			
+		} else {
+			
+			errors.add(Error.MUST_BE_NUMBER);
+			failed(response, errors);
+			
+		}
 		
-		repairItem.setParts(makePartsList(part));
+		if(part.length > 0) {
+			
+			repairItem.setParts(makePartsList(part));
+			
+		} else {
+			
+			errors.add(Error.NO_PARTS_ENTERED);
+			failed(response, errors);
+			
+		}
 		
-		
-		
+
 		return response;
+	}
+	
+	@Transactional
+	public RepairItem getRepairItem(int repairItemId, RepairItem repairItem) {
+		
+		 try {
+			repairItem = repairItemDAO.retrieveRepairItemByID(repairItemId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return repairItem; 
 	}
 	
 /**
@@ -69,6 +99,8 @@ public void failed(Response response, List<String> errors) {
 	response.setResponseObject(errors);
 	response.setStatusCode(HttpStatus.BAD_REQUEST);
 }
+
+
 	
 
 }
