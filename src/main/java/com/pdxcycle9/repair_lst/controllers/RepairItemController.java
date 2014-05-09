@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
-import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
-import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
-import com.pdxcycle9.repair_lst.services.UpdateRepairFacilityService;
+import com.pdxcycle9.repair_lst.services.CreateRepairItemService;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Controller
 public class RepairItemController {
+	
+	@Autowired
+	CreateRepairItemService createRepairItemService;
 	
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
 			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
