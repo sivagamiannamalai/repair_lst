@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
+import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.Specialization;
 import com.pdxcycle9.repair_lst.subservices.IsNotNull;
@@ -38,20 +39,19 @@ public class UpdateRepairFacilityService {
 	 * @return
 	 */
 
-	public Response updateRepairFacility(RepairFacility repairFacility,
-			int[] specialization) {
+	public Response updateRepairFacility(RepairFacility repairFacility, int[] specialization) {
 
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
 		ArrayList<Specialization> specializationList;
 
-		repairFacility
-				.setSpecializations(updateSpecializationList(specialization));
+		repairFacility.setSpecializations(updateSpecializationList(specialization));
 
 		if (
 				isNotNull.isFieldNotNull(repairFacility.getName(), errors)
 				&& isNotNull.isFieldNotNull(repairFacility.getPhone(), errors)
 				&& isNotNull.isHourlyRateValid(repairFacility.getHourlyRate(), errors)
+				&& isNotNull.isAddressIdValid(repairFacility.getAddress(), errors, response)
 				&& isValidLength.between1and255(repairFacility.getName(), errors)
 				&& isValidLength.isPhoneValidLength(repairFacility.getPhone(), errors))
 
