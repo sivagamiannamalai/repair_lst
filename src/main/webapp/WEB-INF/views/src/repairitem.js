@@ -107,15 +107,15 @@ function getAllRepairTypes () {
 }
 
 function validateRepairItem () {
-	var validDate;
-	var validLaborHours;
-	var validMileage;
-	var validHourlyRate;
-	var validRating;
-	var loggedIn;
-	var selectedRepairFacility;
-	var selectedVehicle;
-	var selectedRepairType;
+	var validDate = false;
+	var validLaborHours = false;
+	var validMileage = false;
+	var validHourlyRate = false;
+	var validRating = false;
+	var loggedIn = false;
+	var selectedRepairFacility = false;
+	var selectedVehicle = false;
+	var selectedRepairType = false;
 	
 }
 
