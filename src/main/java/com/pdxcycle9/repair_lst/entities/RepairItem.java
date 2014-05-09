@@ -76,6 +76,10 @@ public class RepairItem implements Serializable{
 
 	}
 	
+	public RepairItem(int id) {
+		this.id = id;
+	}
+	
 	/**
 	 * getters and setters for Repair Item
 	 * @return
