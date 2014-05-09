@@ -15,7 +15,7 @@ import com.pdxcycle9.repair_lst.subservices.IsValidMileage;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
-@Transactional
+
 @Service
 public class CreateVehicleService {
 	@Autowired
@@ -44,11 +44,12 @@ public class CreateVehicleService {
 	}
 
 	public void failed(Response response, List<String> errors) {
-		System.out.println("Validation failed");
+
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 
+@Transactional
 	public void persistVehicle(Vehicle vehicle, Response response,
 			List<String> errors) {
 
@@ -57,10 +58,9 @@ public class CreateVehicleService {
 			result = vehicleDAO.persistVehicle(vehicle);
 			response.setResponseObject(result);
 			response.setStatusCode(HttpStatus.OK);
-		} catch (ConstraintViolationException e) {
-			errors.add(Error.DUPLICATE_RECORD);
-			failed(response, errors);
+		
 		} catch (Exception e) {
+			if (e.getCause().getClass() == ConstraintViolationException.class) {errors.add(Error.DUPLICATE_RECORD);}
 			errors.add(Error.CANNOT_PERSIST);
 			failed(response, errors);
 		}
