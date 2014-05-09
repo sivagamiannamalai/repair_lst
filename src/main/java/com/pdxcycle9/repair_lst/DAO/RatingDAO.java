@@ -16,12 +16,14 @@ import com.pdxcycle9.repair_lst.entities.RepairItem;
 @Repository
 public class RatingDAO {
 	
-public List<RepairItem> getRepairFacilityId(RepairFacility repairFacility) {			
+	private EntityManager em;
 	
-	List<RepairItem> results = null;
+	public List<RepairItem> getRepairFacilityId(RepairFacility repairFacility) {			
 	
-	
-	return results;
+		List<RepairItem> results = null;
+
+		return results;
+
 	}	
 
 }
