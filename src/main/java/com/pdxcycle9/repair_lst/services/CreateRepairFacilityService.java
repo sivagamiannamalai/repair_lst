@@ -49,7 +49,7 @@ public class CreateRepairFacilityService {
 		
 		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors) &&
 		   isNotNull.isFieldNotNull(repairFacility.getPhone(), errors) && 
-		   isNotNull.isHourlyRateValid(repairFacility.getHourlyRate(), errors))  {		
+		   isNotNull.isBigDecimalValid(repairFacility.getHourlyRate(), errors))  {		
 			fieldsNotNull = true;
 		}
 		
