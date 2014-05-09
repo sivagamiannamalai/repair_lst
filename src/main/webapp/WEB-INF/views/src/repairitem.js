@@ -9,10 +9,9 @@ $(document).ready(function(){
 	getAllRepairFacilities();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
-	/*getAllRepairTypes();
-	$("#repairTypeDropDown").change(selectCurrentRepairType);	
-	$("#submitRepairItem").click(addRepairItem);
-*/
+	/*getAllRepairTypes();*/
+	/*$("#repairTypeDropDown").change(selectCurrentRepairType);	*/
+	$("#submitRepairItem").click(validateRepairItem);
 });
 
 var errorMessage = "";
@@ -97,14 +96,14 @@ function populateRepairFacilityDropDown(data){
     }
 }
 
-function getAllRepairTypes () {
+/*function getAllRepairTypes () {
 	$("#repairTypeDropDown").empty();
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/repairtype",
         success: populateRepairTypeDropDown
     });
-}
+}*/
 
 function validateRepairItem () {
 	var validDate = false;
@@ -117,10 +116,22 @@ function validateRepairItem () {
 	var selectedVehicle = false;
 	var selectedRepairType = false;
 	
+	if (!isNaN(dateOfRepair) && dateOfRepair.length() == 6) {
+		validDate = true;
+		console.log("Date is valid");
+	} else {
+		console.log("Date is invalid");
+	}
 }
 
 function addRepairItem() {
 	
+	
 }
+
+/*var dateOfRepair = $("#repairItemDateOfRepairInput").val();
+var mileageAtTimeOfRepair = $("#repairItemMileageInput").val();
+var hourlyRateOfRepairFacility = $("#repairItemHourlyRateInput").val();
+var repairItemDescription = $("#repairItemDescriptionInput").val();*/
 
 
