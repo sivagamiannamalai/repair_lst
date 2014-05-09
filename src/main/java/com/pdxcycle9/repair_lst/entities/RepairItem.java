@@ -19,8 +19,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-//@NamedQueries({ @NamedQuery(name = "findAllRepairItems", query = "SELECT ri FROM RepairItem ri"),
-//				@NamedQuery(name = "findRepairItemById", query = "SELECT ri FROM RepairItem ri WHERE ri.id = :id") })
+@NamedQueries({ 
+//				@NamedQuery(name = "findAllRepairItems", query = "SELECT ri FROM RepairItem ri"),
+//				@NamedQuery(name = "findRepairItemById", query = "SELECT ri FROM RepairItem ri WHERE ri.id = :id"),
+				@NamedQuery(name = "GetRepairItemsByName", query = "SELECT ri FROM RepairItem as ri JOIN RepairFacility on RepairItem.repair_facility_fk = RepairFacility.id ri WHERE RepairFacility.name LIKE :name")
+})
 @Entity
 @Table(name = "repair_item")
 public class RepairItem implements Serializable{
