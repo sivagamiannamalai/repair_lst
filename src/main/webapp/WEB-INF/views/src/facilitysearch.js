@@ -8,14 +8,18 @@ function getAllRepairFacilities () {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/repairfacility",
-        success: populateRepairFacilities
+        success: populateRepairFacilities,
+		failure: getAllRepairFacilitiesFailed
     });
 }
 
 function populateRepairFacilities(data){
 
+	if (data.length > 0){
+	$('#displayRepairFacilityError').html("");
 	for(var i = 0; i < data.length; i++){
 		var specializationsLength = data[i].specializations.length;
+		
         $("#repairFacilitySearchResults").append(
 			'<tr>' +
 			'<th>' + data[i].name + '</th>' + 
@@ -40,5 +44,19 @@ function populateRepairFacilities(data){
 		$("#repairFacilitySearchResults").append('</th>');
 		$("#repairFacilitySearchResults").append('</tr>');
     }
-$('table').trigger('update').trigger('appendCache');
+	$('table').trigger('update').trigger('appendCache');
+	}
+	
+	else {
+	
+	$('#displayRepairFacilityError').html("No Repair Facilities Found");
+	
+	}
+	
+}
+
+function getAllRepairFacilitiesFailed(){
+
+$('#displayRepairFacilityError').html("Could Not Connect To The Database");
+
 }

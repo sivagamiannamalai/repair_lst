@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.RepairFacilityDAO;
 import com.pdxcycle9.repair_lst.DAO.RepairItemDAO;
+import com.pdxcycle9.repair_lst.entities.Part;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
 import com.pdxcycle9.repair_lst.entities.Specialization;
@@ -31,9 +32,36 @@ public class CreateRepairItemService {
 	@Autowired
 	private IsNotNull isNotNull;
 	
+	
 	public Response createRepairItem(RepairItem repairItem, int[] parts) {
 		
-		return null;
+		Response response = new Response();
+		List<String> errors = new ArrayList<String>();
+		ArrayList<Part> partsList;
+
+//		repairItem.setParts(updatePartsList(parts));
+//
+//		if (
+//				isNotNull.isFieldNotNull(repairItem.getDescription(), errors)
+//				&& isNotNull.isFieldNotEmpty(repairItem.getDate(), errors)
+//				&& isNotNull.isHourlyRateValid(repairItem.getHourlyRate(), errors)
+//				&& isNotNull.isFieldNotEmpty(repairItem.getLaborHours(), errors)
+//				
+//				&& isValidLength.between1and255(repairItem, errors)
+//				&& isValidLength.isPhoneValidLength(repairItem, errors))
+//
+//		{
+//
+//			response.setStatusCode(HttpStatus.OK);
+//			updateRepairItem(repairItem, response, errors);
+//
+//		} else {
+//
+//			failed(response, errors);
+//
+//		}
+
+		return response;
 		
 	}
 
