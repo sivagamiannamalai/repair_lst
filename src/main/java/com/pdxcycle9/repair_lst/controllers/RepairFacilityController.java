@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.services.CreateRepairFacilityService;
+import com.pdxcycle9.repair_lst.services.RepairFacilityRatingService;
 import com.pdxcycle9.repair_lst.services.SearchRepairFacilityService;
 import com.pdxcycle9.repair_lst.services.UpdateRepairFacilityService;
 import com.pdxcycle9.repair_lst.util.Response;
@@ -26,7 +27,8 @@ public class RepairFacilityController {
 	SearchRepairFacilityService searchRepairFacilityService;
 	@Autowired
 	UpdateRepairFacilityService updateRepairFacilityService;
-	
+	@Autowired
+	RepairFacilityRatingService repairFacilityRatingService;
 
 	
 	/**
@@ -131,6 +133,23 @@ public class RepairFacilityController {
 				response.getStatusCode());
 	}
 	
+	@RequestMapping(value = "/repairfacilityrating/{name}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<Object> retrieveRepairFacilityRating( @PathVariable String name) {
+		RepairFacility repairFacility = new RepairFacility();
+		ResponseEntity<Object> returnObject = null;
 
+		repairFacility.setName(name);
+		
+		
+		try {
+			Response response = repairFacilityRatingService.getRatingByName(repairFacility);
+			returnObject = new ResponseEntity<Object>(
+					response.getResponseObject(), response.getStatusCode());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnObject;
+	}
 	
 }
