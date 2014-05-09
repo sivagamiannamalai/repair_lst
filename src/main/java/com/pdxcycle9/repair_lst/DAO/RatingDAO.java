@@ -16,16 +16,18 @@ import com.pdxcycle9.repair_lst.entities.RepairItem;
 @Repository
 public class RatingDAO {
 	
-public List<RepairItem> getRepairFacilityId(RepairFacility repairFacility) {			
+	private EntityManager em;
 	
-	List<RepairItem> results = null;
+	public List<RepairItem> getRepairFacilityId(RepairFacility repairFacility) {			
 	
-	Query query = em.createNamedQuery("GetRepairItemsByName");
+		List<RepairItem> results = null;
+		System.out.println("DAO hit");
+		Query query = em.createNamedQuery("GetRepairItemsByName");
 	
-	query.setParameter("name",repairFacility.getName());
-	results = (List<RepairItem>) query.getResultList();
-	
-	return results;
+		query.setParameter("name",repairFacility.getName());
+		results = (List<RepairItem>) query.getResultList();
+		System.out.println(results);
+		return results;
 	}	
 
 }
