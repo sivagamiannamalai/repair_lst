@@ -19,7 +19,7 @@ public class PartController {
 	
 	
 	@RequestMapping(value = "/addParts", params = {"partId[]", "repairItemId" }, 
-			method = RequestMethod.POST, produces = "application/JSON")
+			method = RequestMethod.PUT, produces = "application/JSON")
 	@ResponseBody
 	public ResponseEntity<Object> addParts(
 			@RequestParam(value = "partId[]") int[] part,
