@@ -15,17 +15,17 @@ import com.pdxcycle9.repair_lst.util.Response;
 public class PartController {
 	
 	@Autowired 
-	AddPartsToRepairItemService addParts;
+	private AddPartsToRepairItemService addParts;
 	
 	
 	@RequestMapping(value = "/addParts", params = {"partId[]", "repairItemId" }, 
-			method = RequestMethod.POST, produces = "application/JSON")
+			method = RequestMethod.PUT, produces = "application/JSON")
 	@ResponseBody
 	public ResponseEntity<Object> addParts(
 			@RequestParam(value = "partId[]") int[] part,
 			@RequestParam(value = "repairItemId") int repairItemId){
 		
-		Response response = addParts.addPartsToRepairItem();
+		Response response = addParts.addPartsToRepairItem(repairItemId, part);
 		
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				response.getStatusCode());

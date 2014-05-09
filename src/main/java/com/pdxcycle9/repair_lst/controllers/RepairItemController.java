@@ -3,6 +3,9 @@ package com.pdxcycle9.repair_lst.controllers;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,14 +18,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pdxcycle9.repair_lst.entities.Address;
 import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
+import com.pdxcycle9.repair_lst.services.AddPartsToRepairItemService;
 import com.pdxcycle9.repair_lst.services.CreateRepairItemService;
 import com.pdxcycle9.repair_lst.util.Response;
 
+@NamedQueries(@NamedQuery(name = "findRepairItemById", query = "SELECT ri FROM RepairItem ri WHERE ri.id = :id"))
 @Controller
 public class RepairItemController {
 	
 	@Autowired
 	CreateRepairItemService createRepairItemService;
+	
+	@Autowired 
+	private AddPartsToRepairItemService addParts;
 	
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
 			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
@@ -58,5 +66,19 @@ public class RepairItemController {
 
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}
+	
+	@RequestMapping(value = "/addParts", params = {"partId[]", "repairItemId" }, 
+			method = RequestMethod.PUT, produces = "application/JSON")
+	@ResponseBody
+	public ResponseEntity<Object> addParts(
+			@RequestParam(value = "partId[]") int[] part,
+			@RequestParam(value = "repairItemId") int repairItemId){
+		
+		Response response = addParts.addPartsToRepairItem(repairItemId, part);
+		
+		return new ResponseEntity<Object>(response.getResponseObject(),
+				response.getStatusCode());
+	}
+
 
 }

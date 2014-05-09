@@ -49,6 +49,16 @@ public class Part implements Serializable {
 	
 	
 	/*
+	 * Constructors
+	 */
+	public Part() {
+		
+	}
+	
+	public Part(int id) {
+		this.id = id;
+	}
+	/*
 	 * Getters and Setters for all fields
 	 */
 
