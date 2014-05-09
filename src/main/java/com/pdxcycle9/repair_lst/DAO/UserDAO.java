@@ -24,14 +24,16 @@ public class UserDAO {
 	  * @return the userId
 	  */
 	 @Transactional
-     public int findUserId(String userName, String password) {
+     public User findUser(String userName, String password) {
 		 
+		 System.out.println("In the DAO");
 		 User user = new User();
-    	 Query query = em.createNamedQuery("findUserId"); 
+    	 Query query = em.createNamedQuery("findUser"); 
     	 query.setParameter("userName", userName);
     	 query.setParameter("password", password);
     	 
-    	 user = (User)query.getSingleResult();    	 
-    	 return user.getId();
+    	 user = (User)query.getSingleResult();    
+    	 System.out.println("The user result is " + user);
+    	 return user;
      }
 }

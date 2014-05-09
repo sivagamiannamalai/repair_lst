@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries({
-	@NamedQuery(name = "findUserId",query = "Select u from User u WHERE u.userName=:userName AND u.password=:password")
+	@NamedQuery(name = "findUser",query = "Select u from User u WHERE u.userName=:userName AND u.password=:password")
 })
 @Entity
 @Table(name = "user")
