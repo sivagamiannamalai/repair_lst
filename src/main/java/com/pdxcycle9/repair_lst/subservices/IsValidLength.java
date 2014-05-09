@@ -61,7 +61,7 @@ public class IsValidLength {
 		if(input.length() > 0 && input.length() <= 32) {
 			result = true;
 		} else {
-			errors.add(Error.PHONE_INVALID);
+			errors.add(Error.INVALID_USER);
 		}
 		return result;
 
