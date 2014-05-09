@@ -14,11 +14,13 @@ function login() {
 	}	
 }
 
-//function that verified the username and password
+//function that verifies the username and password
 function verifyUser(userName, password)  {
+	
 $.ajax( {
     type: "GET",
-    url: "http://localhost:8080/repair_lst/security",
+    url: "http://localhost:8080/repair_lst/user",
+    data: {userName : userName, password : password},
     success: validationSuccess,
     error: validationFailure
 });
@@ -27,11 +29,14 @@ $.ajax( {
 // get the userId if the validation passes
 function validationSuccess(data, status, jqXHR) {
     var userId = data.id;
+    $("#username").text(data.userName);
+    //alert("Welcome " + data.userName);
 }
 
 
 function validationFailure(data)  {
    var message = data.responseJSON[0];
+   alert(message);
    login();
 
 }

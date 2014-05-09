@@ -33,11 +33,11 @@ public class CreateRepairItemService {
 	private IsNotNull isNotNull;
 	
 	
-	public Response createRepairItem(RepairItem repairItem, int[] parts) {
+	public Response createRepairItem(RepairItem repairItem) {
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-		ArrayList<Part> partsList;
+
 
 //		repairItem.setParts(updatePartsList(parts));
 //

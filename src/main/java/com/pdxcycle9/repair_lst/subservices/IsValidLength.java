@@ -44,4 +44,27 @@ public class IsValidLength {
 
 	}
 	
+	public boolean isPartsValidLength(int[] array, List<String> errors)  {
+		boolean result = false;		
+		
+		if(array.length > 0) {
+			result = true;
+		} else {
+			errors.add(Error.NO_PARTS_ENTERED);
+		}
+		return result;
+	}
+
+	public boolean isValidUser(String input, List<String> errors) {
+		boolean result = false;
+		
+		if(input.length() > 0 && input.length() <= 32) {
+			result = true;
+		} else {
+			errors.add(Error.INVALID_USER);
+		}
+		return result;
+
+	}
+	
 }

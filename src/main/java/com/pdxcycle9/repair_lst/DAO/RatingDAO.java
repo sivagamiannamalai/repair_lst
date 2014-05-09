@@ -20,10 +20,6 @@ public List<RepairItem> getRepairFacilityId(RepairFacility repairFacility) {
 	
 	List<RepairItem> results = null;
 	
-	Query query = em.createNamedQuery("GetRepairItemsByName");
-	
-	query.setParameter("name",repairFacility.getName());
-	results = (List<RepairItem>) query.getResultList();
 	
 	return results;
 	}	

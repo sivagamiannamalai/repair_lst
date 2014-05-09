@@ -1,8 +1,11 @@
 package com.pdxcycle9.repair_lst.controllers;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +32,7 @@ public class RepairFacilityController {
 	UpdateRepairFacilityService updateRepairFacilityService;
 	@Autowired
 	RepairFacilityRatingService repairFacilityRatingService;
+
 
 	
 	/**
@@ -96,7 +100,8 @@ public class RepairFacilityController {
 	}
 	
 	/**
-	 * update controller, takes id to change, grabs specialization and address objects
+	 * update controller: takes id to change, grabs specializations and attempts to set
+	 * an address objects based off of addressId
 	 * 
 	 * @param id
 	 * @param name
@@ -125,12 +130,10 @@ public class RepairFacilityController {
 		repairFacility.setPhone(phone);
 		repairFacility.setHourlyRate(hourlyRate);
 		repairFacility.setAddress(address);
-
-		Response response = updateRepairFacilityService.updateRepairFacility(
-				repairFacility, specialization);
-
-		return new ResponseEntity<Object>(response.getResponseObject(),
-				response.getStatusCode());
+		
+		Response response = updateRepairFacilityService.updateRepairFacility(repairFacility, specialization);
+		
+		return new ResponseEntity<Object>(response.getResponseObject(),response.getStatusCode());
 	}
 	
 	@RequestMapping(value = "/repairfacilityrating/{name}", method = RequestMethod.GET, produces = "application/json")

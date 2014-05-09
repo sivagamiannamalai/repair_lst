@@ -25,7 +25,15 @@ public class Error {
     	public static final String ZIP_INVALID = "Error: Zip should be exactly 5 digits";
     	
     	public static final String PHONE_INVALID = "Error: Invalid phone number";
+    	
+    	public static final String NO_PARTS_ENTERED = "Error: Must indicate at least one part.";
 
-
+    	public static final String MUST_BE_NUMBER = "Error: Must enter a value.";
+    	
+    	public static final String ADDRESSID_INVALID = "Error: Invalid Address Id";
+    	
+    	public static final String INVALID_INPUT = "Error: Username/password should be between 1 - 32 characters";
+    	
+    	public static final String INVALID_USER = "Error: Username/password is incorrect. Please try again";
 		
 }
