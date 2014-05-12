@@ -21,5 +21,13 @@ public class RepairItemDAO {
 		return em.find(RepairItem.class, repairItemId);
 
 	}
+	
+	@Transactional
+	public RepairItem persistRepairItem(RepairItem repairItem) {		
+
+		em.persist(repairItem);
+		return repairItem;
+
+	}
 
 }

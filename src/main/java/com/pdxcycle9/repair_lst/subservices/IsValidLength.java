@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.subservices;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -63,6 +64,23 @@ public class IsValidLength {
 		} else {
 			errors.add(Error.INVALID_USER);
 		}
+		return result;
+
+	}
+	
+	public boolean isDateValidLength(Date date, List<String> errors) {
+
+		boolean result = false;
+		try {
+			long longVal = date.getTime();
+			if (longVal == 8) {
+				result = true;				
+			}
+		}
+		catch (Exception e) {
+			errors.add(Error.DATE_INVALID);
+		}
+
 		return result;
 
 	}
