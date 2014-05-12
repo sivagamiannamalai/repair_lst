@@ -59,7 +59,6 @@ public class AddPartsToRepairItemService {
 			
 		}
 		
-		
 		updateRepairWithItems(repairItem, response, errors);
 
 		return response;
@@ -100,6 +99,7 @@ public class AddPartsToRepairItemService {
 			for(int i = 0; i < part.length; i++) {
 				
 				Part partsToAdd = partDAO.retrievePartById(part[i]);
+//				Part partsToAdd = new Part(part[i]);
 				
 				partList.add(partsToAdd);
 				
