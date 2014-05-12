@@ -12,7 +12,7 @@ $(document).ready(function(){
 	/*getAllRepairTypes();*/
 	/*$("#repairTypeDropDown").change(selectCurrentRepairType);	*/
 	$("#submitRepairItem").click(validateRepairItem);
-});
+
 
 var errorMessage = "";
 
@@ -116,12 +116,13 @@ function validateRepairItem () {
 	var selectedVehicle = false;
 	var selectedRepairType = false;
 	
-	if (!isNaN(dateOfRepair) && dateOfRepair.length() == 6) {
+	if (!isNaN(dateOfRepair) && dateOfRepair.length == 6) {
 		validDate = true;
-		console.log("Date is valid");
-	} else {
-		console.log("Date is invalid");
-	}
+		console.log("Date is valid.");
+	} /*
+	$("#repairItemMessage").html("Fields that need to be filled out are highlighted in red. <br>" 
+			+ errorMessage);
+		$('html, body').animate({ scrollTop: 0 }, 'slow');*/
 }
 
 function addRepairItem() {
@@ -135,3 +136,4 @@ var hourlyRateOfRepairFacility = $("#repairItemHourlyRateInput").val();
 var repairItemDescription = $("#repairItemDescriptionInput").val();*/
 
 
+});

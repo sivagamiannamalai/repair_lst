@@ -1,0 +1,75 @@
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="../../lib/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="../../src/facilitysearch.js"></script>
+		<script type="text/javascript" src="../../src/sorting.js"></script>
+	<title>Local Sports Team Car Repair App - Search Facilities</title>
+
+</head>
+<body>
+
+<!-- Start of Navigation - Copy from Team Files Template -->
+
+<nav>
+	<ul>
+		<li><a href="../index.html">Home</a></li>
+		<li><a href="#">Vehicle</a>
+			<ul>
+				<li><a href="../vehicles/retrieve.html">List Vehicles</a>
+				<li><a href="../vehicles/create.html">Add a Vehicle</a></li>
+				<li><a href="../vehicles/update.html">Update a Vehicle</a></li>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#">Repairs</a>
+			<ul>
+				<li><a href="#">View Repair History</a></li>
+				<li><a href="#">Add a Repair</a></li>
+				<li><a href="#">Update a Repair</a>
+			</ul>
+		</li>
+		<li><a href="#">Facilities</a>
+			<ul>
+				<li><a href="../repairfacility/retrieve.html">Search Facilities</a></li>
+				<li><a href="../repairfacility/create.html">Add a Facility</a></li>
+				<li><a href="../repairfacility/update.html">Update a Facility</a>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<!-- Start of Navigation - Copy from Team Files Template -->
+
+	<div id="content"> <!-- Start of content -->
+
+		<h1>Repair Tracker 1.0.0</h1>
+
+		<div id="retrieveRepairFacility"> <!-- Start of retrieveRepairFacility -->
+		
+		<h3>Get the Rating of a Facility By Its Name</h3>
+		<h4>Search Results:</h4>
+		
+		<div id = "repairFacilityName"> 
+		No Search Conducted Yet. 
+		</div>
+		<div id = "repairFacilityRating"> 
+		</div>
+		<div class="formBox"> <!-- Start of formbox -->
+
+			<b>Type the Name of the Repair Facility you want the Rating of Here:</b> <br/>
+			<input type="text" name="requestedRepairFacility">
+			<button id"searchForRepairFacility">Click Here to get The Rating</button>
+		</div>  <!-- End of formbox -->
+
+		</div> <!-- End of retrieveRepairFacility -->
+		
+	</div>  <!-- End of content -->
+
+</body>
+
+
+
+</html>

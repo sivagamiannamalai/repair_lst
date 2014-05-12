@@ -30,4 +30,10 @@ public class RepairItemDAO {
 
 	}
 
+	@Transactional
+	public RepairItem updateRepairItemAddParts(RepairItem repairItem){
+		
+		return em.merge(repairItem);
+		
+	}
 }
