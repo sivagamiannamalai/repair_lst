@@ -17,7 +17,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({ @NamedQuery(name = "retrieveAllParts", query = "SELECT p FROM Part p") })
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
+@NamedQueries({ @NamedQuery(name = "retrieveAllParts", query = "SELECT pa FROM Part pa") })
 @Entity
 @Table (name = "part")
 public class Part implements Serializable {
@@ -48,6 +50,7 @@ public class Part implements Serializable {
 	@JoinTable(name = "repair_item_parts", 
 	joinColumns = { @JoinColumn(name = "part_fk") }, 
 	inverseJoinColumns = { @JoinColumn(name = "repair_item_fk") })
+	@JsonManagedReference
 	private Collection<RepairItem> repairItems;
 	
 	

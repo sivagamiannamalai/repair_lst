@@ -16,7 +16,7 @@ import com.pdxcycle9.repair_lst.util.Response;
 @Service
 public class RetrieveAllPartsService {
 
-	/*@Autowired
+	@Autowired
 	private PartDAO partDAO;
 
 	@Autowired
@@ -26,7 +26,7 @@ public class RetrieveAllPartsService {
 	 * 
 	 * @param partDAO
 	 */
-	/*
+	
 	public void setPartDAO(PartDAO partDAO) {
 		this.partDAO = partDAO;
 	}
@@ -41,7 +41,7 @@ public class RetrieveAllPartsService {
 	 * 
 	 * @return
 	 */
-	/*	@Transactional
+		@Transactional
 	public Response retrieve() {
 
 		Response response = new Response();
@@ -60,6 +60,6 @@ public class RetrieveAllPartsService {
 		validateResults.isNotEmpty(errors, result, response);
 		return response;
 
-	}*/
+	}
 
 }

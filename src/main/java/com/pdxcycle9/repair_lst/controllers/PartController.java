@@ -12,11 +12,11 @@ import com.pdxcycle9.repair_lst.util.Response;
 @Controller
 public class PartController {
 	
-	/*@Autowired
-	RetrieveAllPartsService retrieveAllPartsService;*/
+	@Autowired
+	RetrieveAllPartsService retrieveAllPartsService;
 
 	
-	/*@RequestMapping(value = "/parts", method = RequestMethod.GET)
+	@RequestMapping(value = "/parts", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> retrieveParts() { 
 		
@@ -24,6 +24,6 @@ public class PartController {
 
 			return new ResponseEntity<Object>(response.getResponseObject(),
 					response.getStatusCode());
-*/
-	}
 
+	}
+}
