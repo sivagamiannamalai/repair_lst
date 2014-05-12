@@ -40,6 +40,6 @@ public class Error {
     	
     	public static final String INVALID_INPUT = "Error: Username/password should be between 1 - 32 characters";
     	
-    	public static final String INVALID_USER = "Error: Username/password is incorrect. Please try again";
+    	public static final String INVALID_USER = "Username/password is incorrect. Please try again";
 		
 }

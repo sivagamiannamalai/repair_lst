@@ -25,7 +25,7 @@ function login() {
 	    if(validateUser(userName, password)) {
 	       verifyUser(userName, password);
 	    } else {
-	    	$("#username").text("Invalid username/password"); 
+	    	$("#loginStatusMessage").text("Invalid username/password"); 
 	    }
 	}	
 }
@@ -72,13 +72,14 @@ $.ajax( {
 // get the userId if the validation passes
 function validationSuccess(data, status, jqXHR) {
     getUserId(data.id);
-    $("#username").text(data.userName);    
+    //$("#username").text(data.userName);    
+    $("#loginStatusMessage").text("Logged in as " + data.userName);
 }
 
 // display the error message if validation fails
 function validationFailure(data)  {
    var message = data.responseJSON[0];
-   $("#username").text(message); 
+   $("#loginStatusMessage").text(message); 
    setTimeout(login, 2000);
 }
 
