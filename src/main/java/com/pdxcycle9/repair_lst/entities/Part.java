@@ -13,8 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
+@NamedQueries({ @NamedQuery(name = "retrieveAllParts", query = "SELECT pa FROM Part pa") })
 @Entity
 @Table (name = "part")
 public class Part implements Serializable {
@@ -45,6 +51,7 @@ public class Part implements Serializable {
 	@JoinTable(name = "repair_item_parts", 
 	joinColumns = { @JoinColumn(name = "part_fk") }, 
 	inverseJoinColumns = { @JoinColumn(name = "repair_item_fk") })
+	@JsonBackReference
 	private Collection<RepairItem> repairItems;
 	
 	

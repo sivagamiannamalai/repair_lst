@@ -18,6 +18,8 @@ public class Error {
     	
     	public static final String DUPLICATE_FACILITY = "Error: Facility already exists";
     	
+    	public static final String DUPLICATE_ITEM = "Error: Repair alread exists";
+    	
     	public static final String DUPLICATE_RECORD = "Error: Record already exists";
     	
     	public static final String RATE_INVALID = "Error: Hourly Rate should be 0 or greater";
@@ -25,6 +27,10 @@ public class Error {
     	public static final String ZIP_INVALID = "Error: Zip should be exactly 5 digits";
     	
     	public static final String PHONE_INVALID = "Error: Invalid phone number";
+    	
+    	public static final String DATE_INVALID = "Error: Date should be mmddyyyy";
+    	
+    	public static final String RATING_INVALID = "Error: Rating should be between 1 and 5";
     	
     	public static final String NO_PARTS_ENTERED = "Error: Must indicate at least one part.";
 

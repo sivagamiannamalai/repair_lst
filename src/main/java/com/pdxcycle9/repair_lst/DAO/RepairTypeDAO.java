@@ -3,39 +3,35 @@ package com.pdxcycle9.repair_lst.DAO;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pdxcycle9.repair_lst.entities.Part;
+import com.pdxcycle9.repair_lst.entities.RepairType;
 
 @Repository
-public class PartDAO {
+public class RepairTypeDAO {
 
 	@PersistenceContext(unitName = "repair_lst")
 	private EntityManager em;
 
-	public void persistPartsToRepairItem() {
+	public RepairType persistRepairType(RepairType repairType) {
 
+		em.persist(repairType);
+
+		return repairType;
 	}
 
 	@Transactional
-	public List<Part> retrieveAllParts() {
+	public List<RepairType> retrieveAllRepairTypes() {
 
 		// System.out.println("Echo: Inside the repair facility DAO");
 
-		Query query = em.createNamedQuery("retrieveAllParts");
+		Query query = em.createNamedQuery("findAllRepairTypes");
 
-		return (List<Part>) query.getResultList();
-
-	}
-	
-	@Transactional
-	public Part retrievePartById(int partId) {
-		
-		return em.find(Part.class, partId);
-			
+		return (List<RepairType>) query.getResultList();
 	}
 }

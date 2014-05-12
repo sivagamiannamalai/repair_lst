@@ -19,6 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 @NamedQueries({ 
 //				@NamedQuery(name = "findAllRepairItems", query = "SELECT ri FROM RepairItem ri"),
 //				@NamedQuery(name = "findRepairItemById", query = "SELECT ri FROM RepairItem ri WHERE ri.id = :id"),
@@ -70,6 +73,7 @@ public class RepairItem implements Serializable{
 	
 
 	@ManyToMany(fetch= FetchType.EAGER)
+    @JsonManagedReference
 	@JoinTable(name = "repair_item_parts", 
 	joinColumns = { @JoinColumn(name = "repair_item_fk") }, 
 	inverseJoinColumns = { @JoinColumn(name = "part_fk") })

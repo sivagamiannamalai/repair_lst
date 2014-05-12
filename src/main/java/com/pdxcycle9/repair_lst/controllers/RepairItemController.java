@@ -28,8 +28,22 @@ public class RepairItemController {
 	@Autowired 
 	AddPartsToRepairItemService addParts;
 	
+	/**
+	 * repair item controller to persist/add new repair items with the following params
+	 * @param description
+	 * @param date
+	 * @param hourlyRate
+	 * @param laborHours
+	 * @param mileage
+	 * @param rating
+	 * @param userId
+	 * @param repairTypeId
+	 * @param repairFacilityId
+	 * @param vehicleId
+	 * @return
+	 */
 	@RequestMapping(value = "/repairitem", params = { "description", "date",
-			"hourlyRate", "hoursWorked", "mileage", "rating", "userId", "repairTypeId", 
+			"hourlyRate", "laborHours", "mileage", "rating", "userId", "repairTypeId", 
 			"repairFacilityId", "vehicleId" }, method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(

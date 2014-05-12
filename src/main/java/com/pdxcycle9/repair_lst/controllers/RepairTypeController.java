@@ -7,23 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pdxcycle9.repair_lst.services.RetrieveAllPartsService;
+import com.pdxcycle9.repair_lst.services.RetrieveAllRepairTypesService;
 import com.pdxcycle9.repair_lst.util.Response;
+
 @Controller
-public class PartController {
-	
+public class RepairTypeController {
+
 	@Autowired
-	RetrieveAllPartsService retrieveAllPartsService;
+	RetrieveAllRepairTypesService retrieveAllRepairTypesService;
 
-	
-	@RequestMapping(value = "/parts", method = RequestMethod.GET)
+	@RequestMapping(value = "/repairtype", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Object> retrieveParts() { 
-		
-			Response response = retrieveAllPartsService.retrieve();
+	public ResponseEntity<Object> retrieveRepairTypes() {
 
-			return new ResponseEntity<Object>(response.getResponseObject(),
-					response.getStatusCode());
+		Response response = retrieveAllRepairTypesService.retrieve();
+
+		return new ResponseEntity<Object>(response.getResponseObject(),
+				response.getStatusCode());
 
 	}
+
 }

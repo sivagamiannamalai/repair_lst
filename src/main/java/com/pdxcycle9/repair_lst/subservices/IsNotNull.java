@@ -1,6 +1,7 @@
 package com.pdxcycle9.repair_lst.subservices;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.pdxcycle9.repair_lst.entities.Address;
@@ -78,6 +79,23 @@ public class IsNotNull {
 				errors.add(Error.ADDRESSID_INVALID);
 				failed(response, errors);
 			}
+
+		return result;
+
+	}
+	
+	public boolean isDateNotEmpty(Date date, List<String> errors) {
+
+		boolean result = false;
+		try {
+			long longVal = date.getTime();
+			if (longVal > 0) {
+				result = true;				
+			}
+		}
+		catch (Exception e) {
+			errors.add(Error.IS_NULL);
+		}
 
 		return result;
 
