@@ -1,8 +1,10 @@
 package com.pdxcycle9.repair_lst.DAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 
 
@@ -24,16 +26,12 @@ public class UserDAO {
 	  * @return the userId
 	  */
 	 @Transactional
-     public User findUser(String userName, String password) {
+     public Object findUser(String userName, String password) throws NoResultException {		 
 		 
-		 System.out.println("In the DAO");
-		 User user = new User();
     	 Query query = em.createNamedQuery("findUser"); 
     	 query.setParameter("userName", userName);
     	 query.setParameter("password", password);
-    	 
-    	 user = (User)query.getSingleResult();    
-    	 System.out.println("The user result is " + user);
-    	 return user;
+    	 Object result = query.getSingleResult();    	
+    	 return result;
      }
 }

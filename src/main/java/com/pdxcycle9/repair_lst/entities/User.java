@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries({
-	@NamedQuery(name = "findUser",query = "Select u from User u WHERE u.userName=:userName AND u.password=:password")
+	@NamedQuery(name = "findUser",query = "SELECT u FROM User u WHERE u.userName=:userName AND u.password=:password")
 })
 @Entity
 @Table(name = "user")
@@ -54,4 +54,10 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	public String toString() {
+		return "User[user = " + userName + " , password = " + password + "]"; 
+	}
+	
 }
