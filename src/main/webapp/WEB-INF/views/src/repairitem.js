@@ -1,35 +1,35 @@
 $(document).ready(function(){
 
-	//$("#createFacilitySubmit").click(postRepairFacility);
+var validDate;
+var validLaborHours;
+var validMileage;
+var validHourlyRate;
+var validRating;
+var loggedIn;
+var selectedRepairFacility;
+var selectedVehicle;
+var selectedRepairType;
+var errorMessage = "";
+	
+	// $("#createFacilitySubmit").click(postRepairFacility);
 	console.log("Testing js");
 	
-	/*getAllVehicles();
-	$("#selectVehicle").change(selectCurrentVehicle);*/
+	// getAllVehicles();
 	
+	
+	// $("#selectVehicle").change(selectCurrentVehicle);
+	getAllRepairTypes();
 	getAllRepairFacilities();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
-	/*getAllRepairTypes();*/
-	/*$("#repairTypeDropDown").change(selectCurrentRepairType);	*/
-	$("#submitRepairItem").click(validateRepairItem);
-
-
-var errorMessage = "";
+	// getAllRepairTypes();
+	// $("#repairTypeDropDown").change(selectCurrentRepairType);
+	// $("#submitRepairItem").click(validateRepairItem);
 
 var dateOfRepair = $("#repairItemDateOfRepairInput").val();
 var mileageAtTimeOfRepair = $("#repairItemMileageInput").val();
 var hourlyRateOfRepairFacility = $("#repairItemHourlyRateInput").val();
 var repairItemDescription = $("#repairItemDescriptionInput").val();
-
-	var validDate;
-	var validLaborHours;
-	var validMileage;
-	var validHourlyRate;
-	var validRating;
-	var loggedIn;
-	var selectedRepairFacility;
-	var selectedVehicle;
-	var selectedRepairType;
 
 function getAllVehicles() {
 	$("#vehicleDropDown").empty();
@@ -39,7 +39,11 @@ function getAllVehicles() {
         success: populateVehicleDropDown
     });
 }
-/*
+/* This populate function relies on the user being logged in
+   and having access to that specific user's vehicles. The
+   back end needs to be written for a 'retrieve all vehicles
+   by user id' feature.
+
 function populateVehicleDropDown(data){
     
 	$("vehicleDropDown").append('<option id = "-1"></option>' );
@@ -96,14 +100,26 @@ function populateRepairFacilityDropDown(data){
     }
 }
 
-/*function getAllRepairTypes () {
-	$("#repairTypeDropDown").empty();
+function getAllRepairTypes () {
+	$("#typeofRepairDropDown").empty();
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/repairtype",
         success: populateRepairTypeDropDown
     });
-}*/
+}
+
+function populateRepairTypeDropDown(data){
+    
+	$("#typeofRepairDropDown").append('<option id = "-1"></option>' );
+	
+	for(var i = 0; i < data.length; i++){
+        $("#typeofRepairDropDown").append(
+		'<option id="' + 
+		data[i].id +'">'+ 
+		data[i].type + '</option>');
+    }
+}
 
 function validateRepairItem () {
 	var validDate = false;
@@ -126,6 +142,7 @@ function validateRepairItem () {
 }
 
 function addRepairItem() {
+console.log("Adding repair item.");
 	
 	
 }
