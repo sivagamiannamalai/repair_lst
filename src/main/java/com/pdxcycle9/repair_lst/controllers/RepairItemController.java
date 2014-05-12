@@ -1,6 +1,7 @@
 package com.pdxcycle9.repair_lst.controllers;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.NamedQueries;
@@ -29,7 +30,8 @@ public class RepairItemController {
 	AddPartsToRepairItemService addParts;
 	
 	/**
-	 * repair item controller to persist/add new repair items with the following params
+	 * repair item controller to persist/add new repair items with the following params,
+	 * plus date cast from String to Date in try/catch
 	 * @param description
 	 * @param date
 	 * @param hourlyRate
@@ -48,7 +50,7 @@ public class RepairItemController {
 	@ResponseBody
 	public ResponseEntity<Object> createRepairFacility(
 			@RequestParam(value = "description") String description,
-			@RequestParam(value = "date") Date date,
+			@RequestParam(value = "date") String dateData,
 			@RequestParam(value = "hourlyRate") BigDecimal hourlyRate,
 			@RequestParam(value = "laborHours") int laborHours,
 			@RequestParam(value = "mileage") int mileage,
@@ -59,9 +61,17 @@ public class RepairItemController {
 			@RequestParam(value = "vehicleId") int vehicleId){
 
 		RepairItem repairItem = new RepairItem();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(dateData);
+			repairItem.setDate(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		repairItem.setDescription(description);
-		repairItem.setDate(date);
+		
 		repairItem.setHourlyRate(hourlyRate);
 		repairItem.setLaborHours(laborHours);
 		repairItem.setMileage(mileage);

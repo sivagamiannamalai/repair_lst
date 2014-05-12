@@ -2,6 +2,7 @@ package com.pdxcycle9.repair_lst.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @NamedQueries({ 
 //				@NamedQuery(name = "findAllRepairItems", query = "SELECT ri FROM RepairItem ri"),
@@ -41,6 +44,7 @@ public class RepairItem implements Serializable{
 	private String description;
 
 	@Column(name = "date", nullable = false)
+	@Type(type = "date")
 	private Date date;
 
 	@Column(name = "hourly_rate", nullable = false)
@@ -108,6 +112,10 @@ public class RepairItem implements Serializable{
 		return date;
 	}
 
+	/**
+	 * casting a string to a date, still needs work
+	 * @param date
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
