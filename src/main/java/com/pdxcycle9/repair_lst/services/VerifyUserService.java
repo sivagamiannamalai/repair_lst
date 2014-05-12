@@ -40,9 +40,8 @@ public class VerifyUserService {
 		 List<String> errors = new ArrayList<String>();
 		 
 		 if(isValidLength.isValidUser(userName, errors) &&
-		    isValidLength.isValidUser(password, errors)) {
+		    isValidLength.isValidUser(password, errors)) {			 
 			 
-			 System.out.println("Validation passed");
 			 findUser(userName, password, response, errors);
 		 } else {
 			 errors.add(Error.INVALID_INPUT);
@@ -54,7 +53,6 @@ public class VerifyUserService {
 	 
 	 public void failed(Response response, List<String> errors) {
 		 
-		 System.out.println("In the Service failed method");
 		 response.setResponseObject(errors);
 		 response.setStatusCode(HttpStatus.BAD_REQUEST);
 	 }
@@ -72,9 +70,8 @@ public class VerifyUserService {
 			              List<String> errors) {
 		 
 		 try {
-			// User user = userDAO.findUser(userName, password);
-			  Object result = userDAO.findUser(userName, password);			 
-			  response.setResponseObject((User)result);
+			  User user = userDAO.findUser(userName, password);			 
+			  response.setResponseObject(user);
 			  response.setStatusCode(HttpStatus.OK);			
 		 } catch (NoResultException e){
 			  errors.add(Error.INVALID_USER);
