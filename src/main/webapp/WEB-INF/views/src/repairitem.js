@@ -10,9 +10,16 @@ var selectedRepairFacility;
 var selectedVehicle;
 var selectedRepairType;
 var errorMessage = "";
-	
+// var selectedParts =  $('#repairPartsField').children.('input').prop('checked', true);
+
+/*$(document).on("click", '#addPartButton', function(event) { 
+		var selectedRepairPart = $(this).parent().children('.singlePart').html();
+		console.log(selectedRepairPart);
+});
+*/
+	//console.log(selectedParts);
 	// $("#createFacilitySubmit").click(postRepairFacility);
-	console.log("Testing js");
+
 	
 	// getAllVehicles();
 	
@@ -115,7 +122,7 @@ function populateRepairPartField(data){
 	// $("#repairPartsField").append('<option id = "-1"></option>' );
 	
 	for(var i = 0; i < data.length; i++){
-        $("#repairPartsField").append('<input type="checkbox" id="' + data[i].id + '">' + data[i].name + '<br/>');
+        $("#repairPartsField").append('<input type="checkbox" id="' + data[i].id + '">' + '<span class="singlePart">' + data[i].name + '</span>' + '<br/>');
     }
 }
 
@@ -166,6 +173,10 @@ function addRepairItem() {
 console.log("Adding repair item.");
 	
 	
+}
+
+function submitRepairItem() {
+
 }
 
 /*var dateOfRepair = $("#repairItemDateOfRepairInput").val();
