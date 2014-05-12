@@ -3,6 +3,8 @@ package com.pdxcycle9.repair_lst.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +54,7 @@ public class VerifyUserService {
 	 
 	 public void failed(Response response, List<String> errors) {
 		 
-		 System.out.println("In the failed method");
+		 System.out.println("In the Service failed method");
 		 response.setResponseObject(errors);
 		 response.setStatusCode(HttpStatus.BAD_REQUEST);
 	 }
@@ -70,14 +72,18 @@ public class VerifyUserService {
 			              List<String> errors) {
 		 
 		 try {
-			 User user = userDAO.findUser(userName, password);
-			 response.setResponseObject(user);
-			 response.setStatusCode(HttpStatus.OK);
+			// User user = userDAO.findUser(userName, password);
+			  Object result = userDAO.findUser(userName, password);			 
+			  response.setResponseObject((User)result);
+			  response.setStatusCode(HttpStatus.OK);			
+		 } catch (NoResultException e){
+			  errors.add(Error.INVALID_USER);
+	    	  failed(response, errors);
 		 } catch (Exception e) {
-		      if(e.getCause().getClass() == ConstraintViolationException.class) {
+			  if(e.getCause().getClass() == ConstraintViolationException.class) {
 		    	  errors.add(Error.INVALID_USER);
 		    	  failed(response, errors);		    	  
-		      }
+		     } 
 		 }
 	 }
 }

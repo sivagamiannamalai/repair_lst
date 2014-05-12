@@ -29,10 +29,8 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<Object> getUserId(
 			@RequestParam(value = "userName") String userName, 
-			@RequestParam(value = "password") String password) {
+			@RequestParam(value = "password") String password) {		
 		
-		System.out.println("In the Controller");
-		System.out.println("userName is " + userName + "password is " + password);
 		Response response = verifyUserService.verifyUser(userName, password);
 		return new ResponseEntity<Object>(response.getResponseObject(),
 				                          response.getStatusCode());
