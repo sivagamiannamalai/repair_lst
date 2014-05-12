@@ -1,37 +1,35 @@
 $(document).ready(function(){
 
-	//$("#createFacilitySubmit").click(postRepairFacility);
+var validDate;
+var validLaborHours;
+var validMileage;
+var validHourlyRate;
+var validRating;
+var loggedIn;
+var selectedRepairFacility;
+var selectedVehicle;
+var selectedRepairType;
+var errorMessage = "";
+	
+	// $("#createFacilitySubmit").click(postRepairFacility);
 	console.log("Testing js");
 	
-	/*getAllVehicles();
+	// getAllVehicles();
 	
 	
-	$("#selectVehicle").change(selectCurrentVehicle);*/
+	// $("#selectVehicle").change(selectCurrentVehicle);
 	getAllRepairTypes();
 	getAllRepairFacilities();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
-	/*getAllRepairTypes();*/
-	/*$("#repairTypeDropDown").change(selectCurrentRepairType);	*/
-	$("#submitRepairItem").click(validateRepairItem);
-
-
-var errorMessage = "";
+	// getAllRepairTypes();
+	// $("#repairTypeDropDown").change(selectCurrentRepairType);
+	// $("#submitRepairItem").click(validateRepairItem);
 
 var dateOfRepair = $("#repairItemDateOfRepairInput").val();
 var mileageAtTimeOfRepair = $("#repairItemMileageInput").val();
 var hourlyRateOfRepairFacility = $("#repairItemHourlyRateInput").val();
 var repairItemDescription = $("#repairItemDescriptionInput").val();
-
-	var validDate;
-	var validLaborHours;
-	var validMileage;
-	var validHourlyRate;
-	var validRating;
-	var loggedIn;
-	var selectedRepairFacility;
-	var selectedVehicle;
-	var selectedRepairType;
 
 function getAllVehicles() {
 	$("#vehicleDropDown").empty();
@@ -41,7 +39,11 @@ function getAllVehicles() {
         success: populateVehicleDropDown
     });
 }
-/*
+/* This populate function relies on the user being logged in
+   and having access to that specific user's vehicles. The
+   back end needs to be written for a 'retrieve all vehicles
+   by user id' feature.
+
 function populateVehicleDropDown(data){
     
 	$("vehicleDropDown").append('<option id = "-1"></option>' );
@@ -140,6 +142,7 @@ function validateRepairItem () {
 }
 
 function addRepairItem() {
+console.log("Adding repair item.");
 	
 	
 }
