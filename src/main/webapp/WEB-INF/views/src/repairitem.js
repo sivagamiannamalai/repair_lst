@@ -4,8 +4,10 @@ $(document).ready(function(){
 	console.log("Testing js");
 	
 	/*getAllVehicles();
-	$("#selectVehicle").change(selectCurrentVehicle);*/
 	
+	
+	$("#selectVehicle").change(selectCurrentVehicle);*/
+	getAllRepairTypes();
 	getAllRepairFacilities();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
@@ -96,14 +98,26 @@ function populateRepairFacilityDropDown(data){
     }
 }
 
-/*function getAllRepairTypes () {
-	$("#repairTypeDropDown").empty();
+function getAllRepairTypes () {
+	$("#typeofRepairDropDown").empty();
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/repairtype",
         success: populateRepairTypeDropDown
     });
-}*/
+}
+
+function populateRepairTypeDropDown(data){
+    
+	$("#typeofRepairDropDown").append('<option id = "-1"></option>' );
+	
+	for(var i = 0; i < data.length; i++){
+        $("#typeofRepairDropDown").append(
+		'<option id="' + 
+		data[i].id +'">'+ 
+		data[i].type + '</option>');
+    }
+}
 
 function validateRepairItem () {
 	var validDate = false;
