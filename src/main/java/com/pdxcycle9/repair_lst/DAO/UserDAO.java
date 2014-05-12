@@ -5,13 +5,11 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
-
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.entities.User;
+
 
 @Repository
 public class UserDAO {
@@ -26,12 +24,12 @@ public class UserDAO {
 	  * @return the userId
 	  */
 	 @Transactional
-     public Object findUser(String userName, String password) throws NoResultException {		 
-		 
+     public User findUser(String userName, String password) throws NoResultException {		 
+		 User user = new User();
     	 Query query = em.createNamedQuery("findUser"); 
     	 query.setParameter("userName", userName);
     	 query.setParameter("password", password);
-    	 Object result = query.getSingleResult();    	
-    	 return result;
+    	 user = (User)query.getSingleResult();    	
+    	 return user;
      }
 }
