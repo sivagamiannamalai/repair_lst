@@ -41,24 +41,10 @@ public class AddPartsToRepairItemService {
 		RepairItem repairItem = new RepairItem();
 		
 			
-			repairItem = getRepairItem(repairItemId, repairItem);
-			
-		
-			errors.add(Error.MUST_BE_NUMBER);
-			failed(response, errors);
-			
-		
-		if(isValidLength.isPartsValidLength(part, errors)) {
-			
-			repairItem.setParts(makePartsList(part));
-			
-		} else {
-			
-			errors.add(Error.NO_PARTS_ENTERED);
-			failed(response, errors);
-			
-		}
-		
+		repairItem = getRepairItem(repairItemId, repairItem, response, errors);
+				
+		repairItem.setParts(makePartsList(part, response, errors));
+
 		updateRepairWithItems(repairItem, response, errors);
 
 		return response;
@@ -69,10 +55,11 @@ public class AddPartsToRepairItemService {
 	 * so that a list of parts can be added
 	 * @param repairItemId
 	 * @param repairItem
+	 * @param errors 
 	 * @return
 	 */
 	@Transactional
-	public RepairItem getRepairItem(int repairItemId, RepairItem repairItem) {
+	public RepairItem getRepairItem(int repairItemId, RepairItem repairItem, Response response, List<String> errors) {
 		
 		 try {
 			 
@@ -80,6 +67,8 @@ public class AddPartsToRepairItemService {
 			
 		} catch (Exception e) {
 			
+			errors.add(Error.CANNOT_PERSIST);
+			failed(response, errors);
 			e.printStackTrace();
 		}
 		 
@@ -92,16 +81,24 @@ public class AddPartsToRepairItemService {
 	 * @return partList
 	 */
 	@Transactional
-	public ArrayList<Part> makePartsList(int[] part){
+	public ArrayList<Part> makePartsList(int[] part, Response response, List<String> errors){
 			
 			ArrayList<Part> partList = new ArrayList<Part>();
 			
 			for(int i = 0; i < part.length; i++) {
 				
-				Part partsToAdd = partDAO.retrievePartById(part[i]);
-//				Part partsToAdd = new Part(part[i]);
 				
-				partList.add(partsToAdd);
+				try {
+					
+					Part partsToAdd = partDAO.retrievePartById(part[i]);
+					partList.add(partsToAdd);
+					
+				} catch (Exception e) {
+
+					errors.add(Error.CANNOT_PERSIST);
+					failed(response, errors);
+					e.printStackTrace();
+				}
 				
 			}
 			
@@ -127,6 +124,8 @@ public class AddPartsToRepairItemService {
 			
 		} catch (Exception e) {
 			
+			errors.add(Error.CANNOT_PERSIST);
+			failed(response, errors);
 			e.printStackTrace();
 			
 		}
