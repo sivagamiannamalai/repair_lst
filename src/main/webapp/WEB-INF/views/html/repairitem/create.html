@@ -42,7 +42,7 @@
 		<div id="createRepairItem"> <!-- Start of create a repair item -->
 
 		<h1>Repair Tracker 1.0.0</h1>
-			<div id="logininfo"><h2>Logged in as: <span id="username">username</span></h2></div>
+			<div id="logininfo"><h2><span id ="loginStatusMessage">Not logged in</span><span id="username"></span></h2></div>
 				
 		<h3>Add a Repair</h3>		
 		<div id ="repairItemMessage"></div>		
@@ -70,7 +70,12 @@
 			<br/>
 			<span id="repairItemDesc">Description:</span> <input type="text" id="repairItemDescriptionInput"> 
 			<br/>
+			<span id="repairItemDesc">Add Parts to the Repair:</span>
+			<div id="repairPartsField"></div>
 			<button id="addPartButton">Click to Add a Part</button>
+			<br/>
+			<br/>
+			
 			<span id="repairItemRating">Rate the Quality of the Repair:<br/><div id="wrenchRating">
 				<img src="../../img/wholewrench.png" id="oneWrench" />
 				<img src="../../img/wholewrench.png" id="twoWrench" />
@@ -79,7 +84,7 @@
 				<img src="../../img/wholewrench.png" id="fiveWrench" />
 			</div></span>			
 			
-			<div id ="repairItemMessage"></div>		
+			<div id ="repairItemMessage"></div>	
 			<button id="submitRepairItem">Click to Add a Repair</button>
 		</form> <!-- End of formBox -->
 		</div> <!-- End of createRepairItem -->			

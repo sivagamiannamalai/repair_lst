@@ -20,6 +20,7 @@ var errorMessage = "";
 	// $("#selectVehicle").change(selectCurrentVehicle);
 	getAllRepairTypes();
 	getAllRepairFacilities();
+	getAllRepairParts();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
 	// getAllRepairTypes();
@@ -71,6 +72,15 @@ function getAllRepairFacilities () {
     });
 }
 
+function getAllRepairParts () {
+	$("#repairPartsField").empty();
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/repair_lst/parts",
+        success: populateRepairPartField
+    });
+}
+
 function selectCurrentRepairFacility (){
 	var selectedRepairFacilityID = $("#repairFacilityDropDown").children(":selected").attr("id");
 	 
@@ -99,6 +109,17 @@ function populateRepairFacilityDropDown(data){
 		'</option>');
     }
 }
+
+function populateRepairPartField(data){
+    
+	// $("#repairPartsField").append('<option id = "-1"></option>' );
+	
+	for(var i = 0; i < data.length; i++){
+        $("#repairPartsField").append('<input type="checkbox" id="' + data[i].id + '">' + data[i].name + '<br/>');
+    }
+}
+
+
 
 function getAllRepairTypes () {
 	$("#typeofRepairDropDown").empty();
