@@ -32,7 +32,11 @@ public class CreateRepairItemService {
 	@Autowired
 	private IsNotNull isNotNull;
 	
-	
+	/**
+	 * validation for repair item parameters
+	 * @param repairItem
+	 * @return
+	 */
 	public Response createRepairItem(RepairItem repairItem) {
 		
 		Response response = new Response();
@@ -43,7 +47,7 @@ public class CreateRepairItemService {
 //
 		if (
 				isNotNull.isFieldNotNull(repairItem.getDescription(), errors)
-				&& isNotNull.isDateNotEmpty(repairItem.getDate(), errors)
+//				&& isNotNull.isDateNotEmpty(repairItem.getDate(), errors)
 				&& isNotNull.isBigDecimalValid(repairItem.getHourlyRate(), errors)
 				&& isNotNull.isFieldNotEmpty(repairItem.getLaborHours(), errors)
 				&& isNotNull.isFieldNotEmpty(repairItem.getMileage(), errors)
@@ -54,10 +58,11 @@ public class CreateRepairItemService {
 				&& isNotNull.isFieldNotEmpty(repairItem.getVehicleId(), errors)
 				
 				&& isValidLength.between1and255(repairItem.getDescription(), errors)
-				&& isValidLength.isDateValidLength(repairItem.getDate(), errors))
+//				&& isValidLength.isDateValidLength(repairItem.getDate(), errors)
+				&& isValidLength.isRatingValidLength(repairItem.getRating(), errors))
 
 		{
-
+			System.out.println("I got past validation!");
 			response.setStatusCode(HttpStatus.OK);
 			persistRepairItem(repairItem, response, errors);
 
@@ -77,6 +82,12 @@ public class CreateRepairItemService {
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * try/catch to persist the repair item object if validation succeeds
+	 * @param repairItem
+	 * @param response
+	 * @param errors
+	 */
 	@Transactional
 	public void persistRepairItem(RepairItem repairItem,
 			Response response, List<String> errors) {

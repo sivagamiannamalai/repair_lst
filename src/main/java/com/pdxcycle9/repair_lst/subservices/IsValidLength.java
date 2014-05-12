@@ -85,4 +85,17 @@ public class IsValidLength {
 
 	}
 	
+	public boolean isRatingValidLength(int rating, List<String> errors) {
+		
+		boolean result = false;		
+		
+		if(rating >= 1 && rating <= 5) {
+			result = true;
+		} else {
+			errors.add(Error.RATING_INVALID);
+		}
+		return result;
+		
+	}
+	
 }

@@ -30,6 +30,8 @@ public class Error {
     	
     	public static final String DATE_INVALID = "Error: Date should be mmddyyyy";
     	
+    	public static final String RATING_INVALID = "Error: Rating should be between 1 and 5";
+    	
     	public static final String NO_PARTS_ENTERED = "Error: Must indicate at least one part.";
 
     	public static final String MUST_BE_NUMBER = "Error: Must enter a value.";
