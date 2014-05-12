@@ -31,4 +31,11 @@ public class PartDAO {
 		return (List<Part>) query.getResultList();
 
 	}
+	
+	@Transactional
+	public Part retrievePartById(int partId) {
+		
+		return em.find(Part.class, partId);
+			
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pdxcycle9.repair_lst.DAO.PartDAO;
 import com.pdxcycle9.repair_lst.DAO.RepairItemDAO;
 import com.pdxcycle9.repair_lst.entities.Part;
 import com.pdxcycle9.repair_lst.entities.RepairItem;
@@ -22,6 +23,10 @@ public class AddPartsToRepairItemService {
 	RepairItemDAO repairItemDAO;
 	@Autowired 
 	IsValidLength isValidLength;
+	
+	@Autowired
+	PartDAO partDAO;
+	
 	/**
 	 * Create a repair item object, calls makePartsList to set parts, then after validation
 	 * makes a call to the DAO to persist the new part/repair item relationships
@@ -87,13 +92,14 @@ public class AddPartsToRepairItemService {
 	 * @param part
 	 * @return partList
 	 */
+	@Transactional
 	public ArrayList<Part> makePartsList(int[] part){
 			
 			ArrayList<Part> partList = new ArrayList<Part>();
 			
 			for(int i = 0; i < part.length; i++) {
 				
-				Part partsToAdd = new Part(part[i]);
+				Part partsToAdd = partDAO.retrievePartById(part[i]);
 				
 				partList.add(partsToAdd);
 				
