@@ -28,7 +28,7 @@ public class Error {
     	
     	public static final String PHONE_INVALID = "Error: Invalid phone number";
     	
-    	public static final String DATE_INVALID = "Error: Date should be mmddyyyy";
+    	public static final String DATE_INVALID = "Error: Date should be yyyy-mm-dd";
     	
     	public static final String RATING_INVALID = "Error: Rating should be between 1 and 5";
     	
