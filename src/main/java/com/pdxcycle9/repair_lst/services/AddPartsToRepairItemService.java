@@ -34,7 +34,7 @@ public class AddPartsToRepairItemService {
 	 * @param part
 	 * @return response
 	 */
-	public Response addPartsToRepairItem(int repairItemId, int[] part) {
+	public Response addPartsToRepairItem(int repairItemId, int[] parts) {
 
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();	
@@ -43,9 +43,9 @@ public class AddPartsToRepairItemService {
 			
 		repairItem = getRepairItem(repairItemId, repairItem, response, errors);
 				
-		repairItem.setParts(makePartsList(part, response, errors));
+		repairItem.setParts(makePartsList(parts, response, errors));
 
-		updateRepairWithItems(repairItem, response, errors);
+		updateRepairWithParts(repairItem, response, errors);
 
 		return response;
 	}
@@ -81,16 +81,16 @@ public class AddPartsToRepairItemService {
 	 * @return partList
 	 */
 	@Transactional
-	public ArrayList<Part> makePartsList(int[] part, Response response, List<String> errors){
+	public ArrayList<Part> makePartsList(int[] parts, Response response, List<String> errors){
 			
 			ArrayList<Part> partList = new ArrayList<Part>();
 			
-			for(int i = 0; i < part.length; i++) {
+			for(int i = 0; i < parts.length; i++) {
 				
 				
 				try {
 					
-					Part partsToAdd = partDAO.retrievePartById(part[i]);
+					Part partsToAdd = partDAO.retrievePartById(parts[i]);
 					partList.add(partsToAdd);
 					
 				} catch (Exception e) {
@@ -114,7 +114,7 @@ public class AddPartsToRepairItemService {
 	 * @return
 	 */
 	@Transactional
-	public Response updateRepairWithItems(RepairItem repairItem, Response response, List<String> errors) {
+	public Response updateRepairWithParts(RepairItem repairItem, Response response, List<String> errors) {
 		
 		try {
 			
@@ -133,6 +133,7 @@ public class AddPartsToRepairItemService {
 		return response;
 		
 	}
+	
 	/**
 	 * function that sets the response object to the errors
 	 * @param response
