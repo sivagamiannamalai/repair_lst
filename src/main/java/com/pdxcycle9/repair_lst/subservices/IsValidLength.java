@@ -1,8 +1,10 @@
 package com.pdxcycle9.repair_lst.subservices;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Component;
 
 import com.pdxcycle9.repair_lst.util.Error;
@@ -17,6 +19,18 @@ public class IsValidLength {
 			result = true;
 		} else {
 			errors.add(Error.IS_WRONG_LENGTH);
+		}
+		return result;
+	}
+	
+	public boolean between0and255(String string, List<String> errors) {
+
+		boolean result = false;
+
+		if (string.length() >= 0 && string.length() <= 255) {
+			result = true;
+		} else {
+			errors.add(Error.IS_TOO_LONG);
 		}
 		return result;
 	}
@@ -68,18 +82,16 @@ public class IsValidLength {
 
 	}
 	
-	public boolean isDateValidLength(Date date, List<String> errors) {
+	public boolean isDateValidLength(String dateData, List<String> errors) {
 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		boolean result = false;
-		System.out.println("The date looks like: "+date);
+		Date testDate = null;
 		try {
-			long longVal = date.getTime();
-			if (longVal == 8) {
-				result = true;				
-			}
-		}
-		catch (Exception e) {
+			testDate = formatter.parse(dateData);
+		} catch (java.text.ParseException e) {
 			errors.add(Error.DATE_INVALID);
+			e.printStackTrace();
 		}
 
 		return result;

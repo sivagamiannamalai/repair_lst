@@ -56,7 +56,7 @@ public class CreateRepairItemService {
 		RepairItem repairItem = new RepairItem();
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();
-
+		
 		repairItem.setDescription(description);
 		repairItem.setDateData(dateData);
 		repairItem.setHourlyRate(hourlyRate);
@@ -71,31 +71,29 @@ public class CreateRepairItemService {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		Date date = null;
 		try {
-			isNotNull.isFieldNotNull(dateData, errors);
+			isValidLength.isDateValidLength(dateData, errors);
 			date = formatter.parse(dateData);
 			repairItem.setDate(date);
 		} catch (Exception e) {
+			failed(response, errors);
 			e.printStackTrace();
-			errors.add(Error.IS_NULL);
 		}
 
 		if (
-				isNotNull.isFieldNotNull(repairItem.getDescription(), errors)
-				&& isNotNull.isBigDecimalValid(repairItem.getHourlyRate(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getLaborHours(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getMileage(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getRating(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getUserId(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getRepairTypeId(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getRepairFacilityId(), errors)
-				&& isNotNull.isFieldNotEmpty(repairItem.getVehicleId(), errors)
+				isNotNull.isDateNotEmpty(date, errors)
+				&& isNotNull.isBigDecimalValid(hourlyRate, errors)
+				&& isNotNull.isFieldNotEmpty(laborHours, errors, response)
+				&& isNotNull.isFieldNotEmpty(mileage, errors, response)
+				&& isNotNull.isFieldNotEmpty(rating, errors, response)
+				&& isNotNull.isFieldNotEmpty(userId, errors, response)
+				&& isNotNull.isFieldNotEmpty(repairTypeId, errors, response)
+				&& isNotNull.isFieldNotEmpty(repairFacilityId, errors, response)
+				&& isNotNull.isFieldNotEmpty(vehicleId, errors, response)
 				
-				&& isValidLength.between1and255(repairItem.getDescription(), errors)
-//				&& isValidLength.isDateValidLength(repairItem.getDate(), errors)
-				&& isValidLength.isRatingValidLength(repairItem.getRating(), errors))
+				&& isValidLength.between0and255(description, errors)
+				&& isValidLength.isRatingValidLength(rating, errors))
 
 		{
-			System.out.println("I got past validation!");
 			response.setStatusCode(HttpStatus.OK);
 			persistRepairItem(repairItem, response, errors);
 

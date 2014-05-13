@@ -37,15 +37,17 @@ public class IsNotNull {
 
 	}
 	
-	public boolean isFieldNotEmpty(double val, List<String> errors) {
+	public boolean isFieldNotEmpty(double val, List<String> errors, Response response) {
 
 		boolean result = false;
-
-		if (val > 0) {
-
-			return true;
-		} else {
+		try {
+			String stringVal = Double.toString(val);
+			if ((val > 0) && (stringVal != null)) {
+				return true;
+			} 
+		} catch (Exception e) {
 			errors.add(Error.IS_NULL);
+			failed(response, errors);
 		}
 
 		return result;

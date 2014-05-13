@@ -6,6 +6,8 @@ public class Error {
 
 		public static final String IS_WRONG_LENGTH = "Error: This field must be between 1 and 255 characters";
 		
+		public static final String IS_TOO_LONG = "Error: This field must be less than 255 characters";
+		
         public static final String CANNOT_PERSIST = "Error: Could not persist to the database";
         
         public static final String CANNOT_UPDATE = "Error: Could not update the database";
