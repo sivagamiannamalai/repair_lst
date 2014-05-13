@@ -9,6 +9,12 @@ function getRepairFacilityRating(){
 	
 		if(name == ""){
 			$("#repairFacilityName").html("You need to at least enter something into the text box");
+			$("#repairFacilityRating").html("");
+		}
+		
+		else if(name.length > 255){
+			$("#repairFacilityName").html("Search parameters must not be any more than 255 characters in length");
+			$("#repairFacilityRating").html("");
 		}
 		
 		else {
@@ -16,7 +22,7 @@ function getRepairFacilityRating(){
 				type: "GET",
 				url: "http://localhost:8080/repair_lst/repairfacilityrating/"+ name,
 				success: displayRepairFacilityRating,
-				failure: failedToGetRatings
+				error: failedToGetRatings
 			});		
 		}
 }
@@ -94,9 +100,9 @@ function displayRepairFacilityRating(data){
 		}
 }
 
-function failedToGetRatings (data){
-console.log("Failed");
-$("#repairFacilityName").html("Could not find any repair facilities.");
-$("#repairFacilityRating").html(" You have to use the exact name. ");
+function failedToGetRatings(data, status, jqXHR){
+
+$("#repairFacilityName").html(data.responseJSON);
+$("#repairFacilityRating").html("");
 
 }

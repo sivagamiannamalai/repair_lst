@@ -54,7 +54,7 @@ function populateRepairFacilities(data){
 	
 }
 
-function getAllRepairFacilitiesFailed(){
+function getAllRepairFacilitiesFailed(data, status, jqXHR){
 
 console.log("FAIL");
 

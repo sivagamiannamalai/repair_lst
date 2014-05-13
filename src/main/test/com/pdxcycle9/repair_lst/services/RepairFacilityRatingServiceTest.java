@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
@@ -69,8 +70,8 @@ public class RepairFacilityRatingServiceTest {
 	@Test
 	public void nullSearchThrowsISNULLError() throws Exception {
 		repairFacilityNameToSearch = "";
-		when(isNotNull.isFieldNotNull(repairFacilityNameToSearch, errors)).thenReturn(false);
-		when(isValidLength.between1and255(repairFacilityNameToSearch, errors)).thenReturn(false);
+		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
+		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
 		response = repairFacilityRatingService.getRatingByName(repairFacilityNameToSearch);
 		errors = (List<String>) response.getResponseObject();
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -79,9 +80,9 @@ public class RepairFacilityRatingServiceTest {
 
 	@Test
 	public void tooLongSearchThrowsISWRONGLENGTHError() throws Exception {
-		repairFacilityNameToSearch = "Lorem ipsum dolor sit amet, nonummy ligula volutpat hac integer nonummy. Suspendisse ultricies, congue etiam tellus, erat libero, nulla eleifend, mauris pellentesque. Suspendisse integer praesent vel, integer gravida mauris, fringilla vehicula lacinia non!";
-		when(isNotNull.isFieldNotNull(repairFacilityNameToSearch, errors)).thenReturn(true);
-		when(isValidLength.between1and255(repairFacilityNameToSearch, errors)).thenReturn(false);
+		repairFacilityNameToSearch = "Lorem ipsum dolor sit amet, nonummy ligula volutpat hac integer nonummy. Suspendisse ultricies, congue etiam tellus, erat libero, nulla eleifend, mauris pellentesque. Suspendisse integer praesent vel, integer gravida mauris, fringilla vehicula lacinia non!!!!!!!!";
+		when(isNotNull.isFieldNotNull(Matchers.anyString(), Matchers.anyList())).thenReturn(true);
+		when(isValidLength.between1and255(Matchers.anyString(), Matchers.anyList())).thenReturn(false);
 		response = repairFacilityRatingService.getRatingByName(repairFacilityNameToSearch);
 		errors = (List<String>) response.getResponseObject();
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
