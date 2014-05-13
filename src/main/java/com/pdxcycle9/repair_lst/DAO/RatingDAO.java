@@ -32,7 +32,6 @@ public class RatingDAO {
 
 		String findTheRating = "SELECT lst_repairtracker.getaverageratingbyname('"+ foundRepairFacility.getId() + "')";
 		Query getTheRating = em.createNativeQuery(findTheRating);
-		System.out.println("Set the query passed");
 		averageRating = (Double) getTheRating.getSingleResult();
 		foundRepairFacility.setRating(averageRating);
 		return foundRepairFacility;
