@@ -40,13 +40,13 @@ function validateUser(userName, password) {
 	var userLength = userName.length;
 	var passwordLength = password.length;
 	if(userLength <= 0 || userLength > 32) {		
-		   alert("Username should be between 0-32 characters");
+		   alert("Username should be between 1-32 characters");
 		   tryAgain();
 		   return false;
 	} 
 	
 	if((passwordLength <= 0 || passwordLength > 32)) {
-		alert("Password should be between 0-32 characters");
+		alert("Password should be between 1-32 characters");
 		tryAgain();
 		return false;				
 	}
