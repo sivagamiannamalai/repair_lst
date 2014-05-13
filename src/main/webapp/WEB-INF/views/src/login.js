@@ -1,4 +1,6 @@
 var attempts = 0;
+var tryAgainVar = true;
+
 $("document").ready(function() {
      login();     
 });
@@ -12,22 +14,24 @@ function login() {
 	 }
      attempts++;
 	 if(attempts <= 3) {
-        var userName = prompt("Enter your username");
-        if(userName === null) {
-	    	alert("You pressed Cancel. You will have to log in to add a repair item");
-	    	return;
-	    }
-	    var password = prompt("Enter your password");	    
-	    if(password === null) {
-	    	alert("You pressed Cancel. You will have to log in to add a repair item");
-	    	return;
-	    }
-	    if(validateUser(userName, password)) {
-	       verifyUser(userName, password);
-	    } else {
-	    	$("#loginStatusMessage").text("Invalid username/password"); 
-	    }
-	}	
+         var userName = prompt("Enter your username");    
+	     var password = prompt("Enter your password");	    
+	     if(userName === null || password === null) {
+	    	 cancelButtonClicked();
+	     }
+	     
+	     // if the user does not want to try again, exit the function
+	     // tryAgainVar is set as a global variable
+	     if(!tryAgainVar) {
+	         return;
+	     }    
+	     
+	     if(validateUser(userName, password)) {
+	        verifyUser(userName, password);
+	     } else {
+	    	 $("#loginStatusMessage").text("Invalid username/password"); 
+	     }
+	 }	
 }
 
 
@@ -37,19 +41,13 @@ function validateUser(userName, password) {
 	var passwordLength = password.length;
 	if(userLength <= 0 || userLength > 32) {		
 		   alert("Username should be between 0-32 characters");
-		   var response = confirm("Do you want to try again?");
-			if(response) {
-				login();					
-			}	
-			return false;
+		   tryAgain();
+		   return false;
 	} 
 	
 	if((passwordLength <= 0 || passwordLength > 32)) {
 		alert("Password should be between 0-32 characters");
-		var response = confirm("Do you want to try again?");
-		if(response) {
-			login();
-		}	
+		tryAgain();
 		return false;				
 	}
 	
@@ -69,10 +67,10 @@ $.ajax( {
 });
 }
 
+
 // get the userId if the validation passes
 function validationSuccess(data, status, jqXHR) {
-    getUserId(data.id);
-    //$("#username").text(data.userName);    
+    getUserId(data.id);    
     $("#loginStatusMessage").text("Logged in as " + data.userName);
 }
 
@@ -83,15 +81,26 @@ function validationFailure(data)  {
    setTimeout(login, 2000);
 }
 
+
+// prompt the user to log in again
 function tryAgain() {
 	var response = confirm("Do you want to try again?");
 	if(response) {
-		login();
-		return true;
-	}else {
-		return false;
-    }
+		login();	
+	}	
+	else {
+	     $("#loginStatusMessage").text("GoodBye!");	
+	     tryAgainVar = false;     
+	}     
 }
+
+
+//prompt the user to log in again when Cancel button was clicked
+function cancelButtonClicked() {
+     alert("You pressed Cancel. You will have to log in to add a repair item");
+	 tryAgain();
+}
+
  
 function getUserId(id) {	
 	return id;
