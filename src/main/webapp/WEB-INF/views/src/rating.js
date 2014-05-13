@@ -103,6 +103,7 @@ function displayRepairFacilityRating(data){
 function failedToGetRatings(data, status, jqXHR){
 
 $("#repairFacilityName").html(data.responseJSON);
+
 $("#repairFacilityRating").html("");
 
 }
