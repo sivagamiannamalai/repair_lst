@@ -73,7 +73,7 @@ public class RepairFacilityRatingService {
 			response.setResponseObject(rating);
 		} catch (Exception e) {
 
-			errors.add(Error.IS_EMPTY);
+			errors.add(Error.NO_RESULTS_FOUND);
 			failed(response, errors);
 
 		}

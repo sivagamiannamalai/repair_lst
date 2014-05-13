@@ -98,6 +98,6 @@ public class RepairFacilityRatingServiceTest {
 		response = repairFacilityRatingService.getRatingByName(repairFacilityNameToSearch);
 		errors = (List<String>) response.getResponseObject();
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-		assertEquals(Error.IS_EMPTY, errors.get(0));
+		assertEquals(Error.NO_RESULTS_FOUND, errors.get(0));
 	}
 }
