@@ -1,18 +1,24 @@
 package com.pdxcycle9.repair_lst.services;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.NoResultException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Matchers;
+import org.mockito.Mock;
+
 import org.springframework.http.HttpStatus;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 import com.pdxcycle9.repair_lst.DAO.UserDAO;
-import com.pdxcycle9.repair_lst.entities.RepairFacility;
 import com.pdxcycle9.repair_lst.entities.User;
+import com.pdxcycle9.repair_lst.subservices.IsValidLength;
 import com.pdxcycle9.repair_lst.util.Error;
 import com.pdxcycle9.repair_lst.util.Response;
 
@@ -23,7 +29,7 @@ public class VerifyUserServiceTest {
 	@Mock
 	private UserDAO userDAO;	
 	@InjectMocks
-	private VerifyUserService = new VerifyUserService();	
+	private VerifyUserService verifyUserService = new VerifyUserService();	
 	
 	User user;
 	Response response;
@@ -31,6 +37,7 @@ public class VerifyUserServiceTest {
 	String password;
 	List<String> errors;
 
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 		user = new User();
@@ -53,6 +60,7 @@ public class VerifyUserServiceTest {
 		assertEquals(User.class, response.getResponseObject().getClass());
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void passNothingGetError() {
 		when(isValidLength.isValidUser(Matchers.anyString(), Matchers.anyList()) &&
@@ -64,6 +72,7 @@ public class VerifyUserServiceTest {
 		assertEquals(Error.INVALID_USER, errors.get(0));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void getBadRequestForInvalidUser() {
 		 when(userDAO.findUser(userName, password)).thenThrow(new NoResultException());
