@@ -28,8 +28,7 @@ function populateRepairFacilities(data){
 			'<th>' + data[i].address.state + '</th>' + 
 			'<th>' + data[i].address.zip + '</th>' + 
 			'<th>' + data[i].phone + '</th>' + 
-			'<th>' + data[i].hourlyRate + '</th>' + 
-			'<th>' + data[i].rating + '</th>' + 
+			'<th>' + data[i].hourlyRate + '</th>' +  
 			'<th id = "specializations'+i+'">'
 			);		
 				
@@ -55,8 +54,8 @@ function populateRepairFacilities(data){
 	
 }
 
-function getAllRepairFacilitiesFailed(){
+function getAllRepairFacilitiesFailed(data, status, jqXHR){
 
-$('#displayRepairFacilityError').html("Could Not Connect To The Database");
+console.log("FAIL");
 
 }

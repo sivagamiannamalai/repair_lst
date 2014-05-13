@@ -28,6 +28,7 @@ var errorMessage = "";
 	getAllRepairTypes();
 	getAllRepairFacilities();
 	getAllRepairParts();
+	getAllVehiclesByUser();
 	$("#repairFacilityDropDown").change(selectCurrentRepairFacility);
 		
 	// getAllRepairTypes();
@@ -39,18 +40,28 @@ var mileageAtTimeOfRepair = $("#repairItemMileageInput").val();
 var hourlyRateOfRepairFacility = $("#repairItemHourlyRateInput").val();
 var repairItemDescription = $("#repairItemDescriptionInput").val();
 
-function getAllVehicles() {
+function getAllVehiclesByUser() {
 	$("#vehicleDropDown").empty();
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/repair_lst/vehicle",
-        success: populateVehicleDropDown
+		data: {userId: 1},
+		dataType: "json",
+        success: populateVehicleDropDown,
+		//error: populateVehicleFailure
     });
 }
+
+function populateVehicleFailure() {
+	console.log("Failed!");
+}
+
+
+
 /* This populate function relies on the user being logged in
    and having access to that specific user's vehicles. The
    back end needs to be written for a 'retrieve all vehicles
-   by user id' feature.
+   by user id' feature.*/
 
 function populateVehicleDropDown(data){
     
@@ -64,11 +75,10 @@ function populateVehicleDropDown(data){
 		data[i].model + ', ' + 
 		data[i].vin + ', ' + 
 		data[i].mileage +
-		data[i].year
+		data[i].year +
 		'</option>');
     }
 }
-*/
 
 function getAllRepairFacilities () {
 	$("#repairFacilityDropDown").empty();

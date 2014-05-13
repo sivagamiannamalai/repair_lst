@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
+@NamedQueries({ @NamedQuery(name = "findAllVehiclesByUserId", query = "SELECT ve FROM Vehicle ve WHERE ve.userId=:userId") })
 @Entity
 @Table(name="vehicle")
 public class Vehicle implements Serializable{
@@ -35,6 +39,10 @@ public class Vehicle implements Serializable{
 	@Column(name = "mileage", nullable = false)
 	private int mileage;
 	
+	@Column(name = "user_fk", nullable = false)
+	private int userId;
+	
+
 	public Vehicle() {
 	
 	}
@@ -122,6 +130,23 @@ public class Vehicle implements Serializable{
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
+	
+	/**
+	 * 
+	 * @return the user ID
+	 */
+	public int getUserId() {
+		return userId;
+	}
+
+	/**
+	 * 
+	 * @param userID the user's ID
+	 */
+	public void setUserID(int userId) {
+		this.userId = userId;
+	}
+
 	
 	@Override
 	public String toString() {

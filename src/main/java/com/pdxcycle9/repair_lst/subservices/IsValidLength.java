@@ -71,6 +71,7 @@ public class IsValidLength {
 	public boolean isDateValidLength(Date date, List<String> errors) {
 
 		boolean result = false;
+		System.out.println("The date looks like: "+date);
 		try {
 			long longVal = date.getTime();
 			if (longVal == 8) {

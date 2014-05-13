@@ -30,10 +30,9 @@ public class RepairItemController {
 	AddPartsToRepairItemService addParts;
 	
 	/**
-	 * repair item controller to persist/add new repair items with the following params,
-	 * plus date cast from String to Date in try/catch
+	 * repair item controller to persist/add new repair items with the following params:
 	 * @param description
-	 * @param date
+	 * @param dateData
 	 * @param hourlyRate
 	 * @param laborHours
 	 * @param mileage
@@ -60,28 +59,7 @@ public class RepairItemController {
 			@RequestParam(value = "repairFacilityId") int repairFacilityId,
 			@RequestParam(value = "vehicleId") int vehicleId){
 
-		RepairItem repairItem = new RepairItem();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-		Date date = null;
-		try {
-			date = formatter.parse(dateData);
-			repairItem.setDate(date);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		repairItem.setDescription(description);
-		
-		repairItem.setHourlyRate(hourlyRate);
-		repairItem.setLaborHours(laborHours);
-		repairItem.setMileage(mileage);
-		repairItem.setRating(rating);
-		repairItem.setUserId(userId);
-		repairItem.setRepairTypeId(repairTypeId);
-		repairItem.setRepairFacilityId(repairFacilityId);
-		repairItem.setVehicleId(vehicleId);
-
-		Response response = createRepairItemService.createRepairItem(repairItem);
+		Response response = createRepairItemService.createRepairItem(description,dateData,hourlyRate,laborHours,mileage,rating,userId,repairTypeId,repairFacilityId,vehicleId);
 
 		return new ResponseEntity<Object>(response.getResponseObject(), response.getStatusCode());
 	}

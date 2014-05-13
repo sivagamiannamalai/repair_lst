@@ -21,7 +21,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
-
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
@@ -83,6 +82,8 @@ public class RepairItem implements Serializable{
 	inverseJoinColumns = { @JoinColumn(name = "part_fk") })
 	private Collection<Part> parts;
 
+	private String dateData;
+
 	public RepairItem() {
 
 	}
@@ -112,16 +113,24 @@ public class RepairItem implements Serializable{
 		this.description = description;
 	}
 
+	/**
+	 * getters and setters for date object, and casting a string to a date 
+	 * @param date
+	 */
 	public Date getDate() {
 		return date;
 	}
-
-	/**
-	 * casting a string to a date, still needs work
-	 * @param date
-	 */
+	
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	public String getDateData() {
+		return dateData;
+	}
+	
+	public void setDateData(String dateData) {
+		this.dateData = dateData;
 	}
 
 	public BigDecimal getHourlyRate() {

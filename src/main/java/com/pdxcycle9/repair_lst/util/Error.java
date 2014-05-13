@@ -28,7 +28,7 @@ public class Error {
     	
     	public static final String PHONE_INVALID = "Error: Invalid phone number";
     	
-    	public static final String DATE_INVALID = "Error: Date should be mmddyyyy";
+    	public static final String DATE_INVALID = "Error: Date should be yyyy-mm-dd";
     	
     	public static final String RATING_INVALID = "Error: Rating should be between 1 and 5";
     	
@@ -41,5 +41,7 @@ public class Error {
     	public static final String INVALID_INPUT = "Error: Username/password should be between 1 - 32 characters";
     	
     	public static final String INVALID_USER = "Username/password is incorrect. Please try again";
+    	
+    	public static final String NO_RESULTS_FOUND = "No records have been found for the entered search";
 		
 }
