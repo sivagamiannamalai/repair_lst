@@ -139,14 +139,11 @@ public class RepairFacilityController {
 	@RequestMapping(value = "/repairfacilityrating/{name}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Object> retrieveRepairFacilityRating( @PathVariable String name) {
-		RepairFacility repairFacility = new RepairFacility();
+		
+		String repairFacilityNameToSearch = name;	
 		ResponseEntity<Object> returnObject = null;
-
-		repairFacility.setName(name);
-		
-		
 		try {
-			Response response = repairFacilityRatingService.getRatingByName(repairFacility);
+			Response response = repairFacilityRatingService.getRatingByName(repairFacilityNameToSearch);
 			returnObject = new ResponseEntity<Object>(
 					response.getResponseObject(), response.getStatusCode());
 		} catch (Exception e) {
