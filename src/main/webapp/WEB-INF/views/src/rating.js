@@ -5,14 +5,13 @@ $(document).ready(function(){
 });
 
 function getRepairFacilityRating(){
-
 	var name = $("#requestedRepairFacility").val();
 	
 		if(name == ""){
-		
+			$("#repairFacilityName").html("You need to at least enter something into the text box");
 		}
 		
-		else {		
+		else {
 			 $.ajax({
 				type: "GET",
 				url: "http://localhost:8080/repair_lst/repairfacilityrating/"+ name,
@@ -23,7 +22,45 @@ function getRepairFacilityRating(){
 }
 
 function displayRepairFacilityRating(data){
+	console.log(data.rating);
+	var ratingCountdown = +data.rating;
+	var emptyStarCount = 5 - data.rating;
+	$("#repairFacilityName").html("<h4>Repair Facility Name:</h4>");
+	$("#repairFacilityName").append("<h2>"+data.name+"</h2>");
+	$("#repairFacilityRating").html("<h4>Repair Facility Rating:</h4>");
 
-	
+	if (ratingCountdown >= 1 && < 1.5){
+			$("#repairFacilityName").append("<img src = ></img>");
+		}
+	else if(ratingCountdown >= 1.5 && < 2){
+			
+		}
+	else if(ratingCountdown >= 2 && < 2.5){
+			
+		}
+	else if(ratingCountdown >= 2.5 && < 3){
+			
+		}
+	else if(ratingCountdown >= 3 && < 3.5){
+			
+		}
+	else if(ratingCountdown >= 3.5 && < 4){
+			
+		}
+	else if(ratingCountdown >= 4 && < 4.5){
+			
+		}
+	else if(ratingCountdown >= 4.5 && < 5){
+			
+		}
+	else if(ratingCountdown = 5){
+			
+		}
+}
+
+function failedToGetRatings (data){
+console.log("Failed");
+$("#repairFacilityName").html("Could not find any repair facilities.");
+$("#repairFacilityRating").html(" You have to use the exact name. ");
 
 }

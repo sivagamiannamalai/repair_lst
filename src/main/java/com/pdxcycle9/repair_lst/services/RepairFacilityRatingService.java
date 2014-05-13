@@ -1,5 +1,6 @@
 package com.pdxcycle9.repair_lst.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RepairFacilityRatingService {
 	@Autowired
 	RatingDAO ratingDAO;
 	
-	public Response getRatingByName(RepairFacility repairFacility){
+	public Response getRatingByName(String repairFacilityNameToSearch){
 		
 		Response response = new Response();
 		List<String> errors = new ArrayList<String>();		
@@ -34,16 +35,16 @@ public class RepairFacilityRatingService {
 		boolean fieldsCorrectLength = false;				
 		
 		
-		if(isNotNull.isFieldNotNull(repairFacility.getName(), errors)){
+		if(isNotNull.isFieldNotNull(repairFacilityNameToSearch, errors)){
 			fieldsNotNull = true;
 		}
 		
-		if(isValidLength.between1and255(repairFacility.getName(), errors)){
+		if(isValidLength.between1and255(repairFacilityNameToSearch, errors)){
 			fieldsCorrectLength = true;
 		}
 		
 		if(fieldsNotNull && fieldsCorrectLength) {
-			findRepairFacilityRatings(repairFacility, response, errors);
+			findRepairFacilityRatings(repairFacilityNameToSearch, response, errors);
 		}  else {
 			failed(response, errors);
 		}
@@ -56,14 +57,15 @@ public class RepairFacilityRatingService {
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
 	
-	public Response findRepairFacilityRatings(RepairFacility repairFacility, Response response,List<String> errors){
-		List<RepairItem> ratings = null;
+	public Response findRepairFacilityRatings(String repairFacilityNameToSearch, Response response,List<String> errors){
+		RepairFacility rating = null;
 		
 		try {
-			ratings = ratingDAO.getRepairFacilityId(repairFacility);
+			rating = ratingDAO.getRepairFacilityRating(repairFacilityNameToSearch);
 			response.setStatusCode(HttpStatus.OK);
-			response.setResponseObject(ratings);
+			response.setResponseObject(rating);
 		} catch (Exception e) {
+
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
 		}
