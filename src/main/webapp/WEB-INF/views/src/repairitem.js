@@ -10,6 +10,7 @@ var selectedRepairFacility;
 var selectedVehicle;
 var selectedRepairType;
 var errorMessage = "";
+
 // var selectedParts =  $('#repairPartsField').children.('input').prop('checked', true);
 
 /*$(document).on("click", '#addPartButton', function(event) { 
@@ -53,7 +54,8 @@ function getAllVehiclesByUser() {
 }
 
 function populateVehicleFailure() {
-	console.log("Failed!");
+	
+console.log("Failed!");
 }
 
 

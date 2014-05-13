@@ -19,3 +19,18 @@ span#repairItemRating {
 	display: block;
 	text-align: center;
 }
+
+#repairItemDateMonth{
+	width: 3em;
+	display: inline-block;
+}
+
+#repairItemDateDay {
+	width: 3em;
+	display: inline-block;
+}
+
+#repairItemDateYear {
+	width: 3em;
+	display: inline-block;
+}
