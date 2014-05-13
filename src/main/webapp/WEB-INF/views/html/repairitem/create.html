@@ -3,8 +3,9 @@
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../../css/addRepairItem.css">
 	<script type="text/javascript" src="../../lib/jquery-2.1.0.js"></script>
-	<script type="text/javascript" src="../../src/repairitem.js"></script>
 	<script type="text/javascript" src="../../src/login.js"></script>
+	<script type="text/javascript" src="../../src/repairitem.js"></script>
+	
 	<title>Local Sports Team Car Repair App - Add a Repair</title>
 </head>
 <body>
@@ -60,7 +61,9 @@
 			<select id = "typeofRepairDropDown"></select>
 			<br/>
 			
-			<span id="repairItemDate">Date of Repair:</span> <input type="text" id="repairItemDateOfRepairInput"> 
+			<span id="repairItemDate">Date of Repair:</span> 
+			<br/>
+			<input type="text" maxlength="2" placeholder="MM" id="repairItemDateMonth"/>&nbsp;-&nbsp;<input type="text" maxlength="2" placeholder="DD" id="repairItemDateDay">&nbsp;-&nbsp;<input type="text" placeholder="YYYY" maxlength="4" id="repairItemDateYear">
 			<br/>
 			<span id="repairItemMiles">Mileage at time of Repair:</span> <input type="text" id="repairItemMileageInput"> 
 			<br/>
