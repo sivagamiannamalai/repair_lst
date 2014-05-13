@@ -29,34 +29,30 @@ public class RepairFacilityRatingService {
 	public Response getRatingByName(String repairFacilityNameToSearch) {
 
 		Response response = new Response();
+		List<String> pretendArray = new ArrayList<String>();
 		List<String> errors = new ArrayList<String>();
 		boolean fieldsNotNull = false;
 		boolean fieldsCorrectLength = false;
 
-		if (isNotNull.isFieldNotNull(repairFacilityNameToSearch, errors)) {
+		if (isNotNull.isFieldNotNull(repairFacilityNameToSearch, pretendArray)) {
 			fieldsNotNull = true;
-		} else {
-			errors.add(Error.IS_NULL);
-		}
+		} else{errors.add(Error.IS_NULL);}
 
-		if (isValidLength.between1and255(repairFacilityNameToSearch, errors)) {
+		if (isValidLength.between1and255(repairFacilityNameToSearch, pretendArray)) {
 			fieldsCorrectLength = true;
-		} else {
-			errors.add(Error.IS_WRONG_LENGTH);
-		}
+		} else{errors.add(Error.IS_WRONG_LENGTH);}
 
 		if (fieldsNotNull && fieldsCorrectLength) {
 			findRepairFacilityRatings(repairFacilityNameToSearch, response,
 					errors);
 		} else {
 			failed(response, errors);
-		}
+		}	
 
 		return response;
 	}
 
 	public void failed(Response response, List<String> errors) {
-		System.out.println(errors);
 		response.setResponseObject(errors);
 		response.setStatusCode(HttpStatus.BAD_REQUEST);
 	}
