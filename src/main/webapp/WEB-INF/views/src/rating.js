@@ -29,32 +29,68 @@ function displayRepairFacilityRating(data){
 	$("#repairFacilityName").append("<h2>"+data.name+"</h2>");
 	$("#repairFacilityRating").html("<h4>Repair Facility Rating:</h4>");
 
-	if (ratingCountdown >= 1 && < 1.5){
-			$("#repairFacilityName").append("<img src = ></img>");
+	if (ratingCountdown >= 1 && ratingCountdown < 1.5){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
 		}
-	else if(ratingCountdown >= 1.5 && < 2){
-			
+	else if(ratingCountdown >= 1.5 && ratingCountdown < 2){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/halfwrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");					
 		}
-	else if(ratingCountdown >= 2 && < 2.5){
-			
+	else if(ratingCountdown >= 2 && ratingCountdown < 2.5){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");					
 		}
-	else if(ratingCountdown >= 2.5 && < 3){
-			
+	else if(ratingCountdown >= 2.5 && ratingCountdown < 3){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/halfwrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");				
 		}
-	else if(ratingCountdown >= 3 && < 3.5){
-			
+	else if(ratingCountdown >= 3 && ratingCountdown < 3.5){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");				
 		}
-	else if(ratingCountdown >= 3.5 && < 4){
-			
+	else if(ratingCountdown >= 3.5 && ratingCountdown < 4){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/halfwrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");			
 		}
-	else if(ratingCountdown >= 4 && < 4.5){
-			
+	else if(ratingCountdown >= 4 && ratingCountdown < 4.5){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/nowrench.png></img>");			
 		}
-	else if(ratingCountdown >= 4.5 && < 5){
-			
+	else if(ratingCountdown >= 4.5 && ratingCountdown < 5){
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/halfwrench.png></img>");			
 		}
 	else if(ratingCountdown = 5){
-			
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");
+			$("#repairFacilityRating").append("<img src=../../img/wholewrench.png></img>");			
 		}
 }
 
