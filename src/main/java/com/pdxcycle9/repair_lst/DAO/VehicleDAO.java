@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pdxcycle9.repair_lst.entities.Part;
 import com.pdxcycle9.repair_lst.entities.User;
 import com.pdxcycle9.repair_lst.entities.Vehicle;
 
@@ -32,9 +33,11 @@ public class VehicleDAO {
 		List<Vehicle> listOfUserVehicles = new ArrayList<Vehicle>();
 		Query query = em.createNamedQuery("findAllVehiclesByUserId");
 		query.setParameter("userId", userId);
-		//listOfUserVehicles = (List<Vehicle>)query.getSingleResult();    
+		//listOfUserVehicles = (List<Vehicle>)query.getSingleResult(); 
+		listOfUserVehicles = query.getResultList();
 		return listOfUserVehicles;
 		//return (List<Vehicle>) em.find(Vehicle.class, userId);
+
 	}
 
 }

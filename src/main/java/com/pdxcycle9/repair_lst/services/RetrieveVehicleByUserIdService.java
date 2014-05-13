@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pdxcycle9.repair_lst.DAO.VehicleDAO;
 import com.pdxcycle9.repair_lst.entities.Vehicle;
+import com.pdxcycle9.repair_lst.subservices.ValidateResults;
 import com.pdxcycle9.repair_lst.util.Response;
 
 @Service
@@ -17,6 +18,9 @@ public class RetrieveVehicleByUserIdService {
 
 	@Autowired
 	private VehicleDAO vehicleDAO;
+	
+	@Autowired
+	private ValidateResults validateResults;
 
 	@Transactional
 	public Response retrieveByUserId(int vehicleUserId) {
@@ -34,7 +38,7 @@ public class RetrieveVehicleByUserIdService {
 			response.setStatusCode(HttpStatus.BAD_REQUEST);
 			response.setResponseObject(errors);
 		}
-		// validateResults.isNotEmpty(errors, result, response);
+		validateResults.isNotEmpty(errors, result, response);
 		return response;
 
 	}
